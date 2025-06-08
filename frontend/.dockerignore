@@ -1,0 +1,11 @@
+# Ignorar dependencias locales
+node_modules
+
+# Ignorar logs de npm
+npm-debug.log
+
+# Ignorar la carpeta de build (la generamos dentro de Docker)
+build
+
+# Archivos de entorno que no deben ir en la imagen
+.env
