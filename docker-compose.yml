@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  # Definimos nuestro servicio web
+  web:
+    # Le decimos que construya la imagen usando el Dockerfile del directorio actual (.)
+    build: .
+    # Mapeamos los puertos. El puerto 8080 de tu Mac se conectará
+    # al puerto 80 del contenedor (que es donde escucha Nginx).
+    ports:
+      - "8080:80"
