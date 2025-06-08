@@ -65,10 +65,11 @@ const ServicesSection = ({ language, className }) => {
           })}
         </div>
         
-        <div className="text-center mt-16">
+       <div className="text-center mt-16">
           <Link
-            to="/servicios.html"
-            className="inline-block px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/40"
+            to="/servicios"
+            // CAMBIO: Añadimos 'rounded-xl' para que coincida con las tarjetas
+            className="inline-block px-8 py-3 bg-blue-600 text-white text-base font-semibold rounded-xl shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/40"
           >
             {language === 'es' ? 'Ver Detalles de Servicios' : 'View Service Details'}
           </Link>

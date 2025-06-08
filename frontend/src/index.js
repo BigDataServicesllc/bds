@@ -13,15 +13,16 @@ Modal.setAppElement('#root');
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // App es el Layout
+    element: <App />,
     children: [
       {
-        index: true, // Ruta por defecto '/'
-        element: <HomePage />, // Renderizará HomePage dentro del <Outlet> de App
+        index: true,
+        element: <HomePage />,
       },
       {
-        path: "servicios.html", // Ruta para /servicios.html
-        element: <ServiceDetailPage />, // Renderizará ServiceDetailPage dentro del <Outlet>
+        // CAMBIO: Quita el .html. La ruta ahora es limpia.
+        path: "servicios",
+        element: <ServiceDetailPage />,
       },
     ]
   },
