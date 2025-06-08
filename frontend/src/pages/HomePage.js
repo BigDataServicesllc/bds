@@ -33,7 +33,7 @@ const HomePage = () => {
         onNavigate(id);
       }, 100);
     }
-  }, [location, onNavigate]); // Esta lista le dice a React: "Vuelve a ejecutar este código si la 'location' o la función 'onNavigate' cambian".
+  }, []); // Esta lista le dice a React: "Vuelve a ejecutar este código si la 'location' o la función 'onNavigate' cambian".
 
   return (
     <>
