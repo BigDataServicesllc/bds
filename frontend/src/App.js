@@ -1,14 +1,18 @@
+// frontend/src/App.js
+
 import React, { useState, useEffect } from 'react';
 import LayoutHeader from './components/LayoutHeader';
 import HomeSection from './components/HomeSection';
 import ServicesSection from './components/ServicesSection';
 import LearningSection from './components/LearningSection';
 import ContactSection from './components/ContactSection';
- 
+import LayoutFooter from './components/LayoutFooter';
+import CallToActionSection from './components/CallToActionSection';
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
-  const [language, setLanguage] = useState('es'); // 'es' para español, 'en' para inglés
- 
+  const [language, setLanguage] = useState('es');
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'services', 'learning', 'contact'];
@@ -34,7 +38,7 @@ const App = () => {
     const section = document.getElementById(pageId);
     if (section) {
       window.scrollTo({
-        top: section.offsetTop - 80, // Ajuste para el header fijo
+        top: section.offsetTop - 80,
         behavior: 'smooth',
       });
     }
@@ -45,7 +49,7 @@ const App = () => {
   };
  
   return (
-    <div className="font-sans antialiased text-gray-900">
+    <div className="bg-gray-900 text-gray-100 font-sans antialiased">
       <LayoutHeader
         currentPage={currentPage}
         onNavigate={handleNavigate}
@@ -53,15 +57,15 @@ const App = () => {
         language={language}
       />
       <main>
-        <HomeSection language={language} />
+        <HomeSection language={language} onNavigate={handleNavigate} />
         <ServicesSection language={language} />
-        <LearningSection language={language} />
+        <LearningSection language={language} onNavigate={handleNavigate} />
         <ContactSection language={language} />
       </main>
+      <CallToActionSection language={language} onNavigate={handleNavigate} />
+      <LayoutFooter language={language} />
     </div>
   );
 };
  
 export default App;
-
-// DONE
