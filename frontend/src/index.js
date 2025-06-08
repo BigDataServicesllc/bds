@@ -1,40 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import './styles.css'; 
+import App from './App';
 import HomePage from './pages/HomePage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
-// 1. Importamos las herramientas del router
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
-// Importamos nuestros estilos y componentes
-import './styles.css'; // O index.css si es tu caso
-import App from './App';
 import Modal from 'react-modal';
 
-// Configuración de accesibilidad para el modal
 Modal.setAppElement('#root');
 
-// 2. Creamos el mapa de rutas de nuestra aplicación
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // App es ahora el layout principal
-    children: [ // Sus "hijos" son las páginas que se renderizarán en el <Outlet>
+    element: <App />, // App es el Layout
+    children: [
       {
-        index: true, // Esta es la ruta por defecto (equivale a path: '/')
-        element: <HomePage />,
+        index: true, // Ruta por defecto '/'
+        element: <HomePage />, // Renderizará HomePage dentro del <Outlet> de App
       },
       {
-        path: "servicios", // La ruta será /servicios
-        element: <ServiceDetailPage />,
+        path: "servicios.html", // Ruta para /servicios.html
+        element: <ServiceDetailPage />, // Renderizará ServiceDetailPage dentro del <Outlet>
       },
     ]
   },
 ]);
 
-// 3. Le decimos a React que renderice el Router, no directamente el App
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
