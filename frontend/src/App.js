@@ -1,18 +1,15 @@
 // frontend/src/App.js
 
 import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import LayoutHeader from './components/LayoutHeader';
-import HomeSection from './components/HomeSection';
-import ServicesSection from './components/ServicesSection';
-import LearningSection from './components/LearningSection';
-import ContactSection from './components/ContactSection';
 import LayoutFooter from './components/LayoutFooter';
-import CallToActionSection from './components/CallToActionSection';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [language, setLanguage] = useState('es');
 
+  // DEVOLVEMOS ESTA LÓGICA PARA EL SCROLL SUAVE Y EL HIGHLIGHT DEL MENÚ
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'services', 'learning', 'contact'];
@@ -38,7 +35,7 @@ const App = () => {
     const section = document.getElementById(pageId);
     if (section) {
       window.scrollTo({
-        top: section.offsetTop - 80,
+        top: section.offsetTop - 80, // -80 para compensar la altura del header
         behavior: 'smooth',
       });
     }
@@ -47,9 +44,10 @@ const App = () => {
   const handleToggleLanguage = () => {
     setLanguage((prevLang) => (prevLang === 'es' ? 'en' : 'es'));
   };
- 
+
   return (
-    <div className="bg-gray-900 text-gray-100 font-sans antialiased">
+    <div className="bg-primary-dark text-gray-100 font-sans antialiased">
+      {/* AHORA SÍ LE PASAMOS LAS PROPS NECESARIAS AL HEADER */}
       <LayoutHeader
         currentPage={currentPage}
         onNavigate={handleNavigate}
@@ -57,15 +55,13 @@ const App = () => {
         language={language}
       />
       <main>
-        <HomeSection language={language} onNavigate={handleNavigate} />
-        <ServicesSection language={language} />
-        <LearningSection language={language} onNavigate={handleNavigate} />
-        <ContactSection language={language} />
+        {/* Pasamos 'handleNavigate' a través del contexto para que
+            botones internos (como el de HomeSection) también puedan navegar */}
+        <Outlet context={{ language, onNavigate: handleNavigate }} /> 
       </main>
-      <CallToActionSection language={language} onNavigate={handleNavigate} />
-      <LayoutFooter language={language} />
+      <LayoutFooter language={language} className="bg-secondary-dark" />
     </div>
   );
 };
- 
+
 export default App;
