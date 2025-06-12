@@ -22,7 +22,6 @@ const servicesData = [
 
 
 const ServicesSection = ({ language, className }) => {
-  // Eliminé el console.log para limpiar la consola
   
   return (
     <section id="services" className={`py-20 sm:py-24 ${className || ''}`}>
@@ -30,7 +29,9 @@ const ServicesSection = ({ language, className }) => {
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">
           {language === 'es' ? 'Nuestros' : 'Our'}{' '}
           <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Servicios
+            {/* ======================= CAMBIO REALIZADO AQUÍ ======================= */}
+            {language === 'es' ? 'Servicios' : 'Services'}
+            {/* ===================================================================== */}
           </span>
         </h2>
         <p className="text-lg text-gray-400 text-center max-w-2xl mx-auto mb-16">
@@ -68,7 +69,6 @@ const ServicesSection = ({ language, className }) => {
        <div className="text-center mt-16">
           <Link
             to="/servicios"
-            // CAMBIO: Añadimos 'rounded-xl' para que coincida con las tarjetas
             className="inline-block px-8 py-3 bg-blue-600 text-white text-base font-semibold rounded-xl shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/40"
           >
             {language === 'es' ? 'Ver Detalles de Servicios' : 'View Service Details'}

@@ -1,5 +1,4 @@
 // RUTA: frontend/src/components/LearningSection.js
-// CÓDIGO MODIFICADO Y LISTO PARA USAR
 
 import React from 'react';
 // Importamos los componentes y estilos de Swiper
@@ -9,12 +8,21 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// ================== INICIO DE LOS CAMBIOS ==================
-
-// CAMBIO 1: Añadimos `className` a la lista de props que el componente recibe.
 const LearningSection = ({ language, className }) => {
-  console.log("VALOR DE 'className' RECIBIDO EN LearningSection:", className);
+  // Objeto centralizado con todo el contenido traducible del componente
   const learningContent = {
+    title: { 
+      es: 'Formación Continua y', 
+      en: 'Continuous Training &' 
+    },
+    titleHighlight: { 
+      es: 'Capacitación', 
+      en: 'Learning' 
+    },
+    subtitle: { 
+      es: 'Programas de capacitación personalizados para equipos que buscan dominar las herramientas que definen el futuro de los datos.', 
+      en: 'Customized training programs for teams looking to master the tools that define the future of data.' 
+    },
     courses: [
         { name: { es: 'Fundamentos de Big Data', en: 'Big Data Fundamentals' }, duration: { es: '40 horas', en: '40 hours' }, },
         { name: { es: 'Machine Learning Aplicado', en: 'Applied Machine Learning' }, duration: { es: '60 horas', en: '60 hours' }, },
@@ -28,21 +36,21 @@ const LearningSection = ({ language, className }) => {
   };
 
   return (
-    // CAMBIO 2: Eliminamos 'bg-gray-900' y usamos la prop 'className'.
-    // Mantenemos las clases de padding y borde que ya tenías.
     <section id="learning" className={`py-20 sm:py-24 border-t-2 border-gray-800 ${className || ''}`}>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">
-          {language === 'es' ? 'Formación Continua y' : 'Continuous Training &'}{' '}
+          {/* Se usa el texto del objeto `learningContent` para que se traduzca */}
+          {learningContent.title[language]}{' '}
           <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Capacitación
+            {learningContent.titleHighlight[language]}
           </span>
         </h2>
         <p className="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-16">
-          {language === 'es' ? 'Programas de capacitación personalizados para equipos que buscan dominar las herramientas que definen el futuro de los datos.' : 'Customized training programs for teams looking to master the tools that define the future of data.'}
+          {/* Se usa el texto del objeto `learningContent` */}
+          {learningContent.subtitle[language]}
         </p>
         
-        {/* El resto del código del Swiper no necesita cambios */}
+        {/* El código del Swiper se mantiene, pero usamos el texto del objeto */}
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={30}
@@ -70,7 +78,7 @@ const LearningSection = ({ language, className }) => {
                   </h3>
                 </div>
                 <p className="text-blue-400 font-semibold mt-4">
-                  {language === 'es' ? `Duración: ${course.duration.es}` : `Duration: ${course.duration.en}`}
+                  {language === 'es' ? 'Duración' : 'Duration'}: {course.duration[language]}
                 </p>
               </div>
             </SwiperSlide>
@@ -80,7 +88,5 @@ const LearningSection = ({ language, className }) => {
     </section>
   );
 };
-
-// =================== FIN DE LOS CAMBIOS ===================
 
 export default LearningSection;
