@@ -43,7 +43,7 @@ const ServiceDetailPage = () => {
   };
 
   return (
-    <div className="bg-white text-gray-800 min-h-screen">
+    <div className="bg-white text-gray-800 min-h-screen pt-28">
       <div className="container mx-auto px-4 md:px-8 py-16">
         
         {/* --- HERO SECTION (sin cambios) --- */}
