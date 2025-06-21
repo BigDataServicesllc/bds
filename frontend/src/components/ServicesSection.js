@@ -1,80 +1,86 @@
 // RUTA: frontend/src/components/ServicesSection.js
-// CÓDIGO CORREGIDO Y FINAL
+// CÓDIGO FINAL CON IMÁGENES LOCALES Y FIABLES
 
-// CAMBIO CLAVE: Añadimos la importación que faltaba para que "Link" sea reconocido.
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import React from 'react';
+
+// CAMBIO CLAVE: Importamos los datos desde el archivo central
+import { servicesData } from '../data/services';
+const ArrowLeftIcon = ({ className, ...props }) => (
+  <svg {...props} className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+);
+const ArrowRightIcon = ({ className, ...props }) => (
+  <svg {...props} className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+);
+
+// ====> ¡AQUÍ ES DONDE PUEDES EDITAR, AÑADIR O QUITAR SERVICIOS! <====
 
 
-// --- Íconos como Componentes ---
-const IconConsulting = ({ className }) => ( <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 17L9 20l-1 1h8l-1-1l-.75-3M3 13h18M5 17h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg> );
-const IconAnalytics = ({ className }) => ( <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg> );
-const IconEngineering = ({ className }) => ( <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg> );
-const IconVisualization = ({ className }) => ( <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"></path></svg> );
-
-// --- Datos de los Servicios ---
-const servicesData = [
-  { icon: IconConsulting, title: { es: 'Consultoría Estratégica', en: 'Strategic Consulting' }, description: { es: 'Definimos la hoja de ruta para tu transformación digital basada en datos.', en: 'We define the roadmap for your data-driven digital transformation.' } },
-  { icon: IconAnalytics, title: { es: 'Integración Oracle NetSuite', en: 'Oracle NetSuite Integration' }, description: { es: 'Integración con base de datos, configuración de conector, desarrollo de procesos Pipeline, consolidación de datos y generación de reportes en tiempo casi real.', en: 'Integration with database, connector setup, Pipeline process development, data consolidation, and near real-time reporting.' } },
-  { icon: IconEngineering, title: { es: 'Ingeniería de Datos', en: 'Data Engineering' }, description: { es: 'Construimos infraestructuras robustas para el procesamiento de grandes volúmenes de datos.', en: 'We build robust infrastructures for processing large volumes of data.' } },
-  { icon: IconVisualization, title: { es: 'Visualización de Datos', en: 'Data Visualization' }, description: { es: 'Transformamos datos complejos en insights claros y accionables.', en: 'We transform complex data into clear and actionable insights.' } },
-];
-
-
+// El resto del componente es el mismo, no necesita cambios.
 const ServicesSection = ({ language, className }) => {
-  
+  const [activeIndex, setActiveIndex] = useState(0);
+  const goToNext = () => setActiveIndex((prev) => (prev + 1) % servicesData.length);
+  const goToPrev = () => setActiveIndex((prev) => (prev - 1 + servicesData.length) % servicesData.length);
+  useEffect(() => {
+    const interval = setInterval(goToNext, 7000);
+    return () => clearInterval(interval);
+  }, [activeIndex]);
+
   return (
-    <section id="services" className={`py-20 sm:py-24 ${className || ''}`}>
+    <section id="services" className={`relative bg-primary-dark py-20 sm:py-24 overflow-hidden ${className || ''}`}>
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">
-          {language === 'es' ? 'Nuestros' : 'Our'}{' '}
-          <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            {/* ======================= CAMBIO REALIZADO AQUÍ ======================= */}
-            {language === 'es' ? 'Servicios' : 'Services'}
-            {/* ===================================================================== */}
-          </span>
-        </h2>
-        <p className="text-lg text-gray-400 text-center max-w-2xl mx-auto mb-16">
-            {language === 'es' ? 'Soluciones integrales para potenciar tu negocio a través de la inteligencia de datos.' : 'Comprehensive solutions to boost your business through data intelligence.'}
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {servicesData.map((service, index) => {
-            const IconComponent = service.icon;
-            return (
-              <div
-                key={index}
-                className="relative bg-gray-800/50 p-8 rounded-xl backdrop-blur-sm group transition-all duration-300 overflow-hidden"
-              >
-                {/* ... (el resto del JSX de las tarjetas no cambia) ... */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{'clipPath': 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 4px 4px, 4px calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 4px, 4px 4px)'}}></div>
-                <div className="relative z-10">
-                  <div className="mb-6">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center mb-4 border border-gray-600 group-hover:border-blue-500 transition-colors duration-300">
-                      <IconComponent className="w-8 h-8 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
-                    </div>
+        <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white">
+                {language === 'es' ? 'Impulsamos tu Negocio con' : 'We Power Your Business with'}{' '}
+                <span className="bg-gradient-to-r from-accent to-accent-hover bg-clip-text text-transparent">
+                    {language === 'es' ? 'Inteligencia de Datos' : 'Data Intelligence'}
+                </span>
+            </h2>
+            <p className="mt-4 text-lg text-gray-400 max-w-3xl mx-auto">
+                {language === 'es' ? 'Descubre cómo nuestras soluciones personalizadas pueden transformar tu empresa.' : 'Discover how our custom solutions can transform your company.'}
+            </p>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[500px]">
+          <div className="relative w-full h-80 lg:h-full rounded-2xl overflow-hidden shadow-2xl shadow-black/30">
+            {servicesData.map((service, index) => (
+                <img key={index} src={service.image} alt={service.title[language]} className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out ${index === activeIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`} />
+            ))}
+             <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/50 to-transparent"></div>
+          </div>
+          <div className="relative flex flex-col justify-center h-full">
+            <div className="relative h-48">
+                {servicesData.map((service, index) => (
+                  <div key={index} className={`absolute inset-0 transition-all duration-700 ease-in-out ${index === activeIndex ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5 pointer-events-none'}`}>
+                    <h3 className="text-3xl font-bold text-white mb-4">
+                      {service.title[language]}
+                    </h3>
+                    <p className="text-gray-300 text-base leading-relaxed mb-6 h-24">
+                      {service.description[language]}
+                    </p>
+                    <Link to={`/servicios/${service.id}`} className="inline-flex items-center px-6 py-3 bg-accent text-white text-base font-semibold rounded-lg shadow-lg shadow-accent/20 hover:bg-accent-hover transition-all duration-300 transform hover:scale-105">
+                      {language === 'es' ? 'Conocer Más' : 'Learn More'}
+                      <ArrowRightIcon className="w-5 h-5 ml-2" />
+                    </Link>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">
-                    {service.title[language]}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {service.description[language]}
-                  </p>
-                </div>
+                ))}
+            </div>
+            <div className="flex items-center justify-between mt-8">
+              <div className="flex items-center space-x-3">
+                <button onClick={goToPrev} className="p-4 rounded-full bg-secondary-dark/50 text-gray-300 hover:bg-accent hover:text-white transition-all duration-300 backdrop-blur-sm">
+                  <ArrowLeftIcon className="w-6 h-6" />
+                </button>
+                <button onClick={goToNext} className="p-4 rounded-full bg-secondary-dark/50 text-gray-300 hover:bg-accent hover:text-white transition-all duration-300 backdrop-blur-sm">
+                  <ArrowRightIcon className="w-6 h-6" />
+                </button>
               </div>
-            );
-          })}
+              <div className="flex items-center space-x-2">
+                  {servicesData.map((_, index) => (
+                      <button key={index} onClick={() => setActiveIndex(index)} className={`w-10 h-1.5 rounded-full transition-colors duration-300 ${index === activeIndex ? 'bg-accent' : 'bg-gray-600 hover:bg-gray-500'}`} />
+                  ))}
+              </div>
+            </div>
+          </div>
         </div>
-        
-       <div className="text-center mt-16">
-          <Link
-            to="/servicios"
-            className="inline-block px-8 py-3 bg-blue-600 text-white text-base font-semibold rounded-xl shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/40"
-          >
-            {language === 'es' ? 'Ver Detalles de Servicios' : 'View Service Details'}
-          </Link>
-        </div>
-
       </div>
     </section>
   );
