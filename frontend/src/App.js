@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import LayoutHeader from './components/LayoutHeader';
 import LayoutFooter from './components/LayoutFooter';
+import ScrollToTop from './components/ScrollToTop';
+
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -47,6 +49,9 @@ const App = () => {
 
   return (
     <div className="bg-primary-dark text-gray-100 font-sans antialiased">
+      {/* 2. AÑADIMOS EL COMPONENTE AQUÍ */}
+      {/* No renderiza nada visible, pero arreglará el scroll en cada cambio de página */}
+      <ScrollToTop />
       {/* AHORA SÍ LE PASAMOS LAS PROPS NECESARIAS AL HEADER */}
       <LayoutHeader
         currentPage={currentPage}

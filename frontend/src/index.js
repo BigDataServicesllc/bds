@@ -1,3 +1,6 @@
+// RUTA: frontend/src/index.js
+// CÓDIGO MODIFICADO
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -20,8 +23,9 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        // CAMBIO: Quita el .html. La ruta ahora es limpia.
-        path: "servicios",
+        // CAMBIO CLAVE: Añadimos "/:serviceId" para crear una ruta dinámica.
+        // Ahora aceptará URLs como /servicios/consultoria, /servicios/netsuite, etc.
+        path: "servicios/:serviceId",
         element: <ServiceDetailPage />,
       },
     ]
