@@ -1,44 +1,56 @@
 // RUTA: frontend/src/components/HomeSection.js
-// === CÓDIGO FINAL: LA CONSTELACIÓN DE DATOS ===
+// === CÓDIGO FINAL CON LA TRANSFORMACIÓN DE IDENTIDAD ===
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
-// 1. VOLVEMOS A IMPORTAR EL EFECTO 'NET'
-import NET from 'vanta/dist/vanta.net.min'; 
-import * as THREE from 'three';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HomeSection = ({ language, onNavigate }) => {
-  const vantaRef = useRef(null);
-  const [vantaEffect, setVantaEffect] = useState(null);
+  // 1. CREAMOS UNA NUEVA REFERENCIA PARA EL LOGO QUE APARECERÁ
+  const sectionRef = useRef(null);
+  const contentRef = useRef(null);
+  const logoRef = useRef(null); // <-- NUEVA REFERENCIA
 
-  useEffect(() => {
-    if (!vantaEffect) {
-      setVantaEffect(NET({
-        el: vantaRef.current,
-        THREE: THREE,
-        mouseControls: true,
-        touchControls: true,
-        gyrocontrols: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: '+=150%', // Le damos un poco más de recorrido de scroll para que la animación se sienta más pausada
+          pin: true,
+          scrub: 1,
+        },
+      });
+
+      // 2. MODIFICAMOS LA LÍNEA DE TIEMPO
+      timeline
+        // Hacemos que el contenido original (eslogan, botón) se desvanezca
+        .to(contentRef.current, {
+          opacity: 0,
+          duration: 1, // Duración de la primera parte de la animación
+        }, 0) // El '0' indica que esta animación empieza al principio de la línea de tiempo
         
-        // === LA CONFIGURACIÓN MINIMALISTA Y PROFESIONAL ===
-        color: 0x9ca3af,          // Color de los puntos: un gris muy sutil
-        backgroundColor: 0x111827, // Tu azul oscuro corporativo (ajusta si es necesario)
-        points: 6.00,             // Muy pocos puntos, como estrellas principales
-        maxDistance: 20.00,       // Distancia a la que se conectan
-        spacing: 20.00,           // Espaciado para que haya mucho aire
-        showDots: true            // Aseguramos que los puntos se vean
-      }));
-    }
-    return () => {
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, [vantaEffect]);
+        // SIMULTÁNEAMENTE, hacemos que el logo aparezca
+        .fromTo(logoRef.current, {
+          opacity: 0,
+          scale: 0.8, // Empieza un poco más pequeño
+        }, {
+          opacity: 1,
+          scale: 1,   // Termina en su tamaño normal
+          duration: 1, // Duración de la segunda parte de la animación
+        }, 0); // El '0' hace que esta animación también empiece al principio, creando un fundido cruzado (cross-fade)
 
-  // Tu animación de texto, que es el protagonista.
+    }, sectionRef);
+
+    return () => ctx.revert(); 
+  }, []);
+
+  // El contenido original de Framer Motion no cambia.
   const content = {
     es: { title: "Impulsando tu Negocio con", highlight: "Datos", subtitle: "Soluciones de Big Data a la medida para tu éxito.", button: "Descubre Nuestros Servicios" },
     en: { title: "Powering your Business with", highlight: "Data", subtitle: "Custom Big Data solutions for your success.", button: "Discover Our Services" }
@@ -50,14 +62,23 @@ const HomeSection = ({ language, onNavigate }) => {
   return (
     <section 
       id="home" 
-      ref={vantaRef}
-      className="relative min-h-screen flex items-center justify-center"
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center justify-center bg-primary-dark"
     >
-      {/* Esta capa de gradiente sutil es opcional, pero ayuda a enfocar el texto.
-          Si prefieres el fondo puro, puedes comentarla o eliminarla. */}
-      <div className="absolute inset-0 bg-black/20"></div>
+      {/* 3. AÑADIMOS EL LOGO "BIG DATA SERVICES" */}
+      {/* Lo posicionamos de forma absoluta en el centro y lo hacemos invisible inicialmente.
+          GSAP se encargará de hacerlo visible. */}
+      <div 
+        ref={logoRef} 
+        className="absolute inset-0 flex items-center justify-center opacity-0"
+      >
+        <h2 className="text-6xl md:text-8xl font-bold text-white">
+          Big Data Services
+        </h2>
+      </div>
 
-      <div className="relative z-10 container mx-auto px-4 text-center">
+      {/* Contenido original (eslogan y botón) que se desvanecerá */}
+      <div ref={contentRef} className="relative z-10 container mx-auto px-4 text-center">
         <motion.h1 
           className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4"
           variants={containerVariants}
