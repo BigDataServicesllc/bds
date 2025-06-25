@@ -12,6 +12,8 @@ import azureLogo from '../assets/technologies/Microsoft_azure.svg';
 import oracleLogo from '../assets/technologies/oracle.svg';
 import powerBiLogo from '../assets/technologies/power-bi.jpg';
 import tableauLogo from '../assets/technologies/Tableau.png';
+import dbtlogo from '../assets/technologies/dbt.jpg';
+import pythonlogo from '../assets/technologies/python.jpg';
 
 // El resto de la información de los servicios no cambia.
 export const servicesData = [
@@ -27,7 +29,7 @@ export const servicesData = [
             { title: {es: 'Estrategia', en: 'Strategy'}, description: {es: 'Diseñamos un plan de acción a medida.', en: 'We design a custom action plan.'} },
             { title: {es: 'Implementación', en: 'Implementation'}, description: {es: 'Te guiamos en la ejecución del plan.', en: 'We guide you through the plan execution.'} },
         ],
-        tech: ['AWS', 'Azure', 'Google Cloud', 'Oracle'] 
+        tech: ['AWS','Confluent','Docker','Github','Google Cloud','Azure','Oracle','Power BI','Tableau','dbt','python'] 
     }
   },
   { 
@@ -42,7 +44,7 @@ export const servicesData = [
             { title: {es: 'Desarrollo', en: 'Development'}, description: {es: 'Construimos y configuramos el conector.', en: 'We build and configure the connector.'} },
             { title: {es: 'Puesta en Marcha', en: 'Go-Live'}, description: {es: 'Aseguramos una transición sin fricciones.', en: 'We ensure a frictionless transition.'} },
         ],
-        tech: ['Oracle', 'Confluent', 'Power BI', 'Tableau']
+        tech: ['AWS','Confluent','Docker','Github','Google Cloud','Azure','Oracle','Power BI','Tableau','dbt','python']
     }
   },
   { 
@@ -57,7 +59,7 @@ export const servicesData = [
             { title: {es: 'Construcción', en: 'Build'}, description: {es: 'Desarrollamos los pipelines y data lakes.', en: 'We develop pipelines and data lakes.'} },
             { title: {es: 'Mantenimiento', en: 'Maintenance'}, description: {es: 'Monitoreamos y optimizamos el sistema.', en: 'We monitor and optimize the system.'} },
         ],
-        tech: ['AWS', 'Azure', 'Google Cloud', 'Docker', 'Confluent', 'Github']
+        tech: ['AWS','Confluent','Docker','Github','Google Cloud','Azure','Oracle','Power BI','Tableau','dbt','python']
     }
   },
   { 
@@ -72,7 +74,7 @@ export const servicesData = [
             { title: {es: 'Diseño', en: 'Design'}, description: {es: 'Creamos prototipos de los dashboards.', en: 'We create dashboard prototypes.'} },
             { title: {es: 'Desarrollo', en: 'Development'}, description: {es: 'Construimos los dashboards finales.', en: 'We build the final dashboards.'} },
         ],
-        tech: ['Power BI', 'Tableau', 'Google Cloud']
+        tech: ['AWS','Confluent','Docker','Github','Google Cloud','Azure','Oracle','Power BI','Tableau','dbt','python']
     }
   },
 ];
@@ -90,4 +92,6 @@ export const allTech = {
     'Oracle': (props) => <img src={oracleLogo} alt="Oracle Logo" {...props} />,
     'Power BI': (props) => <img src={powerBiLogo} alt="Power BI Logo" {...props} />,
     'Tableau': (props) => <img src={tableauLogo} alt="Tableau Logo" {...props} />,
+    'dbt': (props) => <img src={dbtlogo} alt="dbt Logo" {...props} />,
+    'python': (props) => <img src={pythonlogo} alt="Python Logo" {...props} />,
 };
