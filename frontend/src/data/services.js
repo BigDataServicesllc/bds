@@ -34,7 +34,7 @@ export const servicesData = [
   },
   { 
     id: 'netsuite',
-    title: { es: 'Integración Oracle NetSuite', en: 'Oracle NetSuite Integration' }, 
+    title: { es: 'Oracle NetSuite', en: 'Oracle NetSuite' }, 
     description: { es: 'Conectamos Oracle NetSuite con tus sistemas críticos para darte una visión 360° de tu negocio.', en: 'We connect Oracle NetSuite with your critical systems to give you a 360° view of your business.' },
     image: '/images/netsuite.jpeg',
     details: { 
