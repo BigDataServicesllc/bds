@@ -3,6 +3,7 @@
 export const coursesData = [
   {
     id: 'futbol-y-datos-power-bi',
+    image: '/images/futbol-y-datos-power-bi.jpg',
     title: { es: 'Fútbol y Datos: Tu Primer Dashboard en Power BI', en: 'Football & Data: Your First Dashboard in Power BI' },
     shortDescription: {
       es: '¡Nuestro curso más popular! Transforma tu pasión por el fútbol en una habilidad profesional creando un dashboard interactivo con datos reales de la Premier League.',
