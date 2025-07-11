@@ -534,6 +534,122 @@ export const blogPostsData = [
 },
 // -- FIN BLOQUE CODIGO --//
 
+// -- INICIO BLOQUE CODIGO --//
+{
+  // --- 1. CONFIGURACIÓN DEL POST (lo más importante) ---
+  slug: 'process-automation',
+  title: {
+    es: 'Adiós al Data Entry: Así Reducimos Horas de Trabajo Manual con Automatización Inteligente',
+    en: 'Goodbye Data Entry: How We Reduced Hours of Manual Work with Intelligent Automation'
+  },
+  author: 'Diego Rojas',
+  date: '2025-07-11',
+  category: {
+    es: 'Automatización',
+    en: 'Automation'
+  },
+
+  // --- 2. LA IMAGEN ---
+  image: '/images/blog/automatizacion-facturas.jpg', 
+
+  // --- 3. EL TEXTO CORTO (para la tarjeta en la home y el índice del blog) ---
+  excerpt: {
+    es: 'Transformamos un proceso manual de ingreso de facturas en un pipeline automatizado que ahorra horas cada semana.',
+    en: 'We transformed a manual invoice entry process into an automated pipeline that saves hours every week.'
+  },
+
+  // --- 4. EL CONTENIDO COMPLETO (el cuerpo del artículo) ---
+  content: {
+    es: `
+      <p>¿Es posible automatizar el ingreso de más de 100 facturas diarias a un ERP y eliminar tareas repetitivas sin perder precisión? En este artículo te mostramos cómo lo hicimos en nuestra organización, logrando transformar por completo un proceso manual en un flujo automatizado, robusto y escalable, con impacto directo en la eficiencia del equipo financiero.</p>
+
+      <h2 class="text-2xl font-bold mt-6 mb-3">El Desafío: Un Proceso Manual que Consumía Horas de Trabajo</h2>
+      <p>Antes de implementar nuestra solución, el procesamiento de facturas era completamente manual. Una persona del equipo de Finanzas debía:</p>
+      <ul class="list-disc list-inside mb-4">
+        <li>Descargar las facturas en PDF desde el portal del proveedor.</li>
+        <li>Guardarlas manualmente en una carpeta de SharePoint.</li>
+        <li>Cargar cada factura en Netsuite creando un "Bill", extrayendo e ingresando los datos de forma manual.</li>
+        <li>Complementar la información descargando órdenes de compra desde el ERP para enriquecer cada factura.</li>
+      </ul>
+
+      <p>Este proceso no solo requería varias horas diarias, sino que abría múltiples oportunidades para cometer errores humanos después de manejar grandes volúmenes de facturas. La carga operativa era significativa y el equipo no podía enfocarse en tareas de mayor valor.</p>
+
+      <h2 class="text-2xl font-bold mt-6 mb-3">Nuestra Solución: Un Flujo Automatizado de Punta a Punta</h2>
+      <p>Desde el equipo de Datos diseñamos un pipeline automatizado que eliminó casi por completo la intervención manual. A continuación, te compartimos los pasos del nuevo flujo:</p>
+      <ul class="list-disc list-inside mb-4">
+        <li><strong>Automatización de la recepción y almacenamiento de facturas:</strong> Utilizamos Power Automate para guardar automáticamente cada factura PDF en una estructura ordenada por día en Azure Storage y SharePoint, sin intervención humana.</li>
+        <li><strong>Extracción inteligente del contenido:</strong> A través de notebooks usando código Python, extraemos los datos relevantes de cada factura.</li>
+        <li><strong>Enriquecimiento y estandarización con IA:</strong> Usamos información del data warehouse (DW) para completar información adicional y luego estructuramos los datos mediante la API de OpenAI, asegurando consistencia y formato uniforme.</li>
+        <li><strong>Validación de calidad de datos:</strong> Ejecutamos pruebas automáticas en dbt para verificar que cada registro cumpla con el formato esperado.</li>
+        <li><strong>Integración automática al ERP:</strong> Más del 99% de las facturas se cargan directamente a Netsuite usando Celigo, sin intervención manual.</li>
+        <li><strong>Revisión solo en casos excepcionales:</strong> En el &lt;1% de casos con errores (por ejemplo, valores faltantes), los datos se notifican automáticamente en un canal de Microsoft Teams, donde un analista los revisa y corrige un archivo Excel donde luego son reenviados al ERP.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-6 mb-3">El Resultado: De Horas de Trabajo a Minutos</h2>
+      <p>Este nuevo flujo nos permitió transformar un proceso operativo lento y repetitivo en una solución inteligente y ágil. Hoy, más de 100 facturas se procesan en cuestión de minutos. El equipo financiero ahora puede concentrarse en análisis estratégico y no en tareas de data entry.</p>
+
+      <h3 class="text-xl font-semibold mt-4">Beneficios principales:</h3>
+      <ul class="list-disc list-inside mb-4">
+        <li>✅ Reducción de errores humanos</li>
+        <li>✅ Ahorro de horas hombre por semana</li>
+        <li>✅ Escalabilidad sin aumentar el equipo</li>
+        <li>✅ Notificaciones automáticas ante excepciones</li>
+        <li>✅ Integración fluida con Netsuite</li>
+      </ul>
+
+      <p>¿Puede esta solución aplicarse en tu empresa?</p>
+      <p>Este caso demuestra cómo la combinación de herramientas accesibles (Power Automate, Python, OpenAI, dbt, Celigo) puede generar un alto impacto operativo con bajo riesgo de implementación.</p>
+
+      <p>Si tu organización también gestiona grandes volúmenes de facturas, pedidos o documentos en sistemas ERP, esta metodología puede ayudarte a mejorar eficiencia, reducir costos y liberar talento para tareas de mayor valor.</p>
+
+      <p>¿Te gustaría conocer más detalles o ver una demo de esta solución aplicada a tu entorno?<br>Contáctanos para explorar cómo podemos ayudarte a transformar tus procesos financieros.</p>
+    `,
+    en: `
+      <p>Is it possible to automate the entry of more than 100 invoices per day into an ERP system and eliminate repetitive tasks without losing accuracy? In this article, we show how we did it in our organization, transforming a fully manual process into an automated, robust, and scalable workflow with a direct impact on the finance team's efficiency.</p>
+
+      <h2 class="text-2xl font-bold mt-6 mb-3">The Challenge: A Manual Process That Consumed Hours</h2>
+      <p>Before implementing our solution, invoice processing was entirely manual. A member of the Finance team had to:</p>
+      <ul class="list-disc list-inside mb-4">
+        <li>Download the invoice PDFs from the vendor portal.</li>
+        <li>Manually save them in a SharePoint folder.</li>
+        <li>Enter each invoice in Netsuite by creating a "Bill", manually extracting and inputting the data.</li>
+        <li>Download purchase orders from the ERP to enrich each invoice.</li>
+      </ul>
+
+      <p>This process not only required several hours a day but also introduced multiple opportunities for human error when handling high invoice volumes. The operational load was significant, and the team couldn’t focus on higher-value tasks.</p>
+
+      <h2 class="text-2xl font-bold mt-6 mb-3">Our Solution: A Fully Automated Workflow</h2>
+      <p>Our Data team designed an automated pipeline that eliminated almost all manual intervention. Here's how the new flow works:</p>
+      <ul class="list-disc list-inside mb-4">
+        <li><strong>Automated invoice reception and storage:</strong> We used Power Automate to automatically store each PDF invoice in a date-structured folder in Azure Storage and SharePoint — no human intervention.</li>
+        <li><strong>Intelligent data extraction:</strong> Using Python notebooks, we extract relevant data from each invoice.</li>
+        <li><strong>AI-powered enrichment and standardization:</strong> We use data from our data warehouse (DW) to complete additional information and structure the output using the OpenAI API, ensuring consistency and uniform formatting.</li>
+        <li><strong>Data quality validation:</strong> Automated tests in dbt ensure each record meets the expected format.</li>
+        <li><strong>Automatic ERP integration:</strong> Over 99% of invoices are uploaded directly into Netsuite using Celigo, without manual input.</li>
+        <li><strong>Exception handling:</strong> For the &lt;1% of cases with errors (e.g. missing values), the issue is reported to a Microsoft Teams channel, where an analyst reviews and corrects the data in Excel, which is then sent to the ERP.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-6 mb-3">The Result: From Hours to Minutes</h2>
+      <p>This new workflow transformed a slow, repetitive process into a smart, agile solution. Today, over 100 invoices are processed in just a few minutes. The finance team can now focus on strategic analysis instead of data entry.</p>
+
+      <h3 class="text-xl font-semibold mt-4">Key benefits:</h3>
+      <ul class="list-disc list-inside mb-4">
+        <li>✅ Reduced human errors</li>
+        <li>✅ Hours saved weekly</li>
+        <li>✅ Scalable without expanding the team</li>
+        <li>✅ Automated exception notifications</li>
+        <li>✅ Seamless integration with Netsuite</li>
+      </ul>
+
+      <p>Could this solution work for your business?</p>
+      <p>This case shows how accessible tools (Power Automate, Python, OpenAI, dbt, Celigo) can generate high operational impact with low implementation risk.</p>
+
+      <p>If your organization also manages high volumes of invoices, orders, or ERP documents, this approach can help improve efficiency, reduce costs, and free up talent for higher-value work.</p>
+
+      <p>Want to learn more or see a demo of this solution applied to your environment?<br>Contact us to explore how we can help transform your financial processes.</p>
+    `
+  }
+}
 
 
 
