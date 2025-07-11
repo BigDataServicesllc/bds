@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd frontend
+#cd frontend
 npm install
 npm run build
 
