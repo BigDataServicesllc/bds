@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d8e17068.css",
+    "main.js": "/static/js/main.a6224892.js",
+    "static/media/google_cloud.png": "/static/media/google_cloud.d398a7e0a39316ba4949.png",
+    "static/media/dbt.jpg": "/static/media/dbt.5ad183a3d7158f964295.jpg",
+    "static/media/github.jpg": "/static/media/github.53b43679453d97e94dfb.jpg",
+    "static/media/python.jpg": "/static/media/python.903feebcf1cd20a8663d.jpg",
+    "static/media/power-bi.jpg": "/static/media/power-bi.a4be4a9b96738b530c78.jpg",
+    "static/media/docker.svg": "/static/media/docker.a5c51713e99d29b9584c8192d03fcaee.svg",
+    "static/media/Microsoft_azure.svg": "/static/media/Microsoft_azure.c5b42dda20a5005ca74690be96556f26.svg",
+    "static/media/aws.svg": "/static/media/aws.dcf131dc4fc6d104317119b9cc821b6d.svg",
+    "static/media/confluent.svg": "/static/media/confluent.0e3c16fbc67b93f290ffa133e573c501.svg",
+    "static/media/oracle.svg": "/static/media/oracle.1cf2ab376cb6bd36295e3e7c44ebbde9.svg",
+    "index.html": "/index.html",
+    "main.d8e17068.css.map": "/static/css/main.d8e17068.css.map",
+    "main.a6224892.js.map": "/static/js/main.a6224892.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d8e17068.css",
+    "static/js/main.a6224892.js"
+  ]
+}
