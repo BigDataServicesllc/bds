@@ -1,4 +1,5 @@
 // frontend/src/App.js - SOLUCIÓN FINAL CON BLOQUEO Y NAVEGACIÓN CORRECTA
+// Cambio mínimo para forzar redeploy
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
