@@ -602,7 +602,11 @@ export const blogPostsData = [
 
       <p>Si tu organización también gestiona grandes volúmenes de facturas, pedidos o documentos en sistemas ERP, esta metodología puede ayudarte a mejorar eficiencia, reducir costos y liberar talento para tareas de mayor valor.</p>
 
-      <p>¿Te gustaría conocer más detalles o ver una demo de esta solución aplicada a tu entorno?<br>Contáctanos para explorar cómo podemos ayudarte a transformar tus procesos financieros.</p>
+      <div class="mt-8 p-4 border-l-4 border-green-500 bg-green-50 text-green-800">
+      <p><strong>¿Te gustaría conocer más detalles o ver una demo de esta solución aplicada a tu entorno?</strong><br>
+      Contáctanos para explorar cómo podemos ayudarte a transformar tus procesos financieros.</p>
+    </div>
+
     `,
     en: `
       <p>Is it possible to automate the entry of more than 100 invoices per day into an ERP system and eliminate repetitive tasks without losing accuracy? In this article, we show how we did it in our organization, transforming a fully manual process into an automated, robust, and scalable workflow with a direct impact on the finance team's efficiency.</p>
@@ -646,7 +650,11 @@ export const blogPostsData = [
 
       <p>If your organization also manages high volumes of invoices, orders, or ERP documents, this approach can help improve efficiency, reduce costs, and free up talent for higher-value work.</p>
 
-      <p>Want to learn more or see a demo of this solution applied to your environment?<br>Contact us to explore how we can help transform your financial processes.</p>
+      <div class="mt-8 p-4 border-l-4 border-green-500 bg-green-50 text-green-800">
+      <p><strong>Want to learn more or see a demo of this solution applied to your environment?</strong><br>
+      Contact us to explore how we can help transform your financial processes.</p>
+    </div>
+
     `
   }
 }
