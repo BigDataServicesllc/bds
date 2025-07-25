@@ -18,7 +18,7 @@ export const blogPostsData = [
     // Contenido completo del post en HTML.
     content: {
       es: `
-        <p class="mb-4">Power BI es una herramienta increíblemente poderosa, pero su flexibilidad también puede llevar a cometer errores que afecten el rendimiento y la claridad de tus informes. Aquí te presentamos los 5 más comunes:</p>
+        <p class="mb-4">Power BI es una herramienta increíblemente poderosa, pero su flexibilidad también puede llevar a cometer errores que afecten el rendimiento y la claridad de tus informes. Aquí te presentamos los 5 errores más comunes:</p>
         <h2 class="text-2xl font-bold mt-6 mb-3">1. No Modelar los Datos</h2>
         <p class="mb-4">El error más grande es cargar datos directamente y empezar a crear visualizaciones sin antes definir relaciones, tipos de datos y jerarquías en la vista de Modelo. Un buen modelo de datos es la base de un reporte rápido y preciso. Sin él, tus medidas DAX serán complejas y el rendimiento se verá afectado.</p>
         <h2 class="text-2xl font-bold mt-6 mb-3">2. Abusar de las Columnas Calculadas</h2>
