@@ -1,8 +1,7 @@
 // RUTA: frontend/src/data/services.js
-// === CÓDIGO FINAL Y ALINEADO: TODOS LOS LOGOS COMO IMÁGENES PROFESIONALES ===
+// === CÓDIGO ACTUALIZADO CON EL NUEVO SERVICIO DE DESARROLLO WEB Y MÓVIL ===
 
-// 1. IMPORTAMOS LOS 9 ARCHIVOS DE LOGO (SVG, PNG, JPG)
-//    Todos se tratarán como imágenes.
+// 1. IMPORTAMOS LOS ARCHIVOS DE LOGO (EXISTENTES + NUEVOS)
 import awsLogo from '../assets/technologies/aws.svg';
 import confluentLogo from '../assets/technologies/confluent.svg';
 import dockerLogo from '../assets/technologies/docker.svg';
@@ -15,7 +14,13 @@ import tableauLogo from '../assets/technologies/Tableau.png';
 import dbtlogo from '../assets/technologies/dbt.jpg';
 import pythonlogo from '../assets/technologies/python.jpg';
 
-// El resto de la información de los servicios no cambia.
+// ====> NUEVOS IMPORTS PARA EL SERVICIO DE DESARROLLO <====
+import reactLogo from '../assets/technologies/react.svg';
+import nodejsLogo from '../assets/technologies/nodejs.svg';
+import swiftLogo from '../assets/technologies/swift.svg';
+import kotlinLogo from '../assets/technologies/kotlin.svg';
+
+
 export const servicesData = [
   { 
     id: 'consultoria',
@@ -77,10 +82,30 @@ export const servicesData = [
         tech: ['AWS','Confluent','Docker','Github','Google Cloud','Azure','Oracle','Power BI','Tableau','dbt','python']
     }
   },
+  // =========================================================================
+  // ====> NUEVO SERVICIO: DESARROLLO WEB Y MÓVIL <====
+  // =========================================================================
+  { 
+    id: 'desarrollo-web-movil',
+    title: { es: 'Desarrollo Web y Móvil', en: 'Web & Mobile Development' }, 
+    description: { es: 'Creamos experiencias digitales a medida: desde sitios web impactantes hasta aplicaciones móviles nativas.', en: 'We build custom digital experiences: from stunning websites to native mobile applications.' },
+    image: '/images/development.jpeg', 
+    details: { 
+        main: { es: 'Transformamos tus ideas en soluciones digitales funcionales y elegantes. Nuestro equipo desarrolla sitios web rápidos y responsivos, y aplicaciones móviles para iOS y Android. Contamos con desarrolladores certificados en los programas oficiales de Apple y Android, garantizando calidad, seguridad y una experiencia de usuario nativa excepcional.', en: 'We transform your ideas into functional and elegant digital solutions. Our team develops fast, responsive websites and mobile apps for iOS and Android. We have certified developers in the official Apple and Android programs, ensuring quality, security, and an exceptional native user experience.' },
+        process: [
+            { title: {es: 'Descubrimiento y Diseño', en: 'Discovery & Design'}, description: {es: 'Definimos la arquitectura, UX/UI y alcance del proyecto.', en: 'We define the project architecture, UX/UI, and scope.'} },
+            { title: {es: 'Desarrollo y Pruebas', en: 'Development & Testing'}, description: {es: 'Construimos la solución con código limpio y realizamos pruebas exhaustivas.', en: 'We build the solution with clean code and conduct exhaustive testing.'} },
+            { title: {es: 'Lanzamiento y Soporte', en: 'Launch & Support'}, description: {es: 'Desplegamos el producto y ofrecemos soporte continuo.', en: 'We deploy the product and provide ongoing support.'} },
+        ],
+        // Tecnologías relevantes para este servicio
+        tech: ['React', 'Node.js', 'Swift', 'Kotlin', 'Docker', 'Github', 'AWS', 'Google Cloud', 'Azure'] 
+    }
+  },
 ];
 
+
 // =========================================================================
-// ====> EL CATÁLOGO DEFINITIVO USANDO <img> PARA TODOS LOS LOGOS <====
+// ====> CATÁLOGO DE TECNOLOGÍAS ACTUALIZADO <====
 // =========================================================================
 export const allTech = {
     'AWS': (props) => <img src={awsLogo} alt="AWS Logo" {...props} />,
@@ -94,4 +119,9 @@ export const allTech = {
     'Tableau': (props) => <img src={tableauLogo} alt="Tableau Logo" {...props} />,
     'dbt': (props) => <img src={dbtlogo} alt="dbt Logo" {...props} />,
     'python': (props) => <img src={pythonlogo} alt="Python Logo" {...props} />,
+    // ====> NUEVAS TECNOLOGÍAS AÑADIDAS <====
+    'React': (props) => <img src={reactLogo} alt="React Logo" {...props} />,
+    'Node.js': (props) => <img src={nodejsLogo} alt="Node.js Logo" {...props} />,
+    'Swift': (props) => <img src={swiftLogo} alt="Swift Logo" {...props} />,
+    'Kotlin': (props) => <img src={kotlinLogo} alt="Kotlin Logo" {...props} />,
 };
