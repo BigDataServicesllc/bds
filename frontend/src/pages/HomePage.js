@@ -28,11 +28,37 @@ const HomePage = () => {
   return (
     <>
       <HomeSection language={language} onNavigate={onNavigate} id="home" />
-      <ServicesSection language={language} className="bg-secondary-dark relative z-10" id="services" />
-      <LearningSection language={language} className="bg-primary-dark relative z-10" id="learning" />
-      <LatestPostsSection language={language} className="bg-secondary-dark relative z-10" id="blog" />
-      <CallToActionSection language={language} onNavigate={onNavigate} className="bg-tertiary-dark relative z-10" />
-      <ContactSection language={language} className="bg-primary-dark relative z-10" id="contact" />
+
+<ServicesSection
+  language={language}
+  id="services"
+  className="bds-section-services relative z-10"
+/>
+
+<LearningSection
+  language={language}
+  id="learning"
+  className="bds-section-learning relative z-10"
+/>
+
+<LatestPostsSection
+  language={language}
+  id="blog"
+  className="bds-section-blog relative z-10"
+/>
+
+<CallToActionSection
+  language={language}
+  onNavigate={onNavigate}
+  className="bds-section-cta relative z-10"
+/>
+
+<ContactSection
+  language={language}
+  id="contact"
+  className="bds-section-contact relative z-10"
+/>
+
     </>
   );
 };

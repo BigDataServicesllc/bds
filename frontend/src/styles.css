@@ -33,3 +33,82 @@
   background-color: #3b82f6 !important; /* Color del punto activo */
   opacity: 1;
 }
+:root {
+  --bds-aqua: #06E8D1;
+  --bds-violet: #513AF5;
+  --bds-deep: #173B3A;
+  --bds-blue: #2B64B2;
+}
+
+/* Helpers de secciones usando la paleta BDS */
+@layer components {
+  /* Servicios – fondo claro con toque aqua/azul */
+  .bds-section-services {
+  background: linear-gradient(to bottom, #173B3A, #173B3A);
+}
+
+
+  /* Learning – blanco limpio, sensación de “página” */
+  .bds-section-learning {
+    background: linear-gradient(to bottom, #BD9834, #BD9834);
+  }
+
+  /* Blog – gris claro tipo revista */
+  .bds-section-blog {
+    background: linear-gradient(to bottom, #173B3A, #173B3A);
+  }
+
+  /* CTA final – bloque oscuro premium */
+  .bds-section-cta {
+    @apply bg-bds-deep text-white;
+  }
+
+  /* Contacto – limpio, directo, foco en el email */
+  .bds-section-contact {
+    @apply bg-white text-bds-text-main;
+  }
+
+  /* Botón principal BDS (por si quieres reutilizarlo) */
+  .bds-btn-primary {
+    @apply inline-flex items-center rounded-full bg-bds-aqua px-7 py-3 text-sm font-semibold text-bds-deep shadow-bds-button transition-all duration-300 transform hover:-translate-y-[1px] hover:bg-bds-blue hover:text-white;
+  }
+
+  /* Botón secundario (outline, para fondos claros) */
+  .bds-btn-outline {
+    @apply inline-flex items-center rounded-full border border-bds-blue px-6 py-2 text-sm font-medium text-bds-blue hover:bg-bds-blue hover:text-white transition-colors;
+  }
+}
+
+/* Lo que ya tenías (Swiper, animaciones, etc.) se queda tal cual */
+@layer utilities {
+  @keyframes move-dots {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 40px 40px;
+    }
+  }
+}
+
+/* Personalización de Swiper (lo que ya tenías) */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #9ca3af !important; /* Color de las flechas */
+  transition: color 0.3s;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #3b82f6 !important; /* Color de las flechas en hover */
+}
+
+.swiper-pagination-bullet {
+  background-color: #6b7280 !important; /* Color de los puntos de paginación */
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #3b82f6 !important; /* Color del punto activo */
+  opacity: 1;
+}
