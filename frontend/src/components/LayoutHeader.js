@@ -37,53 +37,66 @@ const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) =
 
   const NavButton = ({ item }) => {
     const isActivePage = item.path && location.pathname.startsWith(item.path);
-    const isActiveSection = !item.path && location.pathname === '/' && currentPage === item.id;
+    const isActiveSection =
+      !item.path && location.pathname === "/" && currentPage === item.id;
     const isActive = isActivePage || isActiveSection;
 
+    const baseClasses =
+      "py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300";
+
+    const getColorClasses = () => {
+      // Estado SIN scroll: siempre sobre el hero
+      if (!isScrolled) {
+        return isActive
+          ? "text-white font-semibold"
+          : "text-white hover:text-[#06E8D1]";
+      }
+      // Estado con scroll: header blanco
+      return isActive
+        ? "text-[#2B64B2] font-semibold"
+        : "text-gray-900 hover:text-[#2B64B2]";
+    };
+
+    // LINK con path (blog)
     if (item.path) {
       return (
         <Link
           to={item.path}
           onClick={() => setIsMenuOpen(false)}
-          className={`py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300
-            ${isActive 
-              ? 'text-[#06E8D1]' 
-              : isScrolled 
-                ? 'text-gray-900 hover:text-[#2B64B2]' 
-                : 'text-white hover:text-[#06E8D1]'}`}
+          className={`${baseClasses} ${getColorClasses()}`}
         >
           {getDisplayName(item.name)}
         </Link>
       );
     }
 
-    if (location.pathname === '/') {
+    // Botón que navega dentro de la home (cuando estamos en "/")
+    if (location.pathname === "/") {
       return (
         <button
-          onClick={() => { onNavigate(item.id); setIsMenuOpen(false); }}
-          className={`py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300
-            ${isActive 
-              ? 'text-[#06E8D1]' 
-              : isScrolled 
-                ? 'text-gray-900 hover:text-[#2B64B2]' 
-                : 'text-white hover:text-[#06E8D1]'}`}
+          onClick={() => {
+            onNavigate(item.id);
+            setIsMenuOpen(false);
+          }}
+          className={`${baseClasses} ${getColorClasses()}`}
         >
           {getDisplayName(item.name)}
         </button>
       );
     }
 
+    // Links desde otras páginas hacia secciones de home
     return (
       <Link
         to={`/#${item.id}`}
         onClick={() => setIsMenuOpen(false)}
-        className={`py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300
-          ${isScrolled ? 'text-gray-900 hover:text-[#2B64B2]' : 'text-white hover:text-[#06E8D1]'}`}
+        className={`${baseClasses} ${getColorClasses()}`}
       >
         {getDisplayName(item.name)}
       </Link>
     );
   };
+
 
   return (
     <header
