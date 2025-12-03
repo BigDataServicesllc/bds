@@ -67,13 +67,26 @@ const ServicesSection = ({ language, className }) => {
       <div className="container mx-auto px-4">
         {/* CABECERA DE SECCIÓN */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-bds-deep">
-            {language === 'es' ? 'Impulsamos tu Negocio con' : 'We Power Your Business with'}{' '}
-            <span className="bg-gradient-to-r from-bds-aqua to-bds-blue bg-clip-text text-transparent">
-              {language === 'es' ? 'Inteligencia de Datos' : 'Data Intelligence'}
-            </span>
-          </h2>
-          <p className="mt-4 text-bds-text-soft">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">
+          {language === 'es' ? (
+            <>
+              Impulsamos tu negocio con{' '}
+              <span className="text-bds-aqua whitespace-nowrap">
+                Inteligencia de Datos
+              </span>
+            </>
+          ) : (
+            <>
+              We power your business with{' '}
+              <span className="text-bds-aqua whitespace-nowrap">
+                Data Intelligence
+              </span>
+            </>
+          )}
+        </h2>
+
+
+          <p className="mt-4 text-center text-gray-300">
             {language === 'es'
               ? 'Descubre cómo nuestras soluciones personalizadas pueden transformar tu empresa.'
               : 'Discover how our custom solutions can transform your company.'}
@@ -113,12 +126,14 @@ const ServicesSection = ({ language, className }) => {
                       : 'opacity-0 -translate-x-5 pointer-events-none'
                   }`}
                 >
-                  <h3 className="text-3xl font-bold text-bds-deep mb-4">
+                  <h3 className="text-3xl font-bold text-white drop-shadow-md mb-4">
                     {service.title[language]}
                   </h3>
-                  <p className="text-bds-text-soft text-base leading-relaxed mb-6 h-24">
+
+                  <p className="text-gray-200 text-base leading-relaxed mb-6 h-24">
                     {service.description[language]}
                   </p>
+
 
                   <Link
                     to={`/servicios/${service.id}`}

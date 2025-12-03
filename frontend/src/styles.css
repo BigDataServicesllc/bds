@@ -44,18 +44,18 @@
 @layer components {
   /* Servicios – fondo claro con toque aqua/azul */
   .bds-section-services {
-  @apply bg-gradient-to-b from-white via-bds-bg-light to-bds-bg-muted text-bds-text-main;
+  background: linear-gradient(to bottom, #173B3A, #173B3A);
 }
 
 
   /* Learning – blanco limpio, sensación de “página” */
   .bds-section-learning {
-    @apply bg-white text-bds-text-main;
+    background: linear-gradient(to bottom, #BD9834, #BD9834);
   }
 
   /* Blog – gris claro tipo revista */
   .bds-section-blog {
-    @apply bg-bds-bg-soft text-bds-text-main;
+    background: linear-gradient(to bottom, #000B22, #000B22);
   }
 
   /* CTA final – bloque oscuro premium */
