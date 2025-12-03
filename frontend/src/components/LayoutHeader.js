@@ -1,11 +1,21 @@
-// RUTA: frontend/src/components/LayoutHeader.js - SINTAXIS CORREGIDA
-
-import React, { useState } from 'react';
+// RUTA: frontend/src/components/LayoutHeader.js
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  // Detectar scroll
+  useEffect(() => {
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navItems = [
     { name: 'Inicio', id: 'home' },
@@ -35,7 +45,12 @@ const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) =
         <Link
           to={item.path}
           onClick={() => setIsMenuOpen(false)}
-          className={`w-full text-left md:w-auto md:text-center py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300 ${ isActive ? 'text-white bg-blue-500/30' : 'text-gray-300 hover:bg-gray-700/50 hover:text-white' }`}
+          className={`py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300
+            ${isActive 
+              ? 'text-[#06E8D1]' 
+              : isScrolled 
+                ? 'text-gray-900 hover:text-[#2B64B2]' 
+                : 'text-white hover:text-[#06E8D1]'}`}
         >
           {getDisplayName(item.name)}
         </Link>
@@ -46,7 +61,12 @@ const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) =
       return (
         <button
           onClick={() => { onNavigate(item.id); setIsMenuOpen(false); }}
-          className={`w-full text-left md:w-auto md:text-center py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300 ${ isActive ? 'text-white bg-blue-500/30' : 'text-gray-300 hover:bg-gray-700/50 hover:text-white' }`}
+          className={`py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300
+            ${isActive 
+              ? 'text-[#06E8D1]' 
+              : isScrolled 
+                ? 'text-gray-900 hover:text-[#2B64B2]' 
+                : 'text-white hover:text-[#06E8D1]'}`}
         >
           {getDisplayName(item.name)}
         </button>
@@ -57,7 +77,8 @@ const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) =
       <Link
         to={`/#${item.id}`}
         onClick={() => setIsMenuOpen(false)}
-        className="block md:inline-block py-2 px-3 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700/50 hover:text-white"
+        className={`py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300
+          ${isScrolled ? 'text-gray-900 hover:text-[#2B64B2]' : 'text-white hover:text-[#06E8D1]'}`}
       >
         {getDisplayName(item.name)}
       </Link>
@@ -65,38 +86,61 @@ const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) =
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-primary-dark/80 backdrop-blur-sm z-50 shadow-lg shadow-black/20 border-b border-white/10">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 
+        ${isScrolled 
+          ? 'bg-white/85 backdrop-blur-lg shadow-md border-b border-gray-200' 
+          : 'bg-transparent backdrop-blur-sm'
+        }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
-          <Link to="/" className="text-xl font-bold text-white cursor-pointer">Big Data Services</Link>
+
+          {/* LOGO */}
+          <Link to="/" className="flex items-center gap-2">
+            <img 
+              src="/images/logo.png" 
+              alt="Big Data Services Logo" 
+              className="h-10 w-auto"
+            />
+          </Link>
+
+          {/* NAV DESKTOP */}
           <nav className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => <NavButton key={item.id} item={item} />)}
-            <div className="w-px h-6 bg-gray-600 mx-4"></div>
-            <button onClick={onToggleLanguage} className="px-3 py-1.5 rounded-md border border-gray-600 text-gray-300 text-sm font-medium hover:bg-gray-700/50 transition-colors">
+
+            <div className="w-px h-6 mx-3 bg-gray-400/30"></div>
+
+            <button
+              onClick={onToggleLanguage}
+              className={`
+                px-3 py-1.5 rounded-md border text-sm transition
+                ${isScrolled
+                  ? 'text-gray-900 border-gray-400 hover:bg-gray-200'
+                  : 'text-white border-white/40 hover:bg-white/10'
+                }
+              `}
+            >
               {language === 'es' ? 'EN' : 'ES'}
             </button>
           </nav>
+
+          {/* NAV MOBILE */}
           <div className="md:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-md text-gray-300 hover:bg-gray-700/50 focus:outline-none" aria-label="Toggle menu">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}></path></svg>
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} 
+              className={`${isScrolled ? 'text-gray-900' : 'text-white'}`}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                  d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
+                />
+              </svg>
             </button>
           </div>
         </div>
-        {isMenuOpen && (
-          <div className="block md:hidden pb-4">
-            <nav className="flex flex-col space-y-2">
-              {navItems.map((item) => <NavButton key={item.id} item={item} />)}
-              <div className="pt-4 mt-4 border-t border-gray-700">
-                <button onClick={() => { onToggleLanguage(); setIsMenuOpen(false); }} className="w-full px-3 py-2 rounded-md bg-gray-700 text-gray-200 text-sm font-medium hover:bg-gray-600 transition-colors">
-                  Cambiar a {language === 'es' ? 'English' : 'Español'}
-                </button>
-              </div>
-            </nav>
-          </div>
-        )}
       </div>
     </header>
   );
-}; // <-- La llave de cierre del componente principal
+};
 
-export default LayoutHeader; // <-- El export
+export default LayoutHeader;
