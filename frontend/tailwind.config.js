@@ -24,11 +24,16 @@ module.exports = {
         "primary-dark": "#020617",   // hero muy oscuro si lo necesitas
         "secondary-dark": "#0B1220", // dark pero no negro
         "tertiary-dark": "#111827",
+
+        // 🔗 Alias para que el código existente siga funcionando
+        accent: "#06E8D1",          // igual que bds-aqua
+        "accent-hover": "#2B64B2",  // igual que bds-blue
+        "primary-deep": "#173B3A",  // igual que bds-deep
       },
 
       // Tipografía y bordes más “premium”
       borderRadius: {
-        "xl": "1rem",
+        xl: "1rem",
         "2xl": "1.5rem",
       },
       fontFamily: {
@@ -37,10 +42,8 @@ module.exports = {
       },
 
       boxShadow: {
-        "bds-soft":
-          "0 18px 45px rgba(15, 23, 42, 0.35)", // tarjetas / heroes
-        "bds-button":
-          "0 14px 40px rgba(6, 232, 209, 0.35)", // botones aqua
+        "bds-soft": "0 18px 45px rgba(15, 23, 42, 0.35)",   // tarjetas / heroes
+        "bds-button": "0 14px 40px rgba(6, 232, 209, 0.35)" // botones aqua
       },
     },
   },
