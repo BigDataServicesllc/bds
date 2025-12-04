@@ -59,12 +59,14 @@ const CourseDetailPage = () => {
         </div>
         
         {/* --- CTA FINAL --- */}
-        <div className="text-center mt-16 py-12 bg-gray-900 text-white rounded-2xl max-w-4xl mx-auto shadow-2xl">
+        <div className="text-center mt-16 py-14 bg-primary-deep text-white rounded-2xl max-w-4xl mx-auto shadow-xl border border-accent/20">
           <h3 className="text-3xl font-bold mb-4">{language === 'es' ? '¿Listo para empezar a aprender?' : 'Ready to start learning?'}</h3>
           {course.udemyLink ? (
             <>
               <p className="text-gray-300 mb-6">{language === 'es' ? 'Inscríbete ahora en Udemy y lleva tus habilidades al siguiente nivel.' : 'Enroll now on Udemy and take your skills to the next level.'}</p>
-              <a href={course.udemyLink} target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 bg-accent text-white text-base font-semibold rounded-lg shadow-lg hover:bg-accent-hover transition-all duration-300 transform hover:scale-105">
+              <a href={course.udemyLink}
+  className="inline-block px-8 py-3 rounded-full bg-white text-primary-deep font-semibold shadow-md hover:bg-accent hover:text-white transition-all duration-300">
+
                 {language === 'es' ? 'Ir al Curso en Udemy' : 'Go to Udemy Course'}
               </a>
             </>

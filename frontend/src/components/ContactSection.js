@@ -1,105 +1,88 @@
-import React, { useState } from 'react';
-import axios from 'axios'; // Importamos axios
+// RUTA: frontend/src/components/ContactSection.js
 
-const ContactSection = ({ language }) => {
-  // --- CONFIGURACIÓN ---
-  // PEGA AQUÍ LA URL ÚNICA QUE TE DIO FORMSPREE
-  const FORM_ENDPOINT = 'https://formspree.io/f/manjeqwr'; 
+import React, { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
-  // --- ESTADO DEL FORMULARIO ---
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('idle'); // 'idle', 'sending', 'success', 'error'
+const ContactSection = ({ className = "" }) => {
+  const { language } = useOutletContext();
+  const isSpanish = language === "es";
 
-  // --- MANEJADORES ---
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // ⚠️ Cambia este correo por el tuyo real
+  const contactEmail = "michael@bigdata-services.com";
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('sending');
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
     try {
-      await axios.post(FORM_ENDPOINT, formData);
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' }); // Limpia el formulario
-    } catch (error) {
-      console.error('Submission error:', error);
-      setStatus('error');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(contactEmail);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    } catch (e) {
+      console.error("No se pudo copiar el correo", e);
     }
   };
 
-  // --- TEXTOS ---
-  const contactContent = {
-    title: { es: 'Hablemos de tu Proyecto', en: "Let's Talk About Your Project" },
-    description: { es: '¿Listo para transformar tus datos en valor? Déjanos un mensaje.', en: 'Ready to transform your data into value? Leave us a message.'},
-    form: {
-      name: { es: 'Nombre Completo', en: 'Full Name' },
-      email: { es: 'Correo Electrónico', en: 'Email Address' },
-      message: { es: '¿Cómo podemos ayudarte?', en: 'How can we help?' },
-      button: { es: 'Enviar Mensaje', en: 'Send Message' },
-      sending: { es: 'Enviando...', en: 'Sending...' },
-    },
-    successMessage: { es: '¡Gracias! Tu mensaje ha sido enviado. Nos pondremos en contacto pronto.', en: 'Thank you! Your message has been sent. We will get in touch soon.'},
-    errorMessage: { es: 'Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.', en: 'There was an error sending your message. Please try again.'},
-  };
-
-  // Si el formulario ya se envió con éxito, mostramos solo el mensaje de éxito.
-  if (status === 'success') {
-    return (
-      <section id="contact" className="py-20 sm:py-24 border-t-2 border-gray-800">
-        <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6">
-                {language === 'es' ? 'Mensaje Enviado' : 'Message Sent'}
-            </h2>
-            <p className="text-lg text-green-400">{contactContent.successMessage[language]}</p>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section id="contact" className="py-20 sm:py-24 border-t-2 border-gray-800">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">
-          {contactContent.title[language]}
-        </h2>
-        <p className="text-lg text-gray-400 text-center max-w-2xl mx-auto mb-16">
-          {contactContent.description[language]}
-        </p>
+    <section
+      id="contact"
+      className={`py-20 sm:py-24 bg-primary-dark text-white ${className}`}
+    >
+      <div className="container mx-auto px-4 max-w-4xl">
+        {/* TÍTULO Y SUBTÍTULO */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+            {isSpanish ? "Hablemos de tu Proyecto" : "Let’s Talk About Your Project"}
+          </h2>
+          <p className="text-lg text-bds-text-soft max-w-2xl mx-auto">
+            {isSpanish
+              ? "¿Listo para transformar tus datos en valor? Escríbeme directamente y coordinamos una llamada o una demo."
+              : "Ready to turn your data into real value? Email me directly and we’ll schedule a call or a live demo."}
+          </p>
+        </div>
 
-        <div className="max-w-xl mx-auto">
-          <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  {contactContent.form.name[language]}
-                </label>
-                <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition" />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  {contactContent.form.email[language]}
-                </label>
-                <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition" />
-              </div>
-            </div>
-            <div className="mb-6">
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                {contactContent.form.message[language]}
-              </label>
-              <textarea name="message" id="message" rows="5" required value={formData.message} onChange={handleChange}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"></textarea>
-            </div>
-            <div className="text-center">
-              <button type="submit" disabled={status === 'sending'}
-                className="w-full px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/40 disabled:bg-gray-500 disabled:cursor-not-allowed">
-                {status === 'sending' ? contactContent.form.sending[language] : contactContent.form.button[language]}
-              </button>
-            </div>
-            {status === 'error' && <p className="text-center text-red-500 mt-4">{contactContent.errorMessage[language]}</p>}
-          </form>
+        {/* BLOQUE CON EL CORREO */}
+        <div className="bg-secondary-dark/60 border border-white/10 rounded-2xl px-6 sm:px-10 py-10 shadow-bds-soft">
+          <p className="text-sm uppercase tracking-[0.2em] text-bds-text-soft mb-3">
+            {isSpanish ? "Correo de contacto" : "Contact email"}
+          </p>
+
+          <a
+            href={`mailto:${contactEmail}`}
+            className="block text-2xl sm:text-3xl font-semibold text-bds-aqua break-all"
+          >
+            {contactEmail}
+          </a>
+
+          <p className="mt-4 text-sm text-bds-text-soft">
+            {isSpanish
+              ? "Haz clic en el correo para abrir tu cliente de email o copia la dirección para usarla donde prefieras."
+              : "Click the email to open your mail client, or copy the address and use it wherever you prefer."}
+          </p>
+
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
+            <a
+              href={`mailto:${contactEmail}`}
+              className="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-accent text-primary-dark font-semibold shadow-bds-button hover:bg-accent-hover hover:text-white transition-all duration-300 transform hover:scale-105"
+            >
+              {isSpanish ? "Escribir un Email" : "Write an Email"}
+            </a>
+
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-white/20 text-sm font-medium text-gray-200 hover:bg-white/5 transition-colors"
+            >
+              {copied
+                ? isSpanish
+                  ? "Copiado ✓"
+                  : "Copied ✓"
+                : isSpanish
+                ? "Copiar correo"
+                : "Copy email"}
+            </button>
+          </div>
         </div>
       </div>
     </section>
