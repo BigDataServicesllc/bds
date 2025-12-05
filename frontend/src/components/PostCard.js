@@ -1,18 +1,39 @@
-// RUTA: frontend/src/components/PostCard.js
-
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const PostCard = ({ post, language }) => {
   return (
-    <Link to={`/blog/${post.slug}`} className="block bg-secondary-dark rounded-xl overflow-hidden shadow-lg hover:shadow-accent/20 transition-all duration-300 group">
+    <Link 
+      to={`/blog/${post.slug}`}
+      className="block rounded-2xl shadow-lg overflow-hidden bg-[#11252C] 
+                 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+    >
+      {/* Imagen fija */}
       <div className="h-48 w-full overflow-hidden">
-        <img src={post.image} alt={post.title[language]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        <img 
+          src={post.image}
+          alt={post.title[language]}
+          className="w-full h-full object-cover"
+        />
       </div>
-      <div className="p-6">
-        <span className="inline-block bg-accent/20 text-accent text-xs font-semibold px-2 py-1 rounded-full mb-2">{post.category[language]}</span>
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">{post.title[language]}</h3>
-        <p className="text-gray-400 text-sm">{post.excerpt[language]}</p>
+
+      {/* Contenido */}
+      <div className="p-6 flex flex-col min-h-[230px]">
+
+        {/* Categoría */}
+        <p className="text-xs font-semibold text-bds-aqua mb-3">
+          {post.category[language]}
+        </p>
+
+        {/* Título */}
+        <h3 className="text-lg font-bold text-white leading-snug mb-3">
+          {post.title[language]}
+        </h3>
+
+        {/* Resumen */}
+        <p className="text-gray-300 text-sm leading-relaxed flex-grow">
+          {post.excerpt[language]}
+        </p>
       </div>
     </Link>
   );

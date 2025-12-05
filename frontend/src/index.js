@@ -7,10 +7,11 @@ import App from './App';
 import HomePage from './pages/HomePage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import CourseDetailPage from './pages/CourseDetailPage';
-// --- NUEVAS IMPORTACIONES ---
 import BlogIndexPage from './pages/BlogIndexPage';
 import PostDetailPage from './pages/PostDetailPage';
-// -------------------------
+import TermsPage from "./pages/TermsPage";
+import PrivacyPage from "./pages/PrivacyPage";
+
 import './styles.css'; 
 import Modal from 'react-modal';
 
@@ -24,11 +25,11 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "servicios/:serviceId", element: <ServiceDetailPage /> },
       { path: "cursos/:courseId", element: <CourseDetailPage /> },
-      // --- NUEVAS RUTAS ---
       { path: "blog", element: <BlogIndexPage /> },
       { path: "blog/:postSlug", element: <PostDetailPage /> },
-      // ------------------
-    ]
+      { path: "terminos", element: <TermsPage /> },
+      { path: "privacidad", element: <PrivacyPage /> },
+    ],
   },
 ]);
 
