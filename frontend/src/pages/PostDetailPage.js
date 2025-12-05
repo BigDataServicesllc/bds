@@ -1,5 +1,11 @@
 // RUTA: frontend/src/pages/PostDetailPage.js
-// Página de detalle de un post del blog: muestra el artículo completo y un CTA final.
+// Esta página muestra el detalle de un artículo del blog.
+// Ajustes aplicados:
+// 1. Hero oscuro completo sin línea blanca bajo el header.
+// 2. Mayor separación entre título/autor y la imagen.
+// 3. Layout más ancho (max-w-5xl) para aprovechar la pantalla.
+// 4. Texto del artículo con color gris oscuro y buen interlineado.
+// 5. Más espacio inferior para que el CTA no se pegue al footer.
 
 import React from 'react';
 import { useParams, useOutletContext, Navigate, Link } from 'react-router-dom';
@@ -10,27 +16,25 @@ const PostDetailPage = () => {
   const { postSlug } = useParams();
   const post = blogPostsData.find((p) => p.slug === postSlug);
 
-  if (!post) {
-    return <Navigate to="/blog" replace />;
-  }
+  if (!post) return <Navigate to="/blog" replace />;
 
   const formattedDate = new Date(post.date).toLocaleDateString(
     language === 'es' ? 'es-ES' : 'en-US',
     { year: 'numeric', month: 'long', day: 'numeric' }
   );
 
-  const isSpanish = language === 'es';
-
   return (
-    <div className="min-h-screen bg-gray-50 pt-28 text-gray-800">
-      {/* ------------------------------------------------------------------ */}
-      {/* HERO SUPERIOR CON FONDO VERDE OSCURO                                */}
-      {/* ------------------------------------------------------------------ */}
-      <section className="bg-[#173B3A] text-white">
-        <div className="container mx-auto px-4 py-10 max-w-4xl">
+    // Añadimos padding inferior para que el CTA no se pegue al footer
+    <div className="bg-white min-h-screen pb-32">
+
+      {/* ============================================================
+          HERO DEL ARTÍCULO — COLOR OSCURO (MISMO QUE BLOG INDEX)
+      ============================================================ */}
+      <section className="pt-40 pb-12 bg-[#173B3A] text-white">
+        <div className="container mx-auto px-4 max-w-5xl">
           <Link
             to="/blog"
-            className="text-gray-300 hover:text-bds-aqua transition-colors duration-200 inline-flex items-center mb-4"
+            className="text-gray-300 hover:text-[#06E8D1] transition inline-flex items-center mb-6"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,69 +50,65 @@ const PostDetailPage = () => {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            {isSpanish ? 'Volver al Blog' : 'Back to Blog'}
+            {language === 'es' ? 'Volver al Blog' : 'Back to Blog'}
           </Link>
 
-          <p className="text-sm font-semibold text-bds-aqua mb-2">
+          <p className="text-[#06E8D1] font-semibold text-sm mb-2">
             {post.category[language]}
           </p>
 
-          <h1 className="text-3xl md:text-5xl font-extrabold mb-3 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
             {post.title[language]}
           </h1>
 
-          <p className="text-gray-300 text-sm">
-            {isSpanish ? 'Por' : 'By'} {post.author} • {formattedDate}
+          <p className="text-gray-300 text-sm mb-8">
+            {language === 'es' ? 'Por' : 'By'} {post.author} • {formattedDate}
           </p>
         </div>
       </section>
 
-      {/* ------------------------------------------------------------------ */}
-      {/* CONTENIDO DEL POST DENTRO DE TARJETA BLANCA                         */}
-      {/* ------------------------------------------------------------------ */}
-      <main className="container mx-auto px-4 pb-16">
-        <article className="max-w-3xl mx-auto -mt-10 bg-white rounded-2xl shadow-xl overflow-hidden">
-          {/* Imagen */}
-          <div className="w-full h-auto">
-            <img
-              src={post.image}
-              alt={post.title[language]}
-              className="w-full h-full object-cover"
-            />
-          </div>
+      {/* ============================================================
+          CONTENIDO DEL ARTÍCULO
+      ============================================================ */}
+      <section className="container mx-auto px-4 max-w-5xl">
+        {/* Imagen con espacio arriba (ANTES pisaba el título) */}
+        <img
+          src={post.image}
+          alt={post.title[language]}
+          className="w-full rounded-2xl shadow-xl my-12"
+        />
 
-          {/* Texto del artículo */}
-          <div className="px-6 md:px-10 py-10">
-            <div
-              className="prose prose-lg max-w-none prose-headings:text-bds-text-main prose-p:text-gray-700"
-              // El contenido viene como HTML ya formateado desde blogPostsData
-              dangerouslySetInnerHTML={{ __html: post.content[language] }}
-            />
-          </div>
-        </article>
+        {/* Contenido del artículo 
+            NOTA: evitamos las clases avanzadas de `prose-*` que te
+            estaban rompiendo el render y usamos un estilo más simple. */}
+        <div
+          className="max-w-none mb-24 text-gray-800 text-base md:text-lg leading-relaxed space-y-6"
+          dangerouslySetInnerHTML={{ __html: post.content[language] }}
+        />
+      </section>
 
-        {/* ---------------------------------------------------------------- */}
-        {/* CTA FINAL                                                        */}
-        {/* ---------------------------------------------------------------- */}
-        <div className="text-center mt-16 py-12 bg-gray-900 text-white rounded-2xl max-w-4xl mx-auto shadow-2xl">
-          <h3 className="text-3xl font-bold mb-2">
-            {isSpanish
-              ? '¿Necesitas ayuda con tus datos?'
-              : 'Need help with your data?'}
-          </h3>
-          <p className="text-gray-300 mb-6">
-            {isSpanish
-              ? 'Hablemos sobre cómo nuestras soluciones pueden impulsar tu negocio.'
-              : "Let's talk about how our solutions can boost your business."}
-          </p>
-          <Link
-            to="/#contact"
-            className="inline-block px-8 py-3 bg-bds-aqua text-primary-dark text-base font-semibold rounded-lg shadow-lg hover:bg-bds-blue hover:text-white transition-all duration-300 transform hover:scale-105"
-          >
-            {isSpanish ? 'Contáctanos' : 'Contact Us'}
-          </Link>
-        </div>
-      </main>
+      {/* ============================================================
+          CTA FINAL
+      ============================================================ */}
+      <div className="text-center mt-4 py-12 bg-gray-900 text-white rounded-2xl max-w-4xl mx-auto shadow-2xl">
+        <h3 className="text-3xl font-bold mb-2">
+          {language === 'es'
+            ? '¿Necesitas ayuda con tus datos?'
+            : 'Need help with your data?'}
+        </h3>
+        <p className="text-gray-300 mb-6">
+          {language === 'es'
+            ? 'Hablemos sobre cómo nuestras soluciones pueden impulsar tu negocio.'
+            : "Let's talk about how our solutions can boost your business."}
+        </p>
+
+        <Link
+          to="/#contact"
+          className="inline-block px-8 py-3 bg-accent text-white text-base font-semibold rounded-lg shadow-lg hover:bg-accent-hover transition-all duration-300 transform hover:scale-105"
+        >
+          {language === 'es' ? 'Contáctanos' : 'Contact Us'}
+        </Link>
+      </div>
     </div>
   );
 };
