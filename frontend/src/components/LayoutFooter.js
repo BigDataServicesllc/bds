@@ -22,20 +22,27 @@ const LayoutFooter = ({ language = "es", className = "" }) => {
         {/* FILA PRINCIPAL */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           {/* IZQUIERDA: LOGO + NOMBRE */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-bds-aqua/10 border border-bds-aqua/60 flex items-center justify-center">
-              {/* Puedes reemplazar por tu imagen de logo si quieres */}
-              <span className="text-bds-aqua font-bold text-lg">B</span>
-            </div>
-            <div>
-              <p className="font-semibold text-white leading-tight">
-                Big Data Services
-              </p>
-              <p className="text-xs text-bds-text-soft">
-                BI · Analytics · Automation
-              </p>
-            </div>
-          </div>
+<div className="flex items-center gap-3">
+  {/* Logo: ocupa todo el ancho del contenedor */}
+  <div className="w-10 h-10 flex items-center justify-center">
+    <img
+      src="/images/logo.png"           // poné aquí tu archivo real
+      alt="Big Data Services Logo"
+      className="w-10 h-10 object-contain"
+    />
+  </div>
+
+  <div>
+    <p className="font-semibold text-white leading-tight">
+      Big Data Services
+    </p>
+    <p className="text-xs text-bds-text-soft">
+      BI · Analytics · Automation
+    </p>
+  </div>
+</div>
+
+
 
           {/* CENTRO: NAVEGACIÓN */}
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm justify-start lg:justify-center">
