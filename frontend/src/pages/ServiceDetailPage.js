@@ -1,201 +1,238 @@
-// RUTA: frontend/src/pages/ServiceDetailPage.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams, useOutletContext, Navigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { servicesData, allTech } from '../data/services';
 
-// Swiper para el carrusel de tecnologías
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
+// IMÁGENES DE ALTA CALIDAD PARA CADA SERVICIO
+import consultingImg from '../assets/services/consulting.jpeg';
+import netsuiteImg from '../assets/services/netsuite.jpeg';
+import engineeringImg from '../assets/services/engineering.jpeg';
+import visualizationImg from '../assets/services/visualization.jpeg';
+import developmentImg from '../assets/services/development.jpeg';
+
+const imageMap = {
+  'consultoria': consultingImg,
+  'netsuite': netsuiteImg,
+  'ingenieria': engineeringImg,
+  'visualizacion': visualizationImg,
+  'desarrollo-web-movil': developmentImg
+};
 
 const ServiceDetailPage = () => {
   const { language } = useOutletContext();
   const { serviceId } = useParams();
 
-  // Buscamos el servicio según el id de la URL
   const service = servicesData.find((s) => s.id === serviceId);
 
-  // Si no existe, volvemos al home
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [serviceId]);
+
   if (!service) {
     return <Navigate to="/" replace />;
   }
 
-  // =========================================================================
-  // CONFIGURACIÓN DEL CARRUSEL DE LOGOS
-  // =========================================================================
-  const logoCarouselSettings = {
-    modules: [Autoplay],
-    spaceBetween: 60,
-    slidesPerView: 'auto',
-    loop: true,
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
-    speed: 5000,
-    allowTouchMove: false,
-    breakpoints: {
-      320: { slidesPerView: 3, spaceBetween: 40 },
-      768: { slidesPerView: 4, spaceBetween: 50 },
-      1024: { slidesPerView: 5, spaceBetween: 60 },
+  const isSpanish = language === 'es';
+
+  // Multiplicamos el array de tecnologías para crear el efecto de carrusel infinito
+  const infiniteTechList = [
+    ...service.details.tech,
+    ...service.details.tech,
+    ...service.details.tech,
+    ...service.details.tech,
+  ];
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
     },
   };
 
   return (
-    // CAMBIO: Fondo base oscuro (bds-deep) en lugar de bg-white
-    <div className="min-h-screen pt-28 bg-bds-deep text-bds-text-main">
+    <div className="min-h-screen bg-slate-50 text-slate-950 pt-32 pb-24">
       
-      {/* === HERO WRAPPER: Fondo degradado de verde oscuro a blanco === */}
-      <div className="pb-24 bg-gradient-to-b from-bds-deep to-white">
-        <div className="container mx-auto px-4 md:px-8 py-16">
-          {/* === HERO: título, descripción y foto del servicio === */}
-          <div className="max-w-5xl mx-auto mb-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="text-center lg:text-left">
-                {/* Link "Volver" con colores ajustados para fondo oscuro */}
-                <Link
-                  to="/"
-                  className="text-bds-bg-light/70 hover:text-bds-aqua transition-colors duration-300 inline-flex items-center mb-4"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 mr-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                    />
-                  </svg>
-                  {language === 'es' ? 'Volver a Servicios' : 'Back to Services'}
-                </Link>
+      {/* 
+        =======================================================================
+        SPLIT HERO COMPONENT (APPLE BENTO)
+        =======================================================================
+      */}
+      <div className="container mx-auto px-6 lg:px-12 mb-20">
+        <div className="max-w-6xl mx-auto">
+          {/* Navegación Back */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-8">
+            <Link
+              to="/#services"
+              className="inline-flex items-center text-sm font-bold text-slate-400 hover:text-bds-violet transition-colors uppercase tracking-widest"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              {isSpanish ? 'Volver a Servicios' : 'Back to Services'}
+            </Link>
+          </motion.div>
 
-                {/* Título en blanco */}
-                <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-                  {service.title[language]}
-                </h1>
-                
-                {/* Descripción en tono claro con opacidad */}
-                <p className="text-lg text-bds-bg-light/80 leading-relaxed">
-                  {service.details.main[language]}
-                </p>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+            
+            {/* IZQUIERDA: CONTENIDO */}
+            <motion.div 
+              initial="hidden" animate="visible" variants={fadeUp}
+              className="lg:col-span-6 flex flex-col justify-center bg-white rounded-[2.5rem] p-10 md:p-12 shadow-xl border border-slate-100"
+            >
+              <span className="text-xs font-extrabold uppercase tracking-[0.3em] text-bds-aqua mb-6 block drop-shadow-sm">
+                BDS Service
+              </span>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 leading-tight mb-6">
+                {service.title[language]}
+              </h1>
+              <p className="text-lg text-slate-500 font-medium leading-relaxed mb-8 flex-grow">
+                {service.details.main[language]}
+              </p>
+            </motion.div>
 
-              <div className="w-full h-80 rounded-2xl overflow-hidden shadow-xl">
+            {/* DERECHA: IMAGEN CON EFECTO PARALLAX SUAVE */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="lg:col-span-6"
+            >
+              <div className="w-full h-full min-h-[350px] lg:min-h-full rounded-[2.5rem] overflow-hidden shadow-2xl relative bg-slate-900 border border-slate-200">
                 <img
-                  src={service.image}
+                  src={imageMap[service.id]}
                   alt={service.title[language]}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-1000 hover:scale-105"
                 />
               </div>
-            </div>
+            </motion.div>
+
           </div>
         </div>
-      </div> 
-      {/* Fin del HERO WRAPPER */}
+      </div>
 
       {/* 
-        === CONTENIDO RESTANTE === 
-        Envolvemos el resto en un contenedor blanco para continuar 
-        la transición del degradado (to-white) y mantener los estilos originales.
+        =======================================================================
+        NUESTRO PROCESO Y TECNOLOGÍAS
+        =======================================================================
       */}
-      <div className="bg-white text-gray-800 pb-16">
-        <div className="container mx-auto px-4 md:px-8">
-          
-          {/* === NUESTRO PROCESO: 3 pasos === */}
-          <div className="max-w-5xl mx-auto py-16">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900">
-                {language === 'es' ? 'Nuestro Proceso' : 'Our Process'}
-              </h2>
-              <p className="text-gray-600 mt-2">
-                {language === 'es'
-                  ? 'Un enfoque estructurado para garantizar el éxito.'
-                  : 'A structured approach to ensure success.'}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              {service.details.process.map((step, index) => (
-                <div key={index} className="bg-gray-50 p-8 rounded-xl">
-                  <div className="text-3xl font-bold text-accent mb-2">
-                    0{index + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                    {step.title[language]}
-                  </h3>
-                  <p className="text-gray-600">{step.description[language]}</p>
-                </div>
-              ))}
-            </div>
+      <div className="container mx-auto px-6 lg:px-12 mb-20">
+        <motion.div 
+          initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
+          className="max-w-6xl mx-auto"
+        >
+          {/* CABECERA PROCESO */}
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-extrabold text-slate-950 mb-4 tracking-tight">
+              {isSpanish ? 'Nuestro Proceso' : 'Our Process'}
+            </h2>
+            <p className="text-slate-500 font-medium">
+              {isSpanish ? 'Un enfoque estructurado y escalable para garantizar el éxito.' : 'A structured and scalable approach to ensure success.'}
+            </p>
           </div>
 
-          {/* === TECNOLOGÍAS: carrusel de logos grandes === */}
-          <div className="max-w-6xl mx-auto py-16">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900">
-                {language === 'es'
-                  ? 'Tecnologías que Utilizamos'
-                  : 'Technologies We Use'}
-              </h2>
-              <p className="text-gray-600 mt-2">
-                {language === 'es'
-                  ? 'Integramos herramientas de vanguardia para potenciar tus datos.'
-                  : 'We integrate cutting-edge tools to empower your data.'}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20">
+            {service.details.process.map((step, index) => (
+              <motion.div 
+                variants={fadeUp} key={index} 
+                className="group relative bg-white border border-slate-100 p-10 md:p-12 rounded-[2.5rem] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-bds-aqua/30 flex flex-col items-center text-center overflow-hidden z-0"
+              >
+                {/* Número gigante tipo marca de agua en la esquina superior derecha */}
+                <span className="absolute -top-6 -right-2 text-[140px] font-black text-slate-50 opacity-80 group-hover:text-bds-aqua/10 group-hover:-translate-y-4 group-hover:scale-110 transition-all duration-700 pointer-events-none select-none z-[-1]">
+                  {index + 1}
+                </span>
+
+                <div className="relative z-10 w-full flex flex-col items-center">
+                  {/* Número grande estilizado sin caja */}
+                  <div className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 to-slate-400 group-hover:from-bds-violet group-hover:to-bds-aqua transition-all duration-500 tracking-tighter mb-6 inline-block drop-shadow-sm">
+                    0{index + 1}.
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-950 mb-4">{step.title[language]}</h3>
+                  <p className="text-slate-500 font-medium leading-relaxed">{step.description[language]}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* TECNOLOGÍAS - INFINITE CAROUSEL */}
+          <motion.div variants={fadeUp} className="bg-white rounded-[3rem] py-12 md:py-16 shadow-xl border border-slate-100 text-center relative overflow-hidden">
+            <div className="px-12 md:px-16 mb-12">
+              <h3 className="text-3xl font-extrabold text-slate-950 mb-4 tracking-tight">
+                {isSpanish ? 'Tecnologías que Utilizamos' : 'Technologies We Use'}
+              </h3>
+              <p className="text-slate-500 font-medium">
+                {isSpanish ? 'Integramos herramientas de vanguardia para desplegar excelencia técnica.' : 'We integrate cutting-edge tools to deploy technical excellence.'}
               </p>
             </div>
-
-            <Swiper {...logoCarouselSettings}>
-              {[...service.details.tech, ...service.details.tech].map(
-                (techName, index) => {
+            
+            {/* Carrusel */}
+            <div className="relative flex w-full overflow-hidden">
+              {/* Degradados laterales para hacer fade in/out */}
+              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+              
+              <motion.div
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{
+                  ease: "linear",
+                  duration: 20,
+                  repeat: Infinity,
+                }}
+                className="flex w-max gap-8 px-8"
+              >
+                {infiniteTechList.map((techName, index) => {
                   const Logo = allTech[techName];
                   if (!Logo) return null;
 
                   return (
-                    <SwiperSlide
-                      key={`${techName}-${index}`}
-                      style={{ width: 'auto' }}
-                    >
-                      <div
-                        className="flex justify-center items-center h-32"
-                        title={techName}
-                      >
-                        <Logo className="h-24 max-w-none grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
-                      </div>
-                    </SwiperSlide>
+                    <div key={`${techName}-${index}`} className="flex justify-center items-center h-24 flex-shrink-0 px-8 hover:scale-110 transition-transform duration-300 group">
+                      <Logo className="w-auto h-16 sm:h-20 max-w-[180px] object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" title={techName} />
+                    </div>
                   );
-                }
-              )}
-            </Swiper>
-          </div>
+                })}
+              </motion.div>
+            </div>
+          </motion.div>
 
-          {/* === CTA FINAL: invita a contactar === */}
-          <div className="text-center mt-16 py-12 bg-gray-900 text-white rounded-2xl max-w-4xl mx-auto shadow-2xl">
-            <h3 className="text-3xl font-bold mb-2">
-              {language === 'es'
-                ? `¿Listo para potenciar tu ${service.title.es}?`
-                : `Ready to boost your ${service.title.en}?`}
-            </h3>
-            <p className="text-gray-300 mb-6">
-              {language === 'es'
-                ? 'Contáctanos y descubre cómo podemos ayudarte.'
-                : 'Contact us and find out how we can help you.'}
-            </p>
+        </motion.div>
+      </div>
+
+      {/* 
+        =======================================================================
+        FINAL CTA - APPLE PRODUCT STYLE
+        =======================================================================
+      */}
+      <div className="container mx-auto px-6 lg:px-12">
+        <motion.div 
+          initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
+          className="text-center rounded-[3rem] p-12 md:p-20 bg-white shadow-2xl border border-slate-100 max-w-5xl mx-auto relative overflow-hidden"
+        >
+           {/* Background glow para el boton */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-bds-violet/10 blur-[100px] rounded-full pointer-events-none" />
+
+          <h3 className="text-4xl md:text-5xl font-extrabold text-slate-950 mb-6 tracking-tight relative z-10">
+            {isSpanish ? `¿Listo para potenciar tu ${service.title.es}?` : `Ready to boost your ${service.title.en}?`}
+          </h3>
+
+          <p className="text-slate-500 text-lg mb-12 max-w-xl mx-auto relative z-10 font-medium">
+             {isSpanish ? 'Contáctanos y descubre cómo podemos transformar tu negocio con soluciones a medida.' : 'Contact us and discover how we can transform your business with cutting-edge solutions.'}
+          </p>
+
+          <div className="relative z-10">
             <Link
-              to="/#contact"
-              className="inline-block px-8 py-3 bg-accent text-white text-base font-semibold rounded-lg shadow-lg shadow-orange-500/20 hover:bg-accent-hover transition-all duration-300 transform hover:scale-105"
+              to="/contacto"
+              className="inline-flex items-center justify-center px-10 py-5 bg-slate-950 text-white text-lg font-bold rounded-full shadow-lg border border-slate-800 hover:bg-bds-aqua hover:border-bds-aqua hover:text-slate-950 transition-all duration-300 transform hover:-translate-y-1 group"
             >
-              {language === 'es' ? 'Hablemos' : "Let's Talk"}
+              {isSpanish ? 'Hablemos' : "Let's Talk"}
+              <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
           </div>
-
-        </div>
+        </motion.div>
       </div>
+
     </div>
   );
 };

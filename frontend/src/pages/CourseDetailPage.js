@@ -1,9 +1,6 @@
-// RUTA: frontend/src/pages/CourseDetailPage.js
-// Esta página muestra el detalle de un curso individual (texto, temario,
-// público objetivo y CTA final hacia Udemy o contacto).
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams, useOutletContext, Navigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { coursesData } from '../data/courses';
 
 const CourseDetailPage = () => {
@@ -11,176 +8,209 @@ const CourseDetailPage = () => {
   const { courseId } = useParams();
   const course = coursesData.find(c => c.id === courseId);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [courseId]);
+
   if (!course) {
     return <Navigate to="/" replace />;
   }
 
   const isSpanish = language === 'es';
 
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
   return (
-    // Hero mostaza + contenido en blanco
-    <div className="min-h-screen pt-28 bg-[#C89A24] text-gray-800">
-      {/* HERO MOSTAZA */}
-      <div className="pb-24 bg-gradient-to-b from-[#C89A24] via-[#FDF4DF] to-white">
-        <div className="container mx-auto px-4 md:px-8 py-16">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* TEXTO DEL CURSO DENTRO DE UNA CARD BLANCA */}
-              <div className="order-2 lg:order-1">
-                <div className="bg-white/95 rounded-2xl shadow-bds-soft p-8">
-                  <Link
-                    to="/#learning"
-                    className="text-bds-text-soft hover:text-bds-deep transition-colors duration-300 inline-flex items-center mb-4"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 mr-2"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                      />
-                    </svg>
-                    {isSpanish ? 'Volver a Formación' : 'Back to Learning'}
-                  </Link>
+    <div className="min-h-screen bg-slate-50 text-slate-950 pt-32 pb-24">
+      
+      {/* 
+        =======================================================================
+        SPLIT HERO COMPONENT (APPLE BENTO)
+        =======================================================================
+      */}
+      <div className="container mx-auto px-6 lg:px-12 mb-20">
+        <div className="max-w-6xl mx-auto">
+          {/* Navegación Back */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-8">
+            <Link
+              to="/#learning"
+              className="inline-flex items-center text-sm font-bold text-slate-400 hover:text-bds-violet transition-colors uppercase tracking-widest"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              {isSpanish ? 'Volver a Academia' : 'Back to Academy'}
+            </Link>
+          </motion.div>
 
-                  <h1 className="text-4xl md:text-5xl font-extrabold text-bds-deep mb-4">
-                    {course.title[language]}
-                  </h1>
-
-                  <p className="text-lg text-bds-text-soft leading-relaxed">
-                    {course.details.main[language]}
-                  </p>
-
-                  <p className="text-bds-blue font-bold mt-4">
-                    {isSpanish ? 'Duración:' : 'Duration:'}{' '}
-                    {course.duration[language]}
-                  </p>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+            
+            {/* IZQUIERDA: CONTENIDO */}
+            <motion.div 
+              initial="hidden" animate="visible" variants={fadeUp}
+              className="lg:col-span-5 flex flex-col justify-center bg-white rounded-[2.5rem] p-10 md:p-12 shadow-xl border border-slate-100"
+            >
+              <span className="text-xs font-extrabold uppercase tracking-[0.3em] text-bds-aqua mb-6 block drop-shadow-sm">
+                BDS Training
+              </span>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 leading-tight mb-6">
+                {course.title[language]}
+              </h1>
+              <p className="text-lg text-slate-500 font-medium leading-relaxed mb-8 flex-grow">
+                {course.details.main[language]}
+              </p>
+              
+              <div className="flex items-center gap-3 pt-6 border-t border-slate-100">
+                <svg className="w-5 h-5 text-bds-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+                  {isSpanish ? 'Duración:' : 'Duration:'}
+                </span>
+                <span className="text-sm font-medium text-slate-500">
+                  {course.duration[language]}
+                </span>
               </div>
+            </motion.div>
 
-              {/* IMAGEN DEL CURSO */}
-              <div className="order-1 lg:order-2">
-                <div className="w-full h-80 rounded-2xl overflow-hidden shadow-2xl shadow-black/25">
-                  <img
-                    src={course.image}
-                    alt={course.title[language]}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+            {/* DERECHA: IMAGEN CON EFECTO PARALLAX SUAVE */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="lg:col-span-7"
+            >
+              <div className="w-full h-full min-h-[300px] lg:min-h-full rounded-[2.5rem] overflow-hidden shadow-2xl relative bg-slate-900">
+                <img
+                  src={course.image}
+                  alt={course.title[language]}
+                  className="absolute inset-0 w-full h-full object-cover object-top opacity-90 transition-transform duration-1000 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent pointer-events-none" />
               </div>
-            </div>
+            </motion.div>
+
           </div>
         </div>
       </div>
 
-      {/* CONTENIDO PRINCIPAL EN BLANCO */}
-      <div className="bg-white">
-        <div className="container mx-auto px-4 md:px-8 py-16">
-          {/* TÍTULO DE LA SECCIÓN INTERMEDIA */}
-          <div className="max-w-4xl mx-auto mb-10 text-center">
-            <h2 className="text-3xl font-bold text-bds-deep">
+      {/* 
+        =======================================================================
+        DETALLES: TEMARIO Y PÚBLICO
+        =======================================================================
+      */}
+      <div className="container mx-auto px-6 lg:px-12 mb-20">
+        <motion.div 
+          initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
+          className="max-w-6xl mx-auto"
+        >
+          {/* CABECERA SECCIÓN DE APRENDIZAJE */}
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-extrabold text-slate-950 mb-4 tracking-tight">
               {isSpanish ? 'Lo que vas a aprender' : 'What you will learn'}
             </h2>
-            <p className="text-bds-text-soft mt-2">
+            <p className="text-slate-500 font-medium">
               {isSpanish
-                ? 'Un resumen claro del contenido del curso y para quién está pensado.'
-                : 'A clear overview of the course content and who it is designed for.'}
+                ? 'Un resumen claro del contenido estructurado y nuestra audiencia objetivo.'
+                : 'A clear overview of the structured content and our target audience.'}
             </p>
           </div>
 
-          {/* PANEL CON TEMARIO + PÚBLICO OBJETIVO */}
-          <div className="max-w-5xl mx-auto bg-bds-bg-soft rounded-2xl p-8 md:p-10 shadow-bds-soft">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {/* --- TEMARIO --- */}
-              <div>
-                <h3 className="text-2xl font-semibold text-bds-deep mb-4">
-                  {isSpanish ? 'Temario del Curso' : 'Course Topics'}
-                </h3>
-                <ul className="space-y-3">
-                  {course.details.topics.map((topic, index) => (
-                    <li key={index} className="flex items-start">
-                      <svg
-                        className="w-5 h-5 text-bds-aqua mr-3 flex-shrink-0 mt-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                        ></path>
-                      </svg>
-                      <span className="text-gray-700">
-                        {topic[language]}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+            
+            {/* TEMARIO */}
+            <div className="md:col-span-7 bg-white rounded-[2rem] p-10 shadow-xl border border-slate-100">
+              <h3 className="text-2xl font-bold text-slate-950 mb-8 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-bds-aqua/10 flex items-center justify-center text-bds-aqua">
+                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h16M4 18h16" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
+                </div>
+                {isSpanish ? 'Temario del Curso' : 'Course Topics'}
+              </h3>
+              <ul className="space-y-4">
+                {course.details.topics.map((topic, index) => (
+                  <li key={index} className="flex items-start group">
+                    <div className="w-6 h-6 rounded-full bg-slate-50 flex items-center justify-center mt-0.5 mr-4 flex-shrink-0 group-hover:bg-bds-violet transition-colors">
+                      <svg className="w-3 h-3 text-bds-violet group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <span className="text-slate-600 font-medium leading-relaxed group-hover:text-slate-900 transition-colors">
+                      {topic[language]}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              {/* --- PÚBLICO OBJETIVO --- */}
-              <div className="bg-white p-8 rounded-xl border border-bds-bg-muted">
-                <h3 className="text-2xl font-semibold text-bds-deep mb-4">
-                  {isSpanish ? '¿A quién está dirigido?' : 'Who is this for?'}
+            {/* PÚBLICO OBJETIVO */}
+            <div className="md:col-span-5 bg-slate-950 rounded-[2rem] p-10 shadow-xl relative overflow-hidden group">
+              {/* Halos de luz de fondo */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-bds-violet/20 blur-[80px] rounded-full pointer-events-none group-hover:bg-bds-violet/30 transition-colors" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-bds-aqua/10 blur-[80px] rounded-full pointer-events-none group-hover:bg-bds-aqua/20 transition-colors" />
+
+              <div className="relative z-10 h-full flex flex-col">
+                <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white">
+                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
+                  </div>
+                  {isSpanish ? 'Perfil del Alumno' : 'Who is this for?'}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-slate-300 font-light leading-relaxed flex-grow">
                   {course.details.targetAudience[language]}
                 </p>
               </div>
             </div>
+
           </div>
+        </motion.div>
+      </div>
 
-          {/* --- CTA FINAL --- */}
-          <div className="text-center mt-16 py-12 bg-bds-deep text-white rounded-2xl max-w-4xl mx-auto shadow-2xl">
-            <h3 className="text-3xl font-bold mb-4">
-              {isSpanish
-                ? '¿Listo para empezar a aprender?'
-                : 'Ready to start learning?'}
-            </h3>
+      {/* 
+        =======================================================================
+        FINAL CTA - APPLE PRODUCT STYLE
+        =======================================================================
+      */}
+      <div className="container mx-auto px-6 lg:px-12">
+        <motion.div 
+          initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
+          className="text-center rounded-[3rem] p-12 md:p-20 bg-white shadow-2xl border border-slate-100 max-w-5xl mx-auto relative overflow-hidden"
+        >
+           {/* Background glow para el boton */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-bds-aqua/5 blur-[100px] rounded-full pointer-events-none" />
 
+          <h3 className="text-4xl md:text-5xl font-extrabold text-slate-950 mb-6 tracking-tight relative z-10">
+            {isSpanish ? '¿Listo para empezar?' : 'Ready to start?'}
+          </h3>
+
+          <p className="text-slate-500 text-lg mb-12 max-w-xl mx-auto relative z-10">
+            {course.udemyLink 
+              ? (isSpanish ? 'Inscríbete ahora en Udemy y lleva tus habilidades al siguiente nivel con acceso de por vida.' : 'Enroll now on Udemy and take your skills to the next level with lifetime access.')
+              : (isSpanish ? 'Contáctanos para organizar una capacitación personalizada para tu equipo.' : 'Contact us to arrange a custom training for your team.')}
+          </p>
+
+          <div className="relative z-10">
             {course.udemyLink ? (
-              <>
-                <p className="text-gray-300 mb-6">
-                  {isSpanish
-                    ? 'Inscríbete ahora en Udemy y lleva tus habilidades al siguiente nivel.'
-                    : 'Enroll now on Udemy and take your skills to the next level.'}
-                </p>
-                <a
-                  href={course.udemyLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-8 py-3 bg-bds-aqua text-bds-deep text-base font-semibold rounded-lg shadow-lg hover:bg-bds-blue hover:text-white transition-all duration-300 transform hover:scale-105"
-                >
-                  {isSpanish ? 'Ir al Curso en Udemy' : 'Go to Udemy Course'}
-                </a>
-              </>
+              <a
+                href={course.udemyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-10 py-5 bg-slate-950 text-white text-lg font-bold rounded-full shadow-lg border border-slate-800 hover:bg-bds-aqua hover:border-bds-aqua hover:text-slate-950 transition-all duration-300 transform hover:-translate-y-1 group"
+              >
+                {isSpanish ? 'Ir al Curso en Udemy' : 'Go to Udemy Course'}
+                <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </a>
             ) : (
-              <>
-                <p className="text-gray-300 mb-6">
-                  {isSpanish
-                    ? 'Contáctanos para organizar una capacitación personalizada para tu equipo.'
-                    : 'Contact us to arrange a custom training for your team.'}
-                </p>
-                <Link
-                  to="/#contact"
-                  className="inline-block px-8 py-3 bg-bds-aqua text-bds-deep text-base font-semibold rounded-lg shadow-lg hover:bg-bds-blue hover:text-white transition-all duration-300 transform hover:scale-105"
-                >
-                  {isSpanish ? 'Solicitar Información' : 'Request Info'}
-                </Link>
-              </>
+              <Link
+                to="/contacto"
+                className="inline-flex items-center justify-center px-10 py-5 bg-slate-950 text-white text-lg font-bold rounded-full shadow-lg border border-slate-800 hover:bg-bds-violet hover:border-bds-violet transition-all duration-300 transform hover:-translate-y-1 group"
+              >
+                {isSpanish ? 'Solicitar Información' : 'Request Info'}
+                <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
+
     </div>
   );
 };

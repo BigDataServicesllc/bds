@@ -66,10 +66,10 @@ const TermsPage = () => {
             If you have any questions about these Terms & Conditions, please
             contact us at{" "}
             <a
-              href="mailto:michael@bigdata-services.com"
+              href="mailto:info@bigdata-services.com"
               className="text-bds-blue underline"
             >
-              michael@bigdata-services.com
+              info@bigdata-services.com
             </a>
             .
           </p>
@@ -131,10 +131,10 @@ const TermsPage = () => {
         <p>
           Si tenés dudas sobre estos Términos y Condiciones, escribinos a{" "}
           <a
-            href="mailto:michael@bigdata-services.com"
+            href="mailto:info@bigdata-services.com"
             className="text-bds-blue underline"
           >
-            michael@bigdata-services.com
+            info@bigdata-services.com
           </a>
           .
         </p>

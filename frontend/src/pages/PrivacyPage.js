@@ -59,10 +59,10 @@ const PrivacyPage = () => {
             You may request access, correction or deletion of your personal data
             by contacting us at{" "}
             <a
-              href="mailto:michael@bigdata-services.com"
+              href="mailto:info@bigdata-services.com"
               className="text-bds-blue underline"
             >
-              michael@bigdata-services.com
+              info@bigdata-services.com
             </a>
             . We will evaluate each request according to applicable law.
           </p>
@@ -117,10 +117,10 @@ const PrivacyPage = () => {
           Podés solicitarnos acceso, corrección o eliminación de tus datos
           personales escribiendo a{" "}
           <a
-            href="mailto:michael@bigdata-services.com"
+            href="mailto:info@bigdata-services.com"
             className="text-bds-blue underline"
           >
-            michael@bigdata-services.com
+            info@bigdata-services.com
           </a>
           . Evaluaremos cada solicitud de acuerdo con la normativa aplicable.
         </p>
