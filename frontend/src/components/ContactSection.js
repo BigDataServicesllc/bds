@@ -7,8 +7,7 @@ const ContactSection = ({ className = "" }) => {
   const { language } = useOutletContext();
   const isSpanish = language === "es";
 
-  // ⚠️ Cambia este correo por el tuyo real
-  const contactEmail = "michael@bigdata-services.com";
+  const contactEmail = "info@bigdata-services.com";
 
   const [copied, setCopied] = useState(false);
 

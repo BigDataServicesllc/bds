@@ -36,11 +36,11 @@ const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) =
   const isSolidHeader = isScrolled || needsSolidHeader;
 
   const navItems = [
-    { name: 'Inicio', id: 'home' },
-    { name: 'Servicios', id: 'services' },
-    { name: 'Learning', id: 'learning' },
-    { name: 'Blog', id: 'blog', path: '/blog' },
-    { name: 'Contacto', id: 'contact' },
+    { name: 'Inicio', path: '/' },
+    { name: 'Servicios', path: '/servicios' },
+    { name: 'Learning', path: '/academia' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Contacto', path: '/contacto' },
   ];
 
   const getDisplayName = (name) => {
@@ -58,9 +58,8 @@ const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) =
   };
 
   const NavButton = ({ item }) => {
-    const isActivePage = item.path && location.pathname.startsWith(item.path);
-    const isActiveSection = !item.path && location.pathname === "/" && currentPage === item.id;
-    const isActive = isActivePage || isActiveSection;
+    const isActivePage = item.path && ((item.path === '/' && location.pathname === '/') || (item.path !== '/' && location.pathname.startsWith(item.path)));
+    const isActive = isActivePage;
 
     const baseClasses = "py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300";
     

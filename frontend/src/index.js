@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App';
 import HomePage from './pages/HomePage';
+import ServicesPage from './pages/ServicesPage';
+import AcademyPage from './pages/AcademyPage';
+import ContactPage from './pages/ContactPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import CourseDetailPage from './pages/CourseDetailPage';
 import BlogIndexPage from './pages/BlogIndexPage';
@@ -23,6 +26,9 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: "servicios", element: <ServicesPage /> },
+      { path: "academia", element: <AcademyPage /> },
+      { path: "contacto", element: <ContactPage /> },
       { path: "servicios/:serviceId", element: <ServiceDetailPage /> },
       { path: "cursos/:courseId", element: <CourseDetailPage /> },
       { path: "blog", element: <BlogIndexPage /> },

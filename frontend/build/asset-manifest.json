@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.d8e17068.css",
-    "main.js": "/static/js/main.a6224892.js",
+    "main.css": "/static/css/main.a0551ba8.css",
+    "main.js": "/static/js/main.3bea244e.js",
+    "static/media/learning-hero.jpg": "/static/media/learning-hero.14e30fb8a3661fbd90aa.jpg",
     "static/media/google_cloud.png": "/static/media/google_cloud.d398a7e0a39316ba4949.png",
     "static/media/dbt.jpg": "/static/media/dbt.5ad183a3d7158f964295.jpg",
     "static/media/github.jpg": "/static/media/github.53b43679453d97e94dfb.jpg",
@@ -9,15 +10,19 @@
     "static/media/power-bi.jpg": "/static/media/power-bi.a4be4a9b96738b530c78.jpg",
     "static/media/docker.svg": "/static/media/docker.a5c51713e99d29b9584c8192d03fcaee.svg",
     "static/media/Microsoft_azure.svg": "/static/media/Microsoft_azure.c5b42dda20a5005ca74690be96556f26.svg",
+    "static/media/react.svg": "/static/media/react.9e9c78facb4ac0be2d2880a01982757a.svg",
     "static/media/aws.svg": "/static/media/aws.dcf131dc4fc6d104317119b9cc821b6d.svg",
     "static/media/confluent.svg": "/static/media/confluent.0e3c16fbc67b93f290ffa133e573c501.svg",
+    "static/media/nodejs.svg": "/static/media/nodejs.ca7d509723af4bcecb79debeba809532.svg",
+    "static/media/swift.svg": "/static/media/swift.b4537b0f59be9a60d9fc6785885040c5.svg",
     "static/media/oracle.svg": "/static/media/oracle.1cf2ab376cb6bd36295e3e7c44ebbde9.svg",
     "index.html": "/index.html",
-    "main.d8e17068.css.map": "/static/css/main.d8e17068.css.map",
-    "main.a6224892.js.map": "/static/js/main.a6224892.js.map"
+    "static/media/kotlin.svg": "/static/media/kotlin.37e6e4c80e84015c4405f7d43e829fd2.svg",
+    "main.a0551ba8.css.map": "/static/css/main.a0551ba8.css.map",
+    "main.3bea244e.js.map": "/static/js/main.3bea244e.js.map"
   },
   "entrypoints": [
-    "static/css/main.d8e17068.css",
-    "static/js/main.a6224892.js"
+    "static/css/main.a0551ba8.css",
+    "static/js/main.3bea244e.js"
   ]
 }

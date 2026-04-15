@@ -1,19 +1,24 @@
 // RUTA: frontend/src/components/CallToActionSection.js
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const CallToActionSection = ({ language, onNavigate, className = "" }) => {
   const isSpanish = language === "es";
+  const navigate = useNavigate();
 
   const handleClick = () => {
     if (onNavigate) {
       onNavigate("contact");
-    } else {
-      const el = document.getElementById("contact");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
     }
+
+    const el = document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+
+    navigate("/contacto");
   };
 
   return (

@@ -8,10 +8,10 @@ const LayoutFooter = ({ language = "es", className = "" }) => {
 
   const navItems = [
     { to: "/", labelEs: "Inicio", labelEn: "Home" },
-    { to: "/#services", labelEs: "Servicios", labelEn: "Services" },
-    { to: "/#learning", labelEs: "Formación", labelEn: "Learning" },
+    { to: "/servicios", labelEs: "Servicios", labelEn: "Services" },
+    { to: "/academia", labelEs: "Formación", labelEn: "Learning" },
     { to: "/blog", labelEs: "Blog", labelEn: "Blog" },
-    { to: "/#contact", labelEs: "Contacto", labelEn: "Contact" },
+    { to: "/contacto", labelEs: "Contacto", labelEn: "Contact" },
   ];
 
   return (
@@ -87,7 +87,7 @@ const LayoutFooter = ({ language = "es", className = "" }) => {
 
   {/* Email (nuevo ícono estilo red social) */}
   <a
-    href="mailto:michael@bigdata-services.com"
+    href="mailto:info@bigdata-services.com"
     className="w-9 h-9 rounded-full bg-bds-aqua flex items-center justify-center text-bds-deep hover:opacity-90 transition-opacity"
     aria-label="Email"
   >
@@ -102,10 +102,10 @@ const LayoutFooter = ({ language = "es", className = "" }) => {
 
   {/* Correo visible solo en pantallas grandes */}
   <a
-    href="mailto:michael@bigdata-services.com"
+    href="mailto:info@bigdata-services.com"
     className="hidden sm:inline text-sm text-bds-aqua hover:text-white transition-colors"
   >
-    
+    info@bigdata-services.com
   </a>
 </div>
 

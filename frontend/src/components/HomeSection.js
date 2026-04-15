@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const slides = [
   {
@@ -91,6 +92,11 @@ const HomeSection = ({ language, onNavigate }) => {
     setActiveIndex((prev) => (prev + 1) % slides.length);
   };
 
+  const navigate = useNavigate();
+
+  const handleGoToServices = () => navigate('/servicios');
+  const handleGoToContact = () => navigate('/contacto');
+
   return (
     <section
       id="home"
@@ -142,7 +148,7 @@ const HomeSection = ({ language, onNavigate }) => {
             {/* Botones */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <button
-                onClick={() => onNavigate && onNavigate("services")}
+                onClick={handleGoToServices}
                 className="inline-flex items-center rounded-full bg-[#06E8D1] px-7 py-3 text-sm font-semibold text-[#173B3A] shadow-[0_14px_40px_rgba(6,232,209,0.35)] hover:bg-[#2B64B2] hover:text-white hover:shadow-[0_18px_50px_rgba(43,100,178,0.55)] transition-all duration-300 transform hover:-translate-y-[1px]"
               >
                 {isEs ? "Ver cómo trabajamos" : "See how we work"}
@@ -150,7 +156,7 @@ const HomeSection = ({ language, onNavigate }) => {
               </button>
 
               <button
-                onClick={() => onNavigate && onNavigate("contact")}
+                onClick={handleGoToContact}
                 className="inline-flex items-center text-sm font-medium text-white/85 hover:text-white/100 transition-colors"
               >
                 {isEs ? "Hablar con nosotros" : "Talk to us"}
