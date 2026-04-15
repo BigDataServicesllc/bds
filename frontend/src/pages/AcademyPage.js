@@ -9,7 +9,7 @@ const AcademyPage = () => {
 
   return (
     <>
-      <LearningSection language={language} className="bds-section-learning relative z-10" />
+      <LearningSection language={language} className="relative z-10" />
     </>
   );
 };

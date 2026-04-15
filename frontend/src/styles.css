@@ -49,9 +49,7 @@
 
 
   /* Learning – blanco limpio, sensación de “página” */
-  .bds-section-learning {
-    background: linear-gradient(to bottom, #BD9834, #BD9834);
-  }
+  /* Removed: background gradient was causing conflicts with Tailwind classes */
 
   /* Blog – gris claro tipo revista */
   .bds-section-blog {

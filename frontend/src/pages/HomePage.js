@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext, Link } from 'react-router-dom';
 import HomeSection from '../components/HomeSection';
 
 // Importar imágenes
@@ -9,6 +9,10 @@ import Dashboard3 from '../assets/images/Dashboard3.png';
 import WebDesign01 from '../assets/images/web_desing_01.png';
 import WebDesign02 from '../assets/images/web_desing_02.png';
 import WebDesign03 from '../assets/images/web_desing_03.png';
+
+// Importar logos de stores
+import AppStoreBadge from '../assets/stores/app_store_badge.svg.png';
+import GooglePlayBadge from '../assets/stores/google_play_badge.png';
 
 const courseCards = [
   {
@@ -260,116 +264,154 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      {/* Nueva Sección: Desarrollo Web de Alto Rendimiento - Bento Grid */}
+      {/* Sección: Portafolio Web Horizontal - Estilo Apple Showcase */}
       <motion.section
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="bg-white py-24 sm:py-32"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="bg-white py-24 sm:py-32 overflow-hidden border-t border-slate-100"
       >
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <p className="text-sm uppercase tracking-[0.22em] text-bds-violet mb-4">
+        <div className="container mx-auto px-6 mb-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-sm uppercase tracking-[0.22em] text-bds-violet mb-4 font-bold">
               {language === 'es' ? 'Desarrollo Web de Alto Rendimiento' : 'High-Performance Web Development'}
             </p>
             <h2 className="text-3xl md:text-5xl font-semibold text-slate-950 leading-tight">
               {language === 'es' ? 'Proyectos que Marcan la Diferencia' : 'Projects That Make a Difference'}
             </h2>
+          </div>
+        </div>
+
+        {/* Carrusel Horizontal de Ventanas Identicas */}
+        <div className="relative">
+          <motion.div 
+            className="flex gap-8 px-6 md:px-20 pb-12 overflow-x-auto no-scrollbar"
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            {[
+              { img: WebDesign01, title: 'Aramare Café', url: 'www.aramarecafe.com' },
+              { img: WebDesign02, title: 'WeBuild Argentina', url: 'www.webuildarg.com' },
+              { img: WebDesign03, title: 'Tu Turno en Línea', url: 'www.tuturnoenlinea.com' }
+            ].map((project, idx) => (
+              <div 
+                key={idx}
+                className="flex-none w-[300px] md:w-[600px] group transition-all duration-500"
+              >
+                {/* Ventana de Safari Proporcionada */}
+                <div className="rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-200 bg-white">
+                  {/* Header Safari */}
+                  <div className="h-10 bg-slate-50 flex items-center justify-between px-4 border-b border-slate-200">
+                    <div className="flex gap-1.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                    </div>
+                    <div className="text-[11px] text-slate-400 font-medium bg-white px-6 py-1 rounded-md border border-slate-100">
+                      {project.url}
+                    </div>
+                    <div className="w-10" />
+                  </div>
+
+                  {/* Imagen con Aspect Ratio fijo (para que todas sean iguales) */}
+                  <div className="aspect-video relative overflow-hidden bg-slate-100">
+                    <img 
+                      src={project.img} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    {/* Overlay Hover */}
+                    <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <Link 
+                        to="/portfolio"
+                        className="bg-white text-slate-950 px-6 py-2 rounded-full font-bold text-sm shadow-xl hover:bg-bds-aqua transition-colors"
+                      >
+                        {language === 'es' ? 'Ver Detalles Técnicos' : 'View Tech Details'}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 px-2">
+                  <h3 className="text-xl font-bold text-slate-950">{project.title}</h3>
+                  <p className="text-slate-500 text-sm mt-1">
+                    {idx === 0 ? 'E-commerce & Analytics' : idx === 1 ? 'Corporate Engineering' : 'Smart Scheduling System'}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Nueva Sección: Desarrollo de Aplicaciones Móviles */}
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="bg-slate-50 py-24 sm:py-32"
+      >
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.22em] text-bds-violet mb-4">
+              {language === 'es' ? 'Desarrollo de Apps Móviles' : 'Mobile App Development'}
+            </p>
+            <h2 className="text-3xl md:text-5xl font-semibold text-slate-950 leading-tight">
+              {language === 'es' ? 'Apps Publicadas en Tiendas Oficiales' : 'Apps Published on Official Stores'}
+            </h2>
             <p className="mt-6 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               {language === 'es'
-                ? 'Aplicaciones web modernas, escalables y optimizadas para resultados excepcionales.'
-                : 'Modern, scalable web applications optimized for exceptional results.'}
+                ? 'Desarrollamos aplicaciones móviles nativas y multiplataforma, publicadas en Apple App Store y Google Play Store para llegar a millones de usuarios.'
+                : 'We develop native and cross-platform mobile applications, published on Apple App Store and Google Play Store to reach millions of users.'}
             </p>
           </div>
 
-          {/* Bento Grid Asimétrico */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {/* Cuadro Grande */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="group relative md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500"
+          {/* Logos de Stores */}
+          <div className="flex justify-center items-center gap-8">
+            <motion.a
+              href="https://www.apple.com/app-store/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="hover:scale-105 transition-transform"
             >
               <img
-                src={WebDesign01}
-                alt="Proyecto Aramare Café"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                src={AppStoreBadge}
+                alt="Download on the App Store"
+                className="h-12 w-auto"
               />
-              {/* Etiqueta con Glassmorphism */}
-              <div className="absolute top-6 left-6 bg-white/20 backdrop-blur-md rounded-2xl px-4 py-2">
-                <p className="text-white font-semibold text-sm">
-                  {language === 'es' ? 'E-commerce + Data' : 'E-commerce + Data'}
-                </p>
-              </div>
-              {/* Botón al hover */}
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <button
-                  type="button"
-                  className="bg-white text-slate-950 px-6 py-3 rounded-full font-semibold hover:bg-bds-aqua hover:text-white transition-colors"
-                >
-                  {language === 'es' ? 'Ver Proyecto' : 'View Project'}
-                </button>
-              </div>
-            </motion.div>
+            </motion.a>
+            <motion.a
+              href="https://play.google.com/store"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="hover:scale-105 transition-transform"
+            >
+              <img
+                src={GooglePlayBadge}
+                alt="Get it on Google Play"
+                className="h-12 w-auto"
+              />
+            </motion.a>
+          </div>
 
-            {/* Cuadro Mediano */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="group relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500"
+          <div className="mt-12 text-center">
+            <button
+              type="button"
+              onClick={() => navigate('/contacto')}
+              className="inline-flex items-center justify-center rounded-full bg-bds-violet px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-bds-aqua hover:scale-105"
             >
-              <img
-                src={WebDesign02}
-                alt="Proyecto WeBuild"
-                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md rounded-xl px-3 py-1">
-                <p className="text-white font-semibold text-xs">
-                  {language === 'es' ? 'Corporate Engineering' : 'Corporate Engineering'}
-                </p>
-              </div>
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <button
-                  type="button"
-                  className="bg-white text-slate-950 px-4 py-2 rounded-full font-semibold text-sm hover:bg-bds-aqua hover:text-white transition-colors"
-                >
-                  {language === 'es' ? 'Ver Proyecto' : 'View Project'}
-                </button>
-              </div>
-            </motion.div>
-
-            {/* Cuadro Pequeño */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="group relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500"
-            >
-              <img
-                src={WebDesign03}
-                alt="Prototipo Interactivo"
-                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md rounded-xl px-3 py-1">
-                <p className="text-white font-semibold text-xs">
-                  {language === 'es' ? 'Interactive Prototype' : 'Interactive Prototype'}
-                </p>
-              </div>
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <button
-                  type="button"
-                  className="bg-white text-slate-950 px-4 py-2 rounded-full font-semibold text-sm hover:bg-bds-aqua hover:text-white transition-colors"
-                >
-                  {language === 'es' ? 'Ver Proyecto' : 'View Project'}
-                </button>
-              </div>
-            </motion.div>
+              {language === 'es' ? 'Desarrollar Mi App' : 'Develop My App'}
+            </button>
           </div>
         </div>
       </motion.section>

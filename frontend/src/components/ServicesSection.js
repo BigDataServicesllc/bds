@@ -1,186 +1,129 @@
-// RUTA: frontend/src/components/ServicesSection.js
-// Versión con paleta BDS y fondo claro
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 // Datos centrales de servicios
 import { servicesData } from '../data/services';
 
-const ArrowLeftIcon = ({ className, ...props }) => (
-  <svg
-    {...props}
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M15 19l-7-7 7-7"
-    ></path>
-  </svg>
-);
-
-const ArrowRightIcon = ({ className, ...props }) => (
-  <svg
-    {...props}
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M9 5l7 7-7 7"
-    ></path>
-  </svg>
-);
+const ServiceIcon = ({ type, className }) => {
+  const iconProps = { className, strokeWidth: 1.5, fill: 'none', stroke: 'currentColor' };
+  
+  switch(type) {
+    case 'consultoria':
+      return (
+        <svg viewBox="0 0 24 24" {...iconProps}>
+          <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'netsuite':
+      return (
+        <svg viewBox="0 0 24 24" {...iconProps}>
+          <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'desarrollo-web-movil':
+      return (
+        <svg viewBox="0 0 24 24" {...iconProps}>
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8M12 17v4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 24 24" {...iconProps}>
+          <path d="M12 2v20M2 12h20" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+  }
+};
 
 const ServicesSection = ({ language, className }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+    },
+  };
 
-  const goToNext = () =>
-    setActiveIndex((prev) => (prev + 1) % servicesData.length);
-
-  const goToPrev = () =>
-    setActiveIndex((prev) => (prev - 1 + servicesData.length) % servicesData.length);
-
-  useEffect(() => {
-    const interval = setInterval(goToNext, 7000);
-    return () => clearInterval(interval);
-  }, [activeIndex]);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.21, 0.45, 0.32, 0.9] },
+    },
+  };
 
   return (
-    <section
-      id="services"
-      className={`relative py-20 sm:py-24 overflow-hidden ${
-        className || ''
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        {/* CABECERA DE SECCIÓN */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center text-slate-950 mb-4">
-          {language === 'es' ? (
-            <>
-              Impulsamos tu negocio con{' '}
-              <span className="text-bds-aqua whitespace-nowrap">
-                Inteligencia de Datos
-              </span>
-            </>
-          ) : (
-            <>
-              We power your business with{' '}
-              <span className="text-bds-aqua whitespace-nowrap">
-                Data Intelligence
-              </span>
-            </>
-          )}
-        </h2>
+    <section id="services" className={`relative py-32 bg-[#050505] overflow-hidden ${className || ''}`}>
+      {/* Luces de ambiente sutiles de fondo */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-bds-aqua/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-bds-violet/5 blur-[120px] rounded-full pointer-events-none" />
 
+      <div className="container mx-auto px-6 relative z-10">
+        {/* CABECERA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-24"
+        >
+          <span className="text-[10px] uppercase tracking-[0.4em] text-bds-aqua font-bold mb-4 block">
+            {language === 'es' ? 'Excelencia Técnica' : 'Technical Excellence'}
+          </span>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">
+            {language === 'es' ? 'Servicios de' : 'Services in'}
+            <span className="block bg-gradient-to-r from-bds-aqua to-bds-violet bg-clip-text text-transparent italic">
+              Nueva Generación
+            </span>
+          </h2>
+          <div className="h-1 w-20 bg-bds-aqua mx-auto rounded-full mb-8 opacity-50" />
+        </motion.div>
 
-          <p className="mt-4 text-center text-slate-600">
-            {language === 'es'
-              ? 'Descubre cómo nuestras soluciones personalizadas pueden transformar tu empresa.'
-              : 'Discover how our custom solutions can transform your company.'}
-          </p>
-        </div>
+        {/* GRID ESTILO APPLE BENTO */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {servicesData.map((service) => (
+            <motion.div
+              key={service.id}
+              variants={itemVariants}
+              className="group relative flex flex-col justify-between h-full p-10 rounded-[2.5rem] bg-[#0f0f0f] border border-white/5 hover:border-bds-aqua/30 transition-all duration-700 ease-out overflow-hidden"
+            >
+              {/* Efecto Glow en Hover */}
+              <div className="absolute -inset-x-20 -top-40 h-64 bg-bds-aqua/10 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-        {/* CONTENIDO PRINCIPAL */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[500px]">
-          {/* COLUMNA IMAGEN */}
-          <div className="relative w-full h-80 lg:h-full rounded-2xl overflow-hidden shadow-bds-soft">
-            {servicesData.map((service, index) => (
-              <img
-                key={index}
-                src={service.image}
-                alt={service.title[language]}
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out ${
-                  index === activeIndex
-                    ? 'opacity-100 scale-100'
-                    : 'opacity-0 scale-105'
-                }`}
-              />
-            ))}
-
-            {/* overlay para que la imagen tenga profundidad, no para oscurecer la sección */}
-            <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/30 to-transparent" />
-          </div>
-
-          {/* COLUMNA TEXTO / SLIDER */}
-          <div className="relative flex flex-col justify-center h-full">
-            <div className="relative h-48">
-              {servicesData.map((service, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                    index === activeIndex
-                      ? 'opacity-100 translate-x-0'
-                      : 'opacity-0 -translate-x-5 pointer-events-none'
-                  }`}
-                >
-                  <h3 className="text-3xl font-bold text-slate-950 drop-shadow-md mb-4">
-                    {service.title[language]}
-                  </h3>
-
-                  <p className="text-slate-600 text-base leading-relaxed mb-6 h-24">
-                    {service.description[language]}
-                  </p>
-
-
-                  <Link
-                    to={`/servicios/${service.id}`}
-                    className="bds-btn-primary"
-                  >
-                    {language === 'es' ? 'Conocer Más' : 'Learn More'}
-                    <ArrowRightIcon className="w-5 h-5 ml-2" />
-                  </Link>
+              <div>
+                <div className="mb-8 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 text-bds-aqua group-hover:scale-110 group-hover:bg-bds-aqua group-hover:text-black transition-all duration-500">
+                  <ServiceIcon type={service.id} className="w-8 h-8" />
                 </div>
-              ))}
-            </div>
-
-            {/* CONTROLES SLIDER */}
-            <div className="flex items-center justify-between mt-8">
-              {/* Flechas */}
-              <div className="flex items-center space-x-3">
-                <button
-                  onClick={goToPrev}
-                  className="p-3 rounded-full bg-white border border-gray-300 text-bds-text-soft shadow-sm hover:bg-bds-aqua hover:text-bds-deep hover:border-bds-aqua transition-all duration-300"
-                >
-                  <ArrowLeftIcon className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={goToNext}
-                  className="p-3 rounded-full bg-white border border-gray-300 text-bds-text-soft shadow-sm hover:bg-bds-aqua hover:text-bds-deep hover:border-bds-aqua transition-all duration-300"
-                >
-                  <ArrowRightIcon className="w-5 h-5" />
-                </button>
+                
+                <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">
+                  {service.title[language]}
+                </h3>
+                
+                <p className="text-slate-400 text-base leading-relaxed font-light mb-8 group-hover:text-slate-200 transition-colors">
+                  {service.description[language]}
+                </p>
               </div>
 
-              {/* Bullets */}
-              <div className="flex items-center space-x-2">
-                {servicesData.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveIndex(index)}
-                    className={`w-10 h-1.5 rounded-full transition-colors duration-300 ${
-                      index === activeIndex
-                        ? 'bg-bds-aqua'
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+              <Link
+                to={`/servicios/${service.id}`}
+                className="inline-flex items-center text-sm font-medium tracking-wide text-white/50 group-hover:text-bds-aqua transition-all duration-300"
+              >
+                {language === 'es' ? 'Explorar Solución' : 'Explore Solution'}
+                <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

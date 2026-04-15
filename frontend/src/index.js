@@ -14,6 +14,7 @@ import BlogIndexPage from './pages/BlogIndexPage';
 import PostDetailPage from './pages/PostDetailPage';
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import PortfolioPage from "./pages/PortfolioPage";
 
 import './styles.css'; 
 import Modal from 'react-modal';
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "servicios", element: <ServicesPage /> },
       { path: "academia", element: <AcademyPage /> },
+      { path: "portfolio", element: <PortfolioPage /> },
       { path: "contacto", element: <ContactPage /> },
       { path: "servicios/:serviceId", element: <ServiceDetailPage /> },
       { path: "cursos/:courseId", element: <CourseDetailPage /> },

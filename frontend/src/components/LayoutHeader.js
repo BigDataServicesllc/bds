@@ -31,7 +31,8 @@ const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) =
   // En estas rutas queremos SIEMPRE header sólido
   const needsSolidHeader =
     location.pathname === "/terminos" ||
-    location.pathname === "/privacidad";
+    location.pathname === "/privacidad" ||
+    location.pathname === "/portfolio";
 
   const isSolidHeader = isScrolled || needsSolidHeader;
 

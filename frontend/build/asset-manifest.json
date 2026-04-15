@@ -1,10 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.f40d3131.css",
-    "main.js": "/static/js/main.162db34c.js",
+    "main.css": "/static/css/main.96284720.css",
+    "main.js": "/static/js/main.f5cc73ed.js",
     "static/media/web_desing_02.png": "/static/media/web_desing_02.47c6ed386eeec1deb749.png",
     "static/media/web_desing_01.png": "/static/media/web_desing_01.e85153f555b8f2cf3dd2.png",
-    "static/media/learning-hero.jpg": "/static/media/learning-hero.14e30fb8a3661fbd90aa.jpg",
     "static/media/web_desing_03.png": "/static/media/web_desing_03.64fcdd6a26a11219ef22.png",
     "static/media/Dashboard3.png": "/static/media/Dashboard3.20f2b48a27f44306172f.png",
     "static/media/Dashboard.png": "/static/media/Dashboard.8bc4dedfa7a4adb8c7ee.png",
@@ -12,6 +11,7 @@
     "static/media/dbt.jpg": "/static/media/dbt.5ad183a3d7158f964295.jpg",
     "static/media/github.jpg": "/static/media/github.53b43679453d97e94dfb.jpg",
     "static/media/python.jpg": "/static/media/python.903feebcf1cd20a8663d.jpg",
+    "static/media/google_play_badge.png": "/static/media/google_play_badge.5744f982aab9b5b223fb.png",
     "static/media/power-bi.jpg": "/static/media/power-bi.a4be4a9b96738b530c78.jpg",
     "static/media/docker.svg": "/static/media/docker.a5c51713e99d29b9584c8192d03fcaee.svg",
     "static/media/Microsoft_azure.svg": "/static/media/Microsoft_azure.c5b42dda20a5005ca74690be96556f26.svg",
@@ -23,11 +23,11 @@
     "static/media/oracle.svg": "/static/media/oracle.1cf2ab376cb6bd36295e3e7c44ebbde9.svg",
     "index.html": "/index.html",
     "static/media/kotlin.svg": "/static/media/kotlin.37e6e4c80e84015c4405f7d43e829fd2.svg",
-    "main.f40d3131.css.map": "/static/css/main.f40d3131.css.map",
-    "main.162db34c.js.map": "/static/js/main.162db34c.js.map"
+    "main.96284720.css.map": "/static/css/main.96284720.css.map",
+    "main.f5cc73ed.js.map": "/static/js/main.f5cc73ed.js.map"
   },
   "entrypoints": [
-    "static/css/main.f40d3131.css",
-    "static/js/main.162db34c.js"
+    "static/css/main.96284720.css",
+    "static/js/main.f5cc73ed.js"
   ]
 }
