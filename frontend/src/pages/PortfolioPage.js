@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useOutletContext } from 'react-router-dom';
 
@@ -100,6 +101,13 @@ const PortfolioPage = () => {
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-20">
+      <SEO 
+        title={language === 'es' ? 'Portfolio y Casos de Estudio' : 'Portfolio and Case Studies'}
+        description={language === 'es' 
+          ? 'Explora nuestros casos de estudio y proyectos de desarrollo web, apps, e-commerce, paneles de control y sistemas.' 
+          : 'Explore our case studies and projects involving web development, mobile apps, e-commerce, dashboards, and systems.'}
+        keywords="Portfolio, Case Studies, Tech Projects, React, Next.js, Apps"
+      />
       <div className="container mx-auto px-6">
         <header className="mb-20 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-slate-950 mb-6">

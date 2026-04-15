@@ -1,6 +1,7 @@
 // RUTA: frontend/src/pages/PrivacyPage.js
 
 import React from "react";
+import SEO from "../components/SEO";
 import { useOutletContext } from "react-router-dom";
 
 const PrivacyPage = () => {
@@ -23,6 +24,7 @@ const PrivacyPage = () => {
   if (!isSpanish) {
     return (
       <div className={containerClasses}>
+        <SEO title="Privacy Policy" description="Privacy policy and data protection guidelines for Big Data Services." />
         <div className={contentClasses}>
           <h1 className={titleClasses}>Privacy Policy</h1>
 
@@ -80,6 +82,7 @@ const PrivacyPage = () => {
   // ⭐ Español
   return (
     <div className={containerClasses}>
+      <SEO title="Política de Privacidad" description="Política de privacidad y protección de datos para Big Data Services." />
       <div className={contentClasses}>
         <h1 className={titleClasses}>Política de Privacidad</h1>
 
