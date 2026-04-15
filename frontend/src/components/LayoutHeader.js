@@ -32,7 +32,11 @@ const LayoutHeader = ({ currentPage, onNavigate, onToggleLanguage, language }) =
   const needsSolidHeader =
     location.pathname === "/terminos" ||
     location.pathname === "/privacidad" ||
-    location.pathname === "/portfolio";
+    location.pathname === "/portfolio" ||
+    location.pathname.startsWith("/blog") ||
+    location.pathname.startsWith("/cursos") ||
+    location.pathname.startsWith("/servicios") ||
+    location.pathname === "/contacto";
 
   const isSolidHeader = isScrolled || needsSolidHeader;
 

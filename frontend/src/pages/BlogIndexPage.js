@@ -2,70 +2,81 @@
 
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { blogPostsData } from '../data/blogPosts';
 import PostCard from '../components/PostCard';
 
 const BlogIndexPage = () => {
   const { language } = useOutletContext();
 
-  const title =
-    language === 'es' ? 'Conocimiento y Actualidad' : 'Knowledge & Insights';
+  const title = language === 'es' ? 'Conocimiento y Actualidad' : 'Knowledge & Insights';
+  const subtitle = language === 'es'
+    ? 'Explora nuestros últimos recursos y mantente al día con las tendencias del mundo tecnológico.'
+    : 'Explore our latest resources and stay up to date with trends in the tech world.';
 
-  const subtitle =
-    language === 'es'
-      ? 'Explora nuestros últimos artículos y mantenete al día con las tendencias del mundo de los datos.'
-      : 'Explore our latest articles and stay up to date with trends in the data world.';
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50 pt-40 pb-24">
       
       {/* 
         =======================================================================
-        HERO SECTION (CORTE RECTO)
-        Fondo: Blanco
+        CABECERA MINIMALISTA APPLE TYPE
         =======================================================================
       */}
-      <section className="relative pt-40 pb-20 bg-white overflow-hidden">
-        
-        {/* Efecto de Luz de Fondo (Glow Aqua) */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-full">
-            <div className="w-full h-full bg-bds-aqua opacity-[0.1] blur-[120px] rounded-full" />
-        </div>
-
-        {/* Contenido del Hero */}
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          
-          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-950 mb-6 tracking-tight">
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-20 max-w-4xl mx-auto"
+        >
+          <span className="text-xs uppercase tracking-[0.3em] text-slate-400 font-extrabold mb-6 block">
+            {language === 'es' ? 'Blog Corporativo' : 'Corporate Blog'}
+          </span>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-950 mb-6">
             {title}
           </h1>
-
-          {/* Línea decorativa Aqua */}
-          <div className="w-24 h-1 bg-bds-aqua mx-auto mb-6 rounded-full"></div>
-
-          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto">
             {subtitle}
           </p>
-        </div>
-        
-        {/* SE ELIMINÓ EL SVG DE LA CURVA AQUÍ PARA UN CORTE RECTO */}
-      </section>
+        </motion.div>
 
-      {/* 
-        =======================================================================
-        GRID DE ARTÍCULOS
-        =======================================================================
-      */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPostsData.map((post) => (
-              <div key={post.slug} className="transform hover:-translate-y-2 transition-transform duration-300">
-                <PostCard post={post} language={language} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* 
+          =======================================================================
+          GRID DE ARTÍCULOS
+          =======================================================================
+        */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
+        >
+          {blogPostsData.map((post) => (
+            <motion.div key={post.slug} variants={itemVariants}>
+              <PostCard post={post} language={language} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };

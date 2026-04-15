@@ -100,13 +100,7 @@ const LayoutFooter = ({ language = "es", className = "" }) => {
     </svg>
   </a>
 
-  {/* Correo visible solo en pantallas grandes */}
-  <a
-    href="mailto:info@bigdata-services.com"
-    className="hidden sm:inline text-sm text-bds-aqua hover:text-white transition-colors"
-  >
-    info@bigdata-services.com
-  </a>
+
 </div>
 
         </div>

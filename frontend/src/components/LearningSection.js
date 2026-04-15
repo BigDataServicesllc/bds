@@ -70,7 +70,7 @@ const LearningSection = ({ language, className }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: dash.delay }}
-                className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] w-full"
+                className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] w-[85%] sm:w-[75%] mx-auto"
               >
                 {/* Header estilo Mac */}
                 <div className="h-7 bg-white/10 backdrop-blur-md flex items-center px-4 gap-1.5 border-b border-white/5">

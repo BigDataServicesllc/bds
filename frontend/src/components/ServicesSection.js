@@ -1,40 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
-// Datos centrales de servicios
 import { servicesData } from '../data/services';
 
-const ServiceIcon = ({ type, className }) => {
-  const iconProps = { className, strokeWidth: 1.5, fill: 'none', stroke: 'currentColor' };
-  
-  switch(type) {
-    case 'consultoria':
-      return (
-        <svg viewBox="0 0 24 24" {...iconProps}>
-          <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-    case 'netsuite':
-      return (
-        <svg viewBox="0 0 24 24" {...iconProps}>
-          <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-    case 'desarrollo-web-movil':
-      return (
-        <svg viewBox="0 0 24 24" {...iconProps}>
-          <rect x="2" y="3" width="20" height="14" rx="2" />
-          <path d="M8 21h8M12 17v4" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-    default:
-      return (
-        <svg viewBox="0 0 24 24" {...iconProps}>
-          <path d="M12 2v20M2 12h20" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-  }
+// Importar imágenes de alta calidad
+import consultingImg from '../assets/services/consulting.jpeg';
+import netsuiteImg from '../assets/services/netsuite.jpeg';
+import engineeringImg from '../assets/services/engineering.jpeg';
+import visualizationImg from '../assets/services/visualization.jpeg';
+import developmentImg from '../assets/services/development.jpeg';
+
+// Mapeo seguro a los IDs de los servicios existentes
+const imageMap = {
+  'consultoria': consultingImg,
+  'netsuite': netsuiteImg,
+  'ingenieria': engineeringImg,
+  'visualizacion': visualizationImg,
+  'desarrollo-web-movil': developmentImg
 };
 
 const ServicesSection = ({ language, className }) => {
@@ -42,87 +24,111 @@ const ServicesSection = ({ language, className }) => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.21, 0.45, 0.32, 0.9] },
+      transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] }, // Apple-like spring/ease
     },
   };
 
   return (
-    <section id="services" className={`relative py-32 bg-[#050505] overflow-hidden ${className || ''}`}>
-      {/* Luces de ambiente sutiles de fondo */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-bds-aqua/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-bds-violet/5 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* CABECERA */}
+    <section id="services" className={`relative py-32 bg-slate-50 overflow-hidden ${className || ''}`}>
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        
+        {/* CABECERA MINIMALISTA APPLE TYPE */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="text-center mb-24"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-24 max-w-4xl mx-auto"
         >
-          <span className="text-[10px] uppercase tracking-[0.4em] text-bds-aqua font-bold mb-4 block">
-            {language === 'es' ? 'Excelencia Técnica' : 'Technical Excellence'}
+          <span className="text-xs uppercase tracking-[0.3em] text-slate-400 font-extrabold mb-6 block">
+            {language === 'es' ? 'Soluciones Core' : 'Core Solutions'}
           </span>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">
-            {language === 'es' ? 'Servicios de' : 'Services in'}
-            <span className="block bg-gradient-to-r from-bds-aqua to-bds-violet bg-clip-text text-transparent italic">
-              Nueva Generación
+          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-950 mb-8 leading-tight">
+            {language === 'es' ? 'La tecnología que ' : 'The technology that '}
+            <br className="hidden md:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-bds-violet to-bds-aqua">
+               {language === 'es' ? 'transforma tu industria.' : 'transforms your industry.'}
             </span>
           </h2>
-          <div className="h-1 w-20 bg-bds-aqua mx-auto rounded-full mb-8 opacity-50" />
+          <p className="text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-3xl mx-auto">
+            {language === 'es' 
+              ? 'Conectamos estrategia y datos. Entregamos plataformas robustas e inteligencia de negocios a la medida.' 
+              : 'We connect strategy and data. We deliver robust platforms and custom business intelligence.'}
+          </p>
         </motion.div>
 
-        {/* GRID ESTILO APPLE BENTO */}
+        {/* MASONRY / BENTO GRID APPLE STYLE */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10"
         >
-          {servicesData.map((service) => (
-            <motion.div
-              key={service.id}
-              variants={itemVariants}
-              className="group relative flex flex-col justify-between h-full p-10 rounded-[2.5rem] bg-[#0f0f0f] border border-white/5 hover:border-bds-aqua/30 transition-all duration-700 ease-out overflow-hidden"
-            >
-              {/* Efecto Glow en Hover */}
-              <div className="absolute -inset-x-20 -top-40 h-64 bg-bds-aqua/10 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          {servicesData.map((service, idx) => {
+            // El patrón será: Las dos primeras ocupan 50% (col-span-6), las últimas tres 33% (col-span-4)
+            const gridClass = idx < 2 
+              ? 'col-span-1 md:col-span-6' 
+              : 'col-span-1 md:col-span-6 lg:col-span-4';
 
-              <div>
-                <div className="mb-8 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 text-bds-aqua group-hover:scale-110 group-hover:bg-bds-aqua group-hover:text-black transition-all duration-500">
-                  <ServiceIcon type={service.id} className="w-8 h-8" />
+            // Damos mayor altura a las imágenes de los headers superiores
+            const imgHeightClass = idx < 2 ? 'h-72 md:h-96' : 'h-64';
+
+            return (
+              <motion.div
+                key={service.id}
+                variants={itemVariants}
+                className={`group flex flex-col bg-white rounded-[2.5rem] shadow-xl hover:shadow-2xl overflow-hidden transition-all duration-700 ease-out hover:-translate-y-3 border border-slate-100 ${gridClass}`}
+              >
+                {/* IMAGEN HERO DE ALTA CALIDAD */}
+                <div className={`w-full overflow-hidden relative ${imgHeightClass} bg-slate-100`}>
+                    <img 
+                      src={imageMap[service.id]} 
+                      alt={service.title[language]}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]" 
+                    />
+                    {/* Badge Apple Flotante */}
+                    <div className="absolute top-6 left-6 md:top-8 md:left-8 bg-white/90 backdrop-blur-xl px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase text-slate-900 shadow-sm border border-white/20">
+                        {service.id.replace('-', ' ').split(' ')[0]} 
+                    </div>
                 </div>
                 
-                <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">
-                  {service.title[language]}
-                </h3>
-                
-                <p className="text-slate-400 text-base leading-relaxed font-light mb-8 group-hover:text-slate-200 transition-colors">
-                  {service.description[language]}
-                </p>
-              </div>
-
-              <Link
-                to={`/servicios/${service.id}`}
-                className="inline-flex items-center text-sm font-medium tracking-wide text-white/50 group-hover:text-bds-aqua transition-all duration-300"
-              >
-                {language === 'es' ? 'Explorar Solución' : 'Explore Solution'}
-                <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </Link>
-            </motion.div>
-          ))}
+                {/* CONTENIDO TIPOGRÁFICO CLEAN */}
+                <div className="p-8 md:p-12 flex flex-col flex-grow">
+                    <h3 className="text-3xl font-bold tracking-tight text-slate-950 mb-4">
+                       {service.title[language]}
+                    </h3>
+                    <p className="text-slate-500 font-medium text-lg leading-relaxed mb-10 flex-grow group-hover:text-slate-700 transition-colors">
+                       {service.description[language]}
+                    </p>
+                    
+                    {/* ACCIÓN (PILL BUTTON ANIMADO) */}
+                    <div className="mt-auto">
+                        <Link 
+                          to={`/servicios/${service.id}`} 
+                          className="inline-flex items-center text-slate-950 font-bold bg-slate-50 px-6 py-3 rounded-full group-hover:bg-bds-aqua group-hover:text-slate-950 transition-all duration-300 shadow-sm hover:shadow"
+                        >
+                            {language === 'es' ? 'Descubrir' : 'Discover'}
+                            <div className="ml-3 w-8 h-8 rounded-full bg-white flex items-center justify-center text-bds-violet group-hover:bg-slate-950 group-hover:text-white transition-colors duration-300">
+                              <svg className="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path d="M5 12h14m-7-7l7 7-7 7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
