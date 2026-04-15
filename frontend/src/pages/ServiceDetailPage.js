@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SEO from '../components/SEO';
 import { Link, useParams, useOutletContext, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { servicesData, allTech } from '../data/services';
@@ -57,7 +58,11 @@ const ServiceDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950 pt-32 pb-24">
-      
+      <SEO 
+        title={service.title[language]}
+        description={service.details.main[language]}
+        keywords={`${service.title.en}, ${service.title.es}, ${service.details.tech.join(', ')}`}
+      />
       {/* 
         =======================================================================
         SPLIT HERO COMPONENT (APPLE BENTO)

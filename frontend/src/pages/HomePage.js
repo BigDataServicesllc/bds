@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { useNavigate, useOutletContext, Link } from 'react-router-dom';
 import HomeSection from '../components/HomeSection';
@@ -96,6 +97,13 @@ const HomePage = () => {
 
   return (
     <>
+      <SEO 
+        title={language === 'es' ? 'Inicio' : 'Home'}
+        description={language === 'es' 
+          ? 'Big Data Services ofrece soluciones avanzadas en análisis de datos, desarrollo de aplicaciones móviles y web, y estrategia de negocios. Transforma tus datos en decisiones estratégicas.' 
+          : 'Big Data Services offers advanced solutions in data analytics, mobile and web application development, and business strategy. Transform your data into strategic decisions.'}
+        keywords="Data Analysis, Big Data, Software Development, App Development, Business Intelligence"
+      />
       <HomeSection language={language} />
 
       {/* Sección de Formación - Diseño Estático con Cuadros */}

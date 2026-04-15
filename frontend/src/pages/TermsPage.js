@@ -1,6 +1,7 @@
 // RUTA: frontend/src/pages/TermsPage.js
 
 import React from "react";
+import SEO from "../components/SEO";
 import { useOutletContext } from "react-router-dom";
 
 const TermsPage = () => {
@@ -23,6 +24,7 @@ const TermsPage = () => {
     // ⭐ Versión en inglés
     return (
       <div className={containerClasses}>
+        <SEO title="Terms & Conditions" description="Terms and conditions for using the Big Data Services website." />
         <div className={contentClasses}>
           <h1 className={titleClasses}>Terms & Conditions</h1>
 
@@ -81,6 +83,7 @@ const TermsPage = () => {
   // ⭐ Versión en español
   return (
     <div className={containerClasses}>
+      <SEO title="Términos y Condiciones" description="Términos y condiciones para el uso del sitio de Big Data Services." />
       <div className={contentClasses}>
         <h1 className={titleClasses}>Términos y Condiciones</h1>
 

@@ -8,6 +8,7 @@
 // 5. Más espacio inferior para que el CTA no se pegue al footer.
 
 import React from 'react';
+import SEO from '../components/SEO';
 import { useParams, useOutletContext, Navigate, Link } from 'react-router-dom';
 import { blogPostsData } from '../data/blogPosts';
 
@@ -26,6 +27,12 @@ const PostDetailPage = () => {
   return (
     // Añadimos padding inferior para que el CTA no se pegue al footer
     <div className="bg-white min-h-screen pb-32">
+      <SEO 
+        title={post.title[language]}
+        description={post.excerpt ? post.excerpt[language] : post.title[language]}
+        keywords={`${post.category.en}, ${post.category.es}, Blog, Tech Article`}
+        type="article"
+      />
 
       {/* ============================================================
           HERO DEL ARTÍCULO — COLOR CLARO

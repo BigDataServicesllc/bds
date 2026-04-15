@@ -1,6 +1,7 @@
 // RUTA: frontend/src/pages/BlogIndexPage.js
 
 import React from 'react';
+import SEO from '../components/SEO';
 import { useOutletContext } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { blogPostsData } from '../data/blogPosts';
@@ -33,7 +34,11 @@ const BlogIndexPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pt-40 pb-24">
-      
+      <SEO 
+        title={title}
+        description={subtitle}
+        keywords="Blog, Tech Insights, Big Data, Web Development, Tutorials"
+      />
       {/* 
         =======================================================================
         CABECERA MINIMALISTA APPLE TYPE
