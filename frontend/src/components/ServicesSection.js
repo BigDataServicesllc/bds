@@ -38,7 +38,7 @@ const ServicesSection = ({ language, className }) => {
   };
 
   return (
-    <section id="services" className={`relative py-32 bg-slate-50 overflow-hidden ${className || ''}`}>
+    <section id="services" className={`relative py-32 bg-bds-bg-light overflow-hidden ${className || ''}`}>
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         
         {/* CABECERA MINIMALISTA APPLE TYPE */}
@@ -49,17 +49,17 @@ const ServicesSection = ({ language, className }) => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-24 max-w-4xl mx-auto"
         >
-          <span className="text-xs uppercase tracking-[0.3em] text-slate-400 font-extrabold mb-6 block">
+          <span className="text-xs uppercase tracking-[0.3em] text-bds-aqua font-extrabold mb-6 block">
             {language === 'es' ? 'Soluciones Core' : 'Core Solutions'}
           </span>
-          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-950 mb-8 leading-tight">
+          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-bds-text-main mb-8 leading-tight">
             {language === 'es' ? 'La tecnología que ' : 'The technology that '}
             <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-bds-violet to-bds-aqua">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-bds-blue to-bds-aqua">
                {language === 'es' ? 'transforma tu industria.' : 'transforms your industry.'}
             </span>
           </h2>
-          <p className="text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-bds-text-soft font-medium leading-relaxed max-w-3xl mx-auto">
             {language === 'es' 
               ? 'Conectamos estrategia y datos. Entregamos plataformas robustas e inteligencia de negocios a la medida.' 
               : 'We connect strategy and data. We deliver robust platforms and custom business intelligence.'}
@@ -97,17 +97,17 @@ const ServicesSection = ({ language, className }) => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]" 
                     />
                     {/* Badge Apple Flotante */}
-                    <div className="absolute top-6 left-6 md:top-8 md:left-8 bg-white/90 backdrop-blur-xl px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase text-slate-900 shadow-sm border border-white/20">
+                    <div className="absolute top-6 left-6 md:top-8 md:left-8 bg-white/90 backdrop-blur-xl px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase text-bds-text-main shadow-sm border border-white/20">
                         {service.id.replace('-', ' ').split(' ')[0]} 
                     </div>
                 </div>
                 
                 {/* CONTENIDO TIPOGRÁFICO CLEAN */}
                 <div className="p-8 md:p-12 flex flex-col flex-grow">
-                    <h3 className="text-3xl font-bold tracking-tight text-slate-950 mb-4">
+                    <h3 className="text-3xl font-bold tracking-tight text-bds-text-main mb-4">
                        {service.title[language]}
                     </h3>
-                    <p className="text-slate-500 font-medium text-lg leading-relaxed mb-10 flex-grow group-hover:text-slate-700 transition-colors">
+                    <p className="text-bds-text-soft font-medium text-lg leading-relaxed mb-10 flex-grow group-hover:text-bds-text-main transition-colors">
                        {service.description[language]}
                     </p>
                     
@@ -115,10 +115,10 @@ const ServicesSection = ({ language, className }) => {
                     <div className="mt-auto">
                         <Link 
                           to={`/servicios/${service.id}`} 
-                          className="inline-flex items-center text-slate-950 font-bold bg-slate-50 px-6 py-3 rounded-full group-hover:bg-bds-aqua group-hover:text-slate-950 transition-all duration-300 shadow-sm hover:shadow"
+                          className="inline-flex items-center text-bds-text-main font-bold bg-white px-6 py-3 rounded-full group-hover:bg-bds-aqua group-hover:text-bds-deep transition-all duration-300 shadow-sm border border-slate-200/50"
                         >
                             {language === 'es' ? 'Descubrir' : 'Discover'}
-                            <div className="ml-3 w-8 h-8 rounded-full bg-white flex items-center justify-center text-bds-violet group-hover:bg-slate-950 group-hover:text-white transition-colors duration-300">
+                            <div className="ml-3 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-bds-blue group-hover:bg-bds-deep group-hover:text-white transition-colors duration-300">
                               <svg className="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path d="M5 12h14m-7-7l7 7-7 7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                               </svg>
