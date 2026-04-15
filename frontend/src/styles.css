@@ -44,8 +44,8 @@
 @layer components {
   /* Servicios – fondo claro con toque aqua/azul */
   .bds-section-services {
-  background: linear-gradient(to bottom, #173B3A, #173B3A);
-}
+    @apply bg-bds-bg-light;
+  }
 
 
   /* Learning – blanco limpio, sensación de “página” */

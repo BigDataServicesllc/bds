@@ -57,7 +57,7 @@ const ServiceDetailPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-950 pt-32 pb-24">
+    <div className="min-h-screen bg-bds-bg-light text-bds-text-main pt-32 pb-24">
       <SEO 
         title={service.title[language]}
         description={service.details.main[language]}
@@ -74,7 +74,7 @@ const ServiceDetailPage = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-8">
             <Link
               to="/#services"
-              className="inline-flex items-center text-sm font-bold text-slate-400 hover:text-bds-violet transition-colors uppercase tracking-widest"
+              className="inline-flex items-center text-sm font-bold text-bds-text-soft hover:text-bds-blue transition-colors uppercase tracking-widest"
             >
               <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -88,15 +88,15 @@ const ServiceDetailPage = () => {
             {/* IZQUIERDA: CONTENIDO */}
             <motion.div 
               initial="hidden" animate="visible" variants={fadeUp}
-              className="lg:col-span-6 flex flex-col justify-center bg-white rounded-[2.5rem] p-10 md:p-12 shadow-xl border border-slate-100"
+              className="lg:col-span-6 flex flex-col justify-center bg-white/80 backdrop-blur-md rounded-[2.5rem] p-10 md:p-12 shadow-xl border border-slate-100"
             >
               <span className="text-xs font-extrabold uppercase tracking-[0.3em] text-bds-aqua mb-6 block drop-shadow-sm">
                 BDS Service
               </span>
-              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-bds-text-main leading-tight mb-6">
                 {service.title[language]}
               </h1>
-              <p className="text-lg text-slate-500 font-medium leading-relaxed mb-8 flex-grow">
+              <p className="text-lg text-bds-text-soft font-medium leading-relaxed mb-8 flex-grow">
                 {service.details.main[language]}
               </p>
             </motion.div>
@@ -131,10 +131,10 @@ const ServiceDetailPage = () => {
         >
           {/* CABECERA PROCESO */}
           <div className="text-center mb-16 max-w-2xl mx-auto">
-            <h2 className="text-3xl font-extrabold text-slate-950 mb-4 tracking-tight">
+            <h2 className="text-3xl font-extrabold text-bds-text-main mb-4 tracking-tight">
               {isSpanish ? 'Nuestro Proceso' : 'Our Process'}
             </h2>
-            <p className="text-slate-500 font-medium">
+            <p className="text-bds-text-soft font-medium">
               {isSpanish ? 'Un enfoque estructurado y escalable para garantizar el éxito.' : 'A structured and scalable approach to ensure success.'}
             </p>
           </div>
@@ -155,8 +155,8 @@ const ServiceDetailPage = () => {
                   <div className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-300 to-slate-400 group-hover:from-bds-violet group-hover:to-bds-aqua transition-all duration-500 tracking-tighter mb-6 inline-block drop-shadow-sm">
                     0{index + 1}.
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-950 mb-4">{step.title[language]}</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed">{step.description[language]}</p>
+                  <h3 className="text-2xl font-bold text-bds-text-main mb-4">{step.title[language]}</h3>
+                  <p className="text-bds-text-soft font-medium leading-relaxed">{step.description[language]}</p>
                 </div>
               </motion.div>
             ))}
@@ -165,10 +165,10 @@ const ServiceDetailPage = () => {
           {/* TECNOLOGÍAS - INFINITE CAROUSEL */}
           <motion.div variants={fadeUp} className="bg-white rounded-[3rem] py-12 md:py-16 shadow-xl border border-slate-100 text-center relative overflow-hidden">
             <div className="px-12 md:px-16 mb-12">
-              <h3 className="text-3xl font-extrabold text-slate-950 mb-4 tracking-tight">
+              <h3 className="text-3xl font-extrabold text-bds-text-main mb-4 tracking-tight">
                 {isSpanish ? 'Tecnologías que Utilizamos' : 'Technologies We Use'}
               </h3>
-              <p className="text-slate-500 font-medium">
+              <p className="text-bds-text-soft font-medium">
                 {isSpanish ? 'Integramos herramientas de vanguardia para desplegar excelencia técnica.' : 'We integrate cutting-edge tools to deploy technical excellence.'}
               </p>
             </div>
@@ -218,18 +218,18 @@ const ServiceDetailPage = () => {
            {/* Background glow para el boton */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-bds-violet/10 blur-[100px] rounded-full pointer-events-none" />
 
-          <h3 className="text-4xl md:text-5xl font-extrabold text-slate-950 mb-6 tracking-tight relative z-10">
+          <h3 className="text-4xl md:text-5xl font-extrabold text-bds-text-main mb-6 tracking-tight relative z-10">
             {isSpanish ? `¿Listo para potenciar tu ${service.title.es}?` : `Ready to boost your ${service.title.en}?`}
           </h3>
 
-          <p className="text-slate-500 text-lg mb-12 max-w-xl mx-auto relative z-10 font-medium">
+          <p className="text-bds-text-soft text-lg mb-12 max-w-xl mx-auto relative z-10 font-medium">
              {isSpanish ? 'Contáctanos y descubre cómo podemos transformar tu negocio con soluciones a medida.' : 'Contact us and discover how we can transform your business with cutting-edge solutions.'}
           </p>
 
           <div className="relative z-10">
             <Link
               to="/contacto"
-              className="inline-flex items-center justify-center px-10 py-5 bg-slate-950 text-white text-lg font-bold rounded-full shadow-lg border border-slate-800 hover:bg-bds-aqua hover:border-bds-aqua hover:text-slate-950 transition-all duration-300 transform hover:-translate-y-1 group"
+              className="inline-flex items-center justify-center px-10 py-5 bg-bds-deep text-white text-lg font-bold rounded-full shadow-lg border border-slate-800 hover:bg-bds-aqua hover:border-bds-aqua hover:text-bds-deep transition-all duration-300 transform hover:-translate-y-1 group"
             >
               {isSpanish ? 'Hablemos' : "Let's Talk"}
               <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
