@@ -22,27 +22,27 @@ const BlogIndexPage = () => {
       {/* 
         =======================================================================
         HERO SECTION (CORTE RECTO)
-        Fondo: #173B3A (Verde Oscuro)
+        Fondo: Blanco
         =======================================================================
       */}
-      <section className="relative pt-40 pb-20 bg-[#173B3A] overflow-hidden">
+      <section className="relative pt-40 pb-20 bg-white overflow-hidden">
         
-        {/* Efecto de Luz de Fondo (Glow Turquesa) */}
+        {/* Efecto de Luz de Fondo (Glow Aqua) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-full">
-            <div className="w-full h-full bg-[#06E8D1] opacity-[0.15] blur-[120px] rounded-full" />
+            <div className="w-full h-full bg-bds-aqua opacity-[0.1] blur-[120px] rounded-full" />
         </div>
 
         {/* Contenido del Hero */}
         <div className="relative z-10 container mx-auto px-4 text-center">
           
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-950 mb-6 tracking-tight">
             {title}
           </h1>
 
-          {/* Línea decorativa Dorada */}
-          <div className="w-24 h-1 bg-[#BD9834] mx-auto mb-6 rounded-full"></div>
+          {/* Línea decorativa Aqua */}
+          <div className="w-24 h-1 bg-bds-aqua mx-auto mb-6 rounded-full"></div>
 
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
             {subtitle}
           </p>
         </div>

@@ -1,33 +1,378 @@
-// RUTA: frontend/src/pages/HomePage.js - VERSIÓN FINAL
-
 import React from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import HomeSection from '../components/HomeSection';
+
+// Importar imágenes
+import Dashboard from '../assets/images/Dashboard.png';
+import Dashboard3 from '../assets/images/Dashboard3.png';
+import WebDesign01 from '../assets/images/web_desing_01.png';
+import WebDesign02 from '../assets/images/web_desing_02.png';
+import WebDesign03 from '../assets/images/web_desing_03.png';
+
+const courseCards = [
+  {
+    title: {
+      es: 'Cursos Especializados',
+      en: 'Specialized Courses',
+    },
+    description: {
+      es: 'Programas enfocados en BI, análisis avanzado y automatización para equipos que quieren decidir con datos.',
+      en: 'Programs focused on BI, advanced analytics and automation for teams that want to decide with data.',
+    },
+  },
+  {
+    title: {
+      es: 'Capacitaciones Personalizadas',
+      en: 'Personalized Training',
+    },
+    description: {
+      es: 'Formaciones diseñadas para tu industria, desde finanzas hasta retail y operación comercial.',
+      en: 'Training designed for your industry, from finance to retail and commercial operations.',
+    },
+  },
+  {
+    title: {
+      es: 'Certificado Udemy Disponible',
+      en: 'Udemy Certificate Available',
+    },
+    description: {
+      es: 'Acompañamos tu aprendizaje con certificación reconocida para potenciar el perfil profesional.',
+      en: 'We support your learning with recognized certification to boost your professional profile.',
+    },
+    highlight: true,
+  },
+];
+
+const expertiseCards = [
+  {
+    title: {
+      es: 'Análisis Avanzado',
+      en: 'Advanced Analytics',
+    },
+    description: {
+      es: 'Modelos, dashboards y métricas que conectan datos con decisiones estratégicas.',
+      en: 'Models, dashboards and metrics that connect data with strategic decisions.',
+    },
+  },
+  {
+    title: {
+      es: 'Ingeniería de Datos',
+      en: 'Data Engineering',
+    },
+    description: {
+      es: 'Arquitecturas limpias, pipelines confiables y datos disponibles en tiempo real.',
+      en: 'Clean architectures, reliable pipelines and data available in real time.',
+    },
+  },
+  {
+    title: {
+      es: 'Estrategia de Negocios',
+      en: 'Business Strategy',
+    },
+    description: {
+      es: 'Transformamos desafíos complejos en iniciativas medibles con impacto real.',
+      en: 'We turn complex challenges into measurable initiatives with real impact.',
+    },
+  },
+];
 
 const HomePage = () => {
   const { language } = useOutletContext();
+  const navigate = useNavigate();
+
+  const coursesTitle =
+    language === 'es'
+      ? 'Formación 100% Práctica'
+      : '100% Hands-On Training';
+  const teamTitle =
+    language === 'es'
+      ? 'Un Equipo de Expertos Dedicado a tu Negocio'
+      : 'A Team of Experts Dedicated to Your Business';
 
   return (
     <>
       <HomeSection language={language} />
 
-      {/* Placeholder para futuras secciones de Desarrollo Web y App Showcase */}
-      <section className="py-24 bg-primary-dark text-white">
+      {/* Sección de Formación - Diseño Estático con Cuadros */}
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="bg-white py-24 sm:py-32"
+      >
         <div className="container mx-auto px-4">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              {language === 'es'
-                ? 'Aquí irán las secciones de Desarrollo Web y App Showcase'
-                : 'The Web Development and App Showcase sections will be placed here.'}
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.22em] text-bds-violet mb-4">
+              {language === 'es' ? 'Academia de Datos BDS' : 'BDS Data Academy'}
+            </p>
+            <h2 className="text-3xl md:text-5xl font-semibold text-slate-950 leading-tight">
+              {coursesTitle}
             </h2>
-            <p className="text-base text-gray-300 max-w-2xl mx-auto">
+            <p className="mt-6 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               {language === 'es'
-                ? 'Esta zona se reserva para presentar los proyectos aramarecafe.com, webuildarg.com, Farmaboost, Tu Turno en Línea y la futura app de control financiero.'
-                : 'This area is reserved to showcase the projects aramarecafe.com, webuildarg.com, Farmaboost, Tu Turno en Línea and the upcoming financial control app.'}
+                ? 'Aprende con proyectos reales. Desde dashboards interactivos hasta automatización de procesos, todo basado en casos del mundo real.'
+                : 'Learn with real projects. From interactive dashboards to process automation, all based on real-world cases.'}
             </p>
           </div>
+
+          {/* Layout con Imagen y Cuadros */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Imágenes Estáticas en Columna */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="order-2 lg:order-1"
+            >
+              <div className="space-y-6">
+                <div className="rounded-2xl overflow-hidden shadow-xl">
+                  <img
+                    src={Dashboard}
+                    alt="Dashboard Analytics Training 1"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+                <div className="rounded-2xl overflow-hidden shadow-xl">
+                  <img
+                    src={Dashboard3}
+                    alt="Dashboard Analytics Training 3"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Cuadros de Contenido */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="order-1 lg:order-2 space-y-6"
+            >
+              {courseCards.map((card, index) => (
+                <motion.div
+                  key={card.title.en}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.7, delay: index * 0.1 }}
+                  className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg hover:border-bds-violet hover:bg-white transition-all duration-300"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-slate-950 mb-2">
+                        {card.title[language]}
+                      </h3>
+                      {card.highlight && (
+                        <span className="inline-flex rounded-full border border-bds-violet bg-bds-violet/10 px-3 py-1 text-xs font-semibold text-bds-violet">
+                          {language === 'es' ? 'Certificado Udemy Disponible' : 'Udemy Certificate Available'}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-bds-violet/10 text-bds-violet ml-4">
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M12 5v14M5 12h14" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="text-sm leading-6 text-slate-600">
+                    {card.description[language]}
+                  </p>
+                </motion.div>
+              ))}
+
+              <div className="pt-4">
+                <button
+                  type="button"
+                  onClick={() => navigate('/academia')}
+                  className="inline-flex items-center justify-center rounded-full bg-bds-aqua px-6 py-3 text-sm font-semibold text-slate-950 transition-all duration-300 hover:bg-bds-violet hover:text-white hover:scale-105"
+                >
+                  {language === 'es' ? 'Explorar Cursos' : 'Explore Courses'}
+                </button>
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </section>
+      </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="bg-slate-950 py-24 sm:py-32 text-white"
+      >
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.22em] text-[var(--bds-aqua)]/80 mb-4">
+              {language === 'es' ? 'Tu Socio Tecnológico en Data' : 'Your Technology Partner in Data'}
+            </p>
+            <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
+              {teamTitle}
+            </h2>
+            <p className="mt-6 text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              {language === 'es'
+                ? 'Nuestro equipo combina visión estratégica, ingeniería de datos y análisis profundo para resolver los retos más complejos de tu negocio.'
+                : 'Our team combines strategic vision, data engineering and deep analytics to solve your business’s most complex challenges.'}
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-3">
+            {expertiseCards.map((card, index) => (
+              <motion.div
+                key={card.title.en}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.7, delay: index * 0.1 }}
+                className="rounded-[28px] border border-slate-800 bg-white/5 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.18)] backdrop-blur-xl"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-3xl bg-[var(--bds-aqua)]/10 text-[var(--bds-aqua)] mb-6">
+                  <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="2">
+                    {index === 0 ? (
+                      <path d="M4 6h16M4 12h11M4 18h16" strokeLinecap="round" strokeLinejoin="round" />
+                    ) : index === 1 ? (
+                      <path d="M6 4h12l4 4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" strokeLinecap="round" strokeLinejoin="round" />
+                    ) : (
+                      <path d="M4 6h16M4 12h8m-8 6h6" strokeLinecap="round" strokeLinejoin="round" />
+                    )}
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-4">{card.title[language] || card.title.en}</h3>
+                <p className="text-sm leading-7 text-slate-300">{card.description[language] || card.description.en}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <button
+              type="button"
+              onClick={() => navigate('/contacto')}
+              className="inline-flex items-center justify-center rounded-full bg-[var(--bds-aqua)] px-8 py-3 text-sm font-semibold text-slate-950 transition-all duration-300 hover:bg-[var(--bds-violet)]"
+            >
+              {language === 'es' ? 'Hablar con un Especialista' : 'Talk to a Specialist'}
+            </button>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Nueva Sección: Desarrollo Web de Alto Rendimiento - Bento Grid */}
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="bg-white py-24 sm:py-32"
+      >
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.22em] text-bds-violet mb-4">
+              {language === 'es' ? 'Desarrollo Web de Alto Rendimiento' : 'High-Performance Web Development'}
+            </p>
+            <h2 className="text-3xl md:text-5xl font-semibold text-slate-950 leading-tight">
+              {language === 'es' ? 'Proyectos que Marcan la Diferencia' : 'Projects That Make a Difference'}
+            </h2>
+            <p className="mt-6 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              {language === 'es'
+                ? 'Aplicaciones web modernas, escalables y optimizadas para resultados excepcionales.'
+                : 'Modern, scalable web applications optimized for exceptional results.'}
+            </p>
+          </div>
+
+          {/* Bento Grid Asimétrico */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {/* Cuadro Grande */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="group relative md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500"
+            >
+              <img
+                src={WebDesign01}
+                alt="Proyecto Aramare Café"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              {/* Etiqueta con Glassmorphism */}
+              <div className="absolute top-6 left-6 bg-white/20 backdrop-blur-md rounded-2xl px-4 py-2">
+                <p className="text-white font-semibold text-sm">
+                  {language === 'es' ? 'E-commerce + Data' : 'E-commerce + Data'}
+                </p>
+              </div>
+              {/* Botón al hover */}
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button
+                  type="button"
+                  className="bg-white text-slate-950 px-6 py-3 rounded-full font-semibold hover:bg-bds-aqua hover:text-white transition-colors"
+                >
+                  {language === 'es' ? 'Ver Proyecto' : 'View Project'}
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Cuadro Mediano */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="group relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500"
+            >
+              <img
+                src={WebDesign02}
+                alt="Proyecto WeBuild"
+                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md rounded-xl px-3 py-1">
+                <p className="text-white font-semibold text-xs">
+                  {language === 'es' ? 'Corporate Engineering' : 'Corporate Engineering'}
+                </p>
+              </div>
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button
+                  type="button"
+                  className="bg-white text-slate-950 px-4 py-2 rounded-full font-semibold text-sm hover:bg-bds-aqua hover:text-white transition-colors"
+                >
+                  {language === 'es' ? 'Ver Proyecto' : 'View Project'}
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Cuadro Pequeño */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="group relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500"
+            >
+              <img
+                src={WebDesign03}
+                alt="Prototipo Interactivo"
+                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md rounded-xl px-3 py-1">
+                <p className="text-white font-semibold text-xs">
+                  {language === 'es' ? 'Interactive Prototype' : 'Interactive Prototype'}
+                </p>
+              </div>
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button
+                  type="button"
+                  className="bg-white text-slate-950 px-4 py-2 rounded-full font-semibold text-sm hover:bg-bds-aqua hover:text-white transition-colors"
+                >
+                  {language === 'es' ? 'Ver Proyecto' : 'View Project'}
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
     </>
   );
 };

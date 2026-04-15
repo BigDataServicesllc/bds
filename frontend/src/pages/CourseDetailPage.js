@@ -18,10 +18,10 @@ const CourseDetailPage = () => {
   const isSpanish = language === 'es';
 
   return (
-    // Hero mostaza + contenido en blanco
-    <div className="min-h-screen pt-28 bg-[#C89A24] text-gray-800">
-      {/* HERO MOSTAZA */}
-      <div className="pb-24 bg-gradient-to-b from-[#C89A24] via-[#FDF4DF] to-white">
+    // Hero claro + contenido en blanco
+    <div className="min-h-screen pt-28 bg-white text-slate-950">
+      {/* HERO CLARO */}
+      <div className="pb-24 bg-white">
         <div className="container mx-auto px-4 md:px-8 py-16">
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -30,7 +30,7 @@ const CourseDetailPage = () => {
                 <div className="bg-white/95 rounded-2xl shadow-bds-soft p-8">
                   <Link
                     to="/#learning"
-                    className="text-bds-text-soft hover:text-bds-deep transition-colors duration-300 inline-flex items-center mb-4"
+                    className="text-slate-600 hover:text-bds-deep transition-colors duration-300 inline-flex items-center mb-4"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

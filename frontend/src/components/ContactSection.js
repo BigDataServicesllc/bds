@@ -26,7 +26,7 @@ const ContactSection = ({ className = "" }) => {
   return (
     <section
       id="contact"
-      className={`py-20 sm:py-24 bg-primary-dark text-white ${className}`}
+      className={`py-20 sm:py-24 bg-white text-slate-950 ${className}`}
     >
       <div className="container mx-auto px-4 max-w-4xl">
         {/* TÍTULO Y SUBTÍTULO */}
@@ -42,8 +42,8 @@ const ContactSection = ({ className = "" }) => {
         </div>
 
         {/* BLOQUE CON EL CORREO */}
-        <div className="bg-secondary-dark/60 border border-white/10 rounded-2xl px-6 sm:px-10 py-10 shadow-bds-soft">
-          <p className="text-sm uppercase tracking-[0.2em] text-bds-text-soft mb-3">
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl px-6 sm:px-10 py-10 shadow-bds-soft">
+          <p className="text-sm uppercase tracking-[0.2em] text-slate-600 mb-3">
             {isSpanish ? "Correo de contacto" : "Contact email"}
           </p>
 
@@ -54,7 +54,7 @@ const ContactSection = ({ className = "" }) => {
             {contactEmail}
           </a>
 
-          <p className="mt-4 text-sm text-bds-text-soft">
+          <p className="mt-4 text-sm text-slate-600">
             {isSpanish
               ? "Haz clic en el correo para abrir tu cliente de email o copia la dirección para usarla donde prefieras."
               : "Click the email to open your mail client, or copy the address and use it wherever you prefer."}
@@ -71,7 +71,7 @@ const ContactSection = ({ className = "" }) => {
             <button
               type="button"
               onClick={handleCopy}
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-white/20 text-sm font-medium text-gray-200 hover:bg-white/5 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-100 transition-colors"
             >
               {copied
                 ? isSpanish

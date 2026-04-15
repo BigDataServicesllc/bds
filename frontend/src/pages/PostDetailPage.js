@@ -28,13 +28,13 @@ const PostDetailPage = () => {
     <div className="bg-white min-h-screen pb-32">
 
       {/* ============================================================
-          HERO DEL ARTÍCULO — COLOR OSCURO (MISMO QUE BLOG INDEX)
+          HERO DEL ARTÍCULO — COLOR CLARO
       ============================================================ */}
-      <section className="pt-40 pb-12 bg-[#173B3A] text-white">
+      <section className="pt-40 pb-12 bg-white text-slate-950">
         <div className="container mx-auto px-4 max-w-5xl">
           <Link
             to="/blog"
-            className="text-gray-300 hover:text-[#06E8D1] transition inline-flex items-center mb-6"
+            className="text-slate-600 hover:text-bds-aqua transition inline-flex items-center mb-6"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ const PostDetailPage = () => {
             {language === 'es' ? 'Volver al Blog' : 'Back to Blog'}
           </Link>
 
-          <p className="text-[#06E8D1] font-semibold text-sm mb-2">
+          <p className="text-bds-aqua font-semibold text-sm mb-2">
             {post.category[language]}
           </p>
 
@@ -61,7 +61,7 @@ const PostDetailPage = () => {
             {post.title[language]}
           </h1>
 
-          <p className="text-gray-300 text-sm mb-8">
+          <p className="text-slate-600 text-sm mb-8">
             {language === 'es' ? 'Por' : 'By'} {post.author} • {formattedDate}
           </p>
         </div>

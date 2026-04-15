@@ -42,7 +42,7 @@ const LearningSection = ({ language, className }) => {
     <section
       id="learning"
       // Agregamos overflow-hidden para evitar scroll horizontal accidental
-      className={`py-20 sm:py-24 bg-[#C19A2E] overflow-hidden ${className || ''}`}
+      className={`py-20 sm:py-24 bg-white overflow-hidden ${className || ''}`}
     >
       <div className="container mx-auto px-4">
 
@@ -51,7 +51,7 @@ const LearningSection = ({ language, className }) => {
           <h2 className="text-3xl md:text-4xl font-extrabold text-black mb-4">
             {staticContent.title[language]}
           </h2>
-          <p className="text-lg text-[#173B3A]/90 font-medium">
+          <p className="text-lg text-slate-600 font-medium">
             {staticContent.subtitle[language]}
           </p>
         </div>
@@ -70,14 +70,14 @@ const LearningSection = ({ language, className }) => {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
 
             {/* Texto sobre imagen */}
-            <div className="absolute bottom-8 left-8 text-white z-10">
-              <span className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs uppercase tracking-wide border border-white/30 backdrop-blur-md">
+            <div className="absolute bottom-8 left-8 text-slate-950 z-10">
+              <span className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs uppercase tracking-wide border border-slate-300/30 backdrop-blur-md">
                 {staticContent.badge[language]}
               </span>
-              <p className="mt-3 text-base md:text-lg max-w-md text-white font-medium drop-shadow-md">
+              <p className="mt-3 text-base md:text-lg max-w-md text-slate-950 font-medium drop-shadow-md">
                 {staticContent.badgeText[language]}
               </p>
             </div>

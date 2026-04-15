@@ -43,11 +43,11 @@ const ServiceDetailPage = () => {
   };
 
   return (
-    // CAMBIO: Fondo base oscuro (bds-deep) en lugar de bg-white
-    <div className="min-h-screen pt-28 bg-bds-deep text-bds-text-main">
+    // CAMBIO: Fondo base claro en lugar de oscuro
+    <div className="min-h-screen pt-28 bg-white text-slate-950">
       
-      {/* === HERO WRAPPER: Fondo degradado de verde oscuro a blanco === */}
-      <div className="pb-24 bg-gradient-to-b from-bds-deep to-white">
+      {/* === HERO WRAPPER: Fondo blanco === */}
+      <div className="pb-24 bg-white">
         <div className="container mx-auto px-4 md:px-8 py-16">
           {/* === HERO: título, descripción y foto del servicio === */}
           <div className="max-w-5xl mx-auto mb-16">

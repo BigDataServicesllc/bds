@@ -67,7 +67,7 @@ const ServicesSection = ({ language, className }) => {
       <div className="container mx-auto px-4">
         {/* CABECERA DE SECCIÓN */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center text-slate-950 mb-4">
           {language === 'es' ? (
             <>
               Impulsamos tu negocio con{' '}
@@ -86,7 +86,7 @@ const ServicesSection = ({ language, className }) => {
         </h2>
 
 
-          <p className="mt-4 text-center text-gray-300">
+          <p className="mt-4 text-center text-slate-600">
             {language === 'es'
               ? 'Descubre cómo nuestras soluciones personalizadas pueden transformar tu empresa.'
               : 'Discover how our custom solutions can transform your company.'}
@@ -111,7 +111,7 @@ const ServicesSection = ({ language, className }) => {
             ))}
 
             {/* overlay para que la imagen tenga profundidad, no para oscurecer la sección */}
-            <div className="absolute inset-0 bg-gradient-to-t from-bds-deep/70 via-bds-deep/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/30 to-transparent" />
           </div>
 
           {/* COLUMNA TEXTO / SLIDER */}
@@ -126,11 +126,11 @@ const ServicesSection = ({ language, className }) => {
                       : 'opacity-0 -translate-x-5 pointer-events-none'
                   }`}
                 >
-                  <h3 className="text-3xl font-bold text-white drop-shadow-md mb-4">
+                  <h3 className="text-3xl font-bold text-slate-950 drop-shadow-md mb-4">
                     {service.title[language]}
                   </h3>
 
-                  <p className="text-gray-200 text-base leading-relaxed mb-6 h-24">
+                  <p className="text-slate-600 text-base leading-relaxed mb-6 h-24">
                     {service.description[language]}
                   </p>
 

@@ -5,7 +5,7 @@ const PostCard = ({ post, language }) => {
   return (
     <Link 
       to={`/blog/${post.slug}`}
-      className="block rounded-2xl shadow-lg overflow-hidden bg-[#11252C] 
+      className="block rounded-2xl shadow-lg overflow-hidden bg-white 
                  hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
     >
       {/* Imagen fija */}
@@ -26,12 +26,12 @@ const PostCard = ({ post, language }) => {
         </p>
 
         {/* Título */}
-        <h3 className="text-lg font-bold text-white leading-snug mb-3">
+        <h3 className="text-lg font-bold text-slate-950 leading-snug mb-3">
           {post.title[language]}
         </h3>
 
         {/* Resumen */}
-        <p className="text-gray-300 text-sm leading-relaxed flex-grow">
+        <p className="text-slate-600 text-sm leading-relaxed flex-grow">
           {post.excerpt[language]}
         </p>
       </div>
