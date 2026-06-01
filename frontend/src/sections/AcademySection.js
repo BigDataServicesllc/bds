@@ -102,7 +102,13 @@ const AcademySection = ({ language = 'es' }) => {
       <div className="container mx-auto px-6 relative z-10">
         
         {/* Cabecera de Autoridad Técnica */}
-        <div className="max-w-3xl mx-auto text-center mb-24">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl mx-auto text-center mb-24"
+        >
           <span className="text-[10px] uppercase tracking-[0.5em] text-teal-600 font-bold block mb-4">
             {language === 'es' ? 'TRANSFERENCIA DE CONOCIMIENTO' : 'KNOWLEDGE TRANSFER'}
           </span>
@@ -117,14 +123,21 @@ const AcademySection = ({ language = 'es' }) => {
               ? 'Nuestra capacidad técnica respaldada por miles de ingenieros y analistas formados globalmente en la plataforma oficial de Udemy.' 
               : 'Our engineering excellence backed by thousands of developers and analysts trained globally on the official Udemy platform.'}
           </p>
-        </div>
+        </motion.div>
 
         {/* Acordeón Editorial Estilo Minimalist-UI */}
         <div className="max-w-4xl mx-auto border-t border-slate-200">
           {courses.map((course, idx) => {
             const isOpen = activeIndex === idx;
             return (
-              <div key={idx} className="border-b border-slate-200 overflow-hidden">
+              <motion.div 
+                key={idx} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="border-b border-slate-200 overflow-hidden"
+              >
                 <button
                   onClick={() => setActiveIndex(isOpen ? -1 : idx)}
                   className="w-full py-8 flex flex-col md:flex-row md:items-center justify-between text-left group transition-colors duration-300"
@@ -203,7 +216,7 @@ const AcademySection = ({ language = 'es' }) => {
                     </div>
                   </div>
                 </motion.div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

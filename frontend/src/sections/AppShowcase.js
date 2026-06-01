@@ -23,9 +23,9 @@ const AppShowcase = ({ language = 'es' }) => {
             {language === 'es' ? 'VALIDACIÓN DE PRODUCCIÓN' : 'PRODUCTION VALIDATION'}
           </span>
           <h2 className="text-4xl md:text-5xl font-light text-white tracking-tighter">
-            FlowFinanzas: {language === 'es' ? 'Ecosistema' : 'Fintech'}{' '}
+            FlowFinanzas: {language === 'es' ? 'Ecosistema' : 'Capable Financial'}{' '}
             <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">
-              Financiero Capaz
+              {language === 'es' ? 'Financiero Capaz' : 'Ecosystem'}
             </span>
           </h2>
           <p className="text-sm font-light text-slate-400 mt-6 max-w-xl mx-auto leading-relaxed">

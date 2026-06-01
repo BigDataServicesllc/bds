@@ -37,20 +37,16 @@ const HeroSection = ({ language = 'es' }) => {
         { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.5, ease: 'power3.out' }
       );
 
-      // Scrubbing subtitle reveal
+      // Subtitle reveal (Automatic on load, much faster for readability)
       const words = subtitleRef.current.querySelectorAll('.word');
       gsap.fromTo(words,
         { opacity: 0.1 },
         {
           opacity: 1,
-          stagger: 0.1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 20%',
-            end: 'bottom 40%',
-            scrub: true
-          }
+          stagger: 0.03,
+          duration: 0.1,
+          ease: 'power1.out',
+          delay: 0.8 // Empieza apenas la animación del título entra
         }
       );
     }, sectionRef);
