@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import bdsLogo from '../assets/logos/bigdataservices.png';
 
 const content = {
   es: {
@@ -72,10 +73,8 @@ const PortfolioPage = () => {
       <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-xl border-b border-black/5 h-16 flex items-center">
         <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-6 h-6 rounded bg-[#1d1d1f] flex items-center justify-center">
-              <span className="font-bold text-white text-[10px] tracking-tight">BDS</span>
-            </div>
-            <span className="font-light text-[#1d1d1f] tracking-tight text-base group-hover:text-teal-600 transition-colors">AETERNA</span>
+            <img src={bdsLogo} alt="Big Data Services Logo" className="h-6 w-auto object-contain" />
+            <span className="font-light text-[#1d1d1f] tracking-tight text-base group-hover:text-teal-600 transition-colors">Big Data Services</span>
           </Link>
           <div className="flex items-center gap-6">
             <button 

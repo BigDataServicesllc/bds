@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import bdsLogoDark from '../assets/logos/bigdataservices.png';
+import bdsLogoLight from '../assets/logos/logo-white-sin-fondo.png';
 
 const content = {
   es: {
@@ -6,14 +8,14 @@ const content = {
     portfolio: 'Portafolio',
     academy: 'Academia',
     flowfinanzas: 'FlowFinanzas',
-    bookConsultation: 'Agendar Demo'
+    bookConsultation: 'Contacto'
   },
   en: {
     services: 'Services',
     portfolio: 'Portfolio',
     academy: 'Academy',
     flowfinanzas: 'FlowFinanzas',
-    bookConsultation: 'Request Demo'
+    bookConsultation: 'Contact'
   }
 };
 
@@ -46,26 +48,28 @@ const Navigation = ({ language, setLanguage }) => {
         } flex items-center justify-between gap-12`}
       >
         <div className="flex items-center gap-2 cursor-pointer group" onClick={() => window.scrollTo({top:0, behavior:'smooth'})}>
-          <div className="w-6 h-6 rounded-md bg-[#1d1d1f] flex items-center justify-center">
-            <span className="font-bold text-white text-[10px] tracking-tight">BDS</span>
-          </div>
-          <span className="font-light text-[#1d1d1f] tracking-tight text-base group-hover:text-teal-600 transition-colors">AETERNA</span>
+          <img src={scrolled ? bdsLogoDark : bdsLogoLight} alt="Big Data Services Logo" className="h-6 w-auto object-contain" />
+          <span className={`font-light tracking-tight text-base transition-colors ${scrolled ? 'text-[#1d1d1f] group-hover:text-teal-600' : 'text-white group-hover:text-slate-300'}`}>Big Data Services</span>
         </div>
         
-        <div className="hidden md:flex items-center gap-8 text-xs font-medium text-slate-500">
-          <button onClick={() => scrollToSection('services')} className="hover:text-[#1d1d1f] transition-colors tracking-wide">{t.services.toUpperCase()}</button>
-          <button onClick={() => scrollToSection('portfolio')} className="hover:text-[#1d1d1f] transition-colors tracking-wide">{t.portfolio.toUpperCase()}</button>
-          <button onClick={() => scrollToSection('academy')} className="hover:text-[#1d1d1f] transition-colors tracking-wide">{t.academy.toUpperCase()}</button>
+        <div className={`hidden md:flex items-center gap-8 text-xs font-medium ${scrolled ? 'text-slate-500' : 'text-slate-300'}`}>
+          <button onClick={() => scrollToSection('services')} className={`transition-colors tracking-wide ${scrolled ? 'hover:text-[#1d1d1f]' : 'hover:text-white'}`}>{t.services.toUpperCase()}</button>
+          <button onClick={() => scrollToSection('portfolio')} className={`transition-colors tracking-wide ${scrolled ? 'hover:text-[#1d1d1f]' : 'hover:text-white'}`}>{t.portfolio.toUpperCase()}</button>
+          <button onClick={() => scrollToSection('academy')} className={`transition-colors tracking-wide ${scrolled ? 'hover:text-[#1d1d1f]' : 'hover:text-white'}`}>{t.academy.toUpperCase()}</button>
         </div>
         
         <div className="flex items-center gap-4">
           <button 
             onClick={toggleLanguage}
-            className="text-[10px] font-medium tracking-widest text-slate-500 hover:text-[#1d1d1f] border border-black/10 rounded-full px-3 py-1 transition-colors hover:bg-black/5"
+            className={`text-[10px] font-medium tracking-widest border rounded-full px-3 py-1 transition-colors ${
+              scrolled ? 'text-slate-500 hover:text-[#1d1d1f] border-black/10 hover:bg-black/5' : 'text-slate-300 hover:text-white border-white/20 hover:bg-white/10'
+            }`}
           >
             {language === 'en' ? 'ES' : 'EN'}
           </button>
-          <button onClick={() => scrollToSection('contact')} className="hidden md:flex bg-[#1d1d1f] text-white px-6 py-2 rounded-full text-xs font-medium hover:scale-[0.98] hover:bg-black transition-transform duration-300">
+          <button onClick={() => scrollToSection('contact')} className={`hidden md:flex px-6 py-2 rounded-full text-xs font-medium transition-transform duration-300 hover:scale-[0.98] ${
+            scrolled ? 'bg-[#1d1d1f] text-white hover:bg-black' : 'bg-white text-black hover:bg-slate-200'
+          }`}>
             {t.bookConsultation}
           </button>
         </div>
