@@ -1,33 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.96284720.css",
-    "main.js": "/static/js/main.f5cc73ed.js",
-    "static/media/web_desing_02.png": "/static/media/web_desing_02.47c6ed386eeec1deb749.png",
-    "static/media/web_desing_01.png": "/static/media/web_desing_01.e85153f555b8f2cf3dd2.png",
-    "static/media/web_desing_03.png": "/static/media/web_desing_03.64fcdd6a26a11219ef22.png",
-    "static/media/Dashboard3.png": "/static/media/Dashboard3.20f2b48a27f44306172f.png",
-    "static/media/Dashboard.png": "/static/media/Dashboard.8bc4dedfa7a4adb8c7ee.png",
-    "static/media/google_cloud.png": "/static/media/google_cloud.d398a7e0a39316ba4949.png",
-    "static/media/dbt.jpg": "/static/media/dbt.5ad183a3d7158f964295.jpg",
-    "static/media/github.jpg": "/static/media/github.53b43679453d97e94dfb.jpg",
-    "static/media/python.jpg": "/static/media/python.903feebcf1cd20a8663d.jpg",
-    "static/media/google_play_badge.png": "/static/media/google_play_badge.5744f982aab9b5b223fb.png",
-    "static/media/power-bi.jpg": "/static/media/power-bi.a4be4a9b96738b530c78.jpg",
-    "static/media/docker.svg": "/static/media/docker.a5c51713e99d29b9584c8192d03fcaee.svg",
-    "static/media/Microsoft_azure.svg": "/static/media/Microsoft_azure.c5b42dda20a5005ca74690be96556f26.svg",
-    "static/media/react.svg": "/static/media/react.9e9c78facb4ac0be2d2880a01982757a.svg",
-    "static/media/aws.svg": "/static/media/aws.dcf131dc4fc6d104317119b9cc821b6d.svg",
-    "static/media/confluent.svg": "/static/media/confluent.0e3c16fbc67b93f290ffa133e573c501.svg",
-    "static/media/nodejs.svg": "/static/media/nodejs.ca7d509723af4bcecb79debeba809532.svg",
-    "static/media/swift.svg": "/static/media/swift.b4537b0f59be9a60d9fc6785885040c5.svg",
-    "static/media/oracle.svg": "/static/media/oracle.1cf2ab376cb6bd36295e3e7c44ebbde9.svg",
+    "main.css": "/static/css/main.5e627dc0.css",
+    "main.js": "/static/js/main.8e55b4f5.js",
     "index.html": "/index.html",
-    "static/media/kotlin.svg": "/static/media/kotlin.37e6e4c80e84015c4405f7d43e829fd2.svg",
-    "main.96284720.css.map": "/static/css/main.96284720.css.map",
-    "main.f5cc73ed.js.map": "/static/js/main.f5cc73ed.js.map"
+    "main.5e627dc0.css.map": "/static/css/main.5e627dc0.css.map",
+    "main.8e55b4f5.js.map": "/static/js/main.8e55b4f5.js.map"
   },
   "entrypoints": [
-    "static/css/main.96284720.css",
-    "static/js/main.f5cc73ed.js"
+    "static/css/main.5e627dc0.css",
+    "static/js/main.8e55b4f5.js"
   ]
 }

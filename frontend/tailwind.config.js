@@ -3,47 +3,28 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      // 🎨 Paleta de marca BDS
       colors: {
-        // Colores de brand directos
-        "bds-aqua": "#06E8D1",   // acciones, botones, acentos
-        "bds-violet": "#513AF5", // fondos modernos, detalles
-        "bds-deep": "#173B3A",   // bloques oscuros, secciones premium
-        "bds-blue": "#2B64B2",   // headings, links activos, professional
-
-        // Fondos claros derivados
-        "bds-bg-light": "#F5FFFD", // muy suave, con toque aqua
-        "bds-bg-muted": "#E8F3FF", // azul muy claro
-        "bds-bg-soft": "#F3F4F6",  // gris claro neutro
-
-        // Texto
-        "bds-text-main": "#0F172A", // texto principal
-        "bds-text-soft": "#64748B", // texto secundario
-
-        // Tokens "legacy" que ya usas en clases (los redefinimos con tu nueva estética)
-        "primary-dark": "#020617",   // hero muy oscuro si lo necesitas
-        "secondary-dark": "#0B1220", // dark pero no negro
-        "tertiary-dark": "#111827",
-
-        // 🔗 Alias para que el código existente siga funcionando
-        accent: "#06E8D1",          // igual que bds-aqua
-        "accent-hover": "#2B64B2",  // igual que bds-blue
-        "primary-deep": "#173B3A",  // igual que bds-deep
-      },
-
-      // Tipografía y bordes más “premium”
-      borderRadius: {
-        xl: "1rem",
-        "2xl": "1.5rem",
+        bds: {
+          'base-50': 'oklch(0.984 0.014 180.72 / <alpha-value>)',
+          100: 'oklch(0.953 0.051 180.801 / <alpha-value>)',
+          200: 'oklch(0.91 0.096 180.426 / <alpha-value>)',
+          300: 'oklch(0.855 0.138 181.071 / <alpha-value>)',
+          400: 'oklch(0.777 0.152 181.912 / <alpha-value>)',
+          500: 'oklch(0.704 0.14 182.503 / <alpha-value>)',
+          600: 'oklch(0.6 0.118 184.704 / <alpha-value>)',
+          700: 'oklch(0.511 0.096 186.391 / <alpha-value>)',
+          800: 'oklch(0.437 0.078 188.216 / <alpha-value>)',
+          900: 'oklch(0.386 0.063 188.416 / <alpha-value>)',
+          950: 'oklch(0.277 0.046 192.524 / <alpha-value>)',
+          aqua: "#06E8D1",
+        },
       },
       fontFamily: {
-        // si ya usas Inter en el index.html, esto lo aprovecha
-        sans: ["Inter", "system-ui", "BlinkMacSystemFont", "sans-serif"],
+        sans: ["Geist", "system-ui", "BlinkMacSystemFont", "sans-serif"],
       },
-
       boxShadow: {
-        "bds-soft": "0 18px 45px rgba(15, 23, 42, 0.35)",   // tarjetas / heroes
-        "bds-button": "0 14px 40px rgba(6, 232, 209, 0.35)" // botones aqua
+        "bds-soft": "0 18px 45px rgba(0, 0, 0, 0.35)",
+        "bds-button": "0 14px 40px rgba(6, 232, 209, 0.35)"
       },
     },
   },

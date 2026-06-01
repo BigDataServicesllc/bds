@@ -1,112 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    /* Mantiene la escala de renderizado y el suavizado de tipografías nativo de Apple */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+
+  body, input, textarea, select, button {
+    /* Inyección de los secretos de Apple: evita que las letras se vean "gordas" o deformes */
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    /* Forzamos el interlineado exacto de Apple, tamaño base corporativo y espaciado negativo */
+    font-size: 17px;
+    line-height: 1.47059;
+    letter-spacing: -.022em;
+    @apply bg-[#f5f5f7] text-[#1d1d1f] font-sans;
+  }
+
+  /* Forzamos que las tipografías masivas sean ultradelgadas en lugar de pesadas */
+  h1, h2 {
+    letter-spacing: -.025em;
+    font-weight: 300; /* Hace que el título se vea estilizado y fino como un iPhone */
+  }
+}
+
 @layer utilities {
-  @keyframes move-dots {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 40px 40px;
-    }
+  /* Estilo Apple Pro Light: translúcido, brillante y profundo */
+  .glass-panel {
+    @apply bg-white/60 backdrop-blur-2xl border border-black/[0.04] rounded-2xl shadow-sm;
   }
-}
-/* Personalización de los estilos de Swiper */
-.swiper-button-next,
-.swiper-button-prev {
-  color: #9ca3af !important; /* Color de las flechas */
-  transition: color 0.3s;
-}
-
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  color: #3b82f6 !important; /* Color de las flechas en hover */
-}
-
-.swiper-pagination-bullet {
-  background-color: #6b7280 !important; /* Color de los puntos de paginación */
-  opacity: 0.7;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: #3b82f6 !important; /* Color del punto activo */
-  opacity: 1;
-}
-:root {
-  --bds-aqua: #06E8D1;
-  --bds-violet: #513AF5;
-  --bds-deep: #173B3A;
-  --bds-blue: #2B64B2;
-}
-
-/* Helpers de secciones usando la paleta BDS */
-@layer components {
-  /* Servicios – fondo claro con toque aqua/azul */
-  .bds-section-services {
-    @apply bg-bds-bg-light;
+  
+  .mac-window {
+    @apply bg-white border border-black/5 rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.04)];
   }
-
-
-  /* Learning – blanco limpio, sensación de “página” */
-  /* Removed: background gradient was causing conflicts with Tailwind classes */
-
-  /* Blog – gris claro tipo revista */
-  .bds-section-blog {
-    background: linear-gradient(to bottom, #173B3A, #173B3A);
+  
+  .mac-header {
+    @apply h-9 bg-slate-50 border-b border-black/5 flex items-center px-4 justify-between;
   }
+  
+  .mac-dot-red { @apply w-2.5 h-2.5 rounded-full bg-slate-200 group-hover:bg-red-500/70 transition-colors duration-300; }
+  .mac-dot-yellow { @apply w-2.5 h-2.5 rounded-full bg-slate-200 group-hover:bg-yellow-500/70 transition-colors duration-300; }
+  .mac-dot-green { @apply w-2.5 h-2.5 rounded-full bg-slate-200 group-hover:bg-green-500/70 transition-colors duration-300; }
 
-  /* CTA final – bloque oscuro premium */
-  .bds-section-cta {
-    @apply bg-bds-deep text-white;
+  /* Ocultar barra de scroll en el carrusel manteniendo la funcionalidad de arrastre lateral */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
-
-  /* Contacto – limpio, directo, foco en el email */
-  .bds-section-contact {
-    @apply bg-white text-bds-text-main;
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-
-  /* Botón principal BDS (por si quieres reutilizarlo) */
-  .bds-btn-primary {
-    @apply inline-flex items-center rounded-full bg-bds-aqua px-7 py-3 text-sm font-semibold text-bds-deep shadow-bds-button transition-all duration-300 transform hover:-translate-y-[1px] hover:bg-bds-blue hover:text-white;
-  }
-
-  /* Botón secundario (outline, para fondos claros) */
-  .bds-btn-outline {
-    @apply inline-flex items-center rounded-full border border-bds-blue px-6 py-2 text-sm font-medium text-bds-blue hover:bg-bds-blue hover:text-white transition-colors;
-  }
-}
-
-/* Lo que ya tenías (Swiper, animaciones, etc.) se queda tal cual */
-@layer utilities {
-  @keyframes move-dots {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 40px 40px;
-    }
-  }
-}
-
-/* Personalización de Swiper (lo que ya tenías) */
-.swiper-button-next,
-.swiper-button-prev {
-  color: #9ca3af !important; /* Color de las flechas */
-  transition: color 0.3s;
-}
-
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  color: #3b82f6 !important; /* Color de las flechas en hover */
-}
-
-.swiper-pagination-bullet {
-  background-color: #6b7280 !important; /* Color de los puntos de paginación */
-  opacity: 0.7;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: #3b82f6 !important; /* Color del punto activo */
-  opacity: 1;
 }
