@@ -31,11 +31,64 @@ Privacidad garantizada: tus datos financieros están protegidos.
 
 Un producto de Big Data Services LLC - www.bigdata-services.com`;
 
+const farmaBoostDesc = `Descubrí en segundos si tu receta médica cumple con los requisitos para ser validada.
+
+FarmaBoost es la forma más rápida y sencilla de validar recetas médicas desde tu celular. Solo tomá una foto y nuestra tecnología analiza automáticamente si cumple con los requisitos necesarios según la obra social y la normativa vigente.
+
+Validación instantánea
+Detectamos membrete, datos del paciente, medicamentos, dosis, fecha, firma y otros elementos obligatorios.
+
+Escaneo inteligente
+Subí una imagen clara de la receta y obtené un resultado en segundos.
+
+Resultados claros y confiables
+Recibí una explicación detallada de qué cumple y qué falta, para evitar rechazos y ahorrar tiempo.
+
+Compatibilidad con obras sociales
+Estamos ampliando la cobertura a más regiones y obras sociales para brindar un servicio cada vez más completo.
+
+Diseñada para farmacias
+Una herramienta rápida, intuitiva y pensada para el trabajo diario.
+
+FarmaBoost te ayuda a validar recetas de manera segura, simple y eficiente.`;
+
+const tuTurnoDesc = `La forma más eficiente de gestionar tus citas.
+
+¿Cansado de coordinar turnos por mensajes interminables? Tu Turno en Línea, desarrollado por Big Data Services LLC, es la solución integral diseñada para que negocios y clientes conecten de manera profesional, organizada y automatizada.
+
+¿Qué puedes hacer con Tu Turno en Línea?
+
+Reserva Inmediata: Busca disponibilidad en tiempo real y confirma tu turno al instante.
+
+Recordatorios Inteligentes: Recibe notificaciones automáticas para que nunca se pierda una cita.
+
+Gestión de Perfil: Administra tus turnos, historial y preferencias desde un solo lugar.
+
+Métricas de Control: Como dueño de negocio, visualiza ingresos y volumen de servicios para decidir mejor.
+
+Interfaz Profesional: Diseño limpio con el sello de calidad de BDS, optimizado para velocidad.
+
+INFORMACIÓN SOBRE LA SUSCRIPCIÓN
+
+Tu Turno en Línea ofrece suscripciones mensuales para acceder a funciones avanzadas de gestión y métricas.
+
+El pago se cargará a tu cuenta de Apple ID al confirmar la compra.
+
+La suscripción se renueva automáticamente a menos que se cancele al menos 24 horas antes del final del período actual.
+
+Puedes gestionar y cancelar tus suscripciones en la configuración de tu cuenta del App Store.
+
+Privacidad y Términos (Obligatorio):
+
+Política de Privacidad: https://bigdata-services.com/privacidad
+
+Términos de Uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/`;
+
 const mobileAppsFixed = [
-  { 
-    title: 'FlowFinanzas', 
-    url: 'App Store', 
-    link: '#', 
+  {
+    title: 'FlowFinanzas',
+    url: 'App Store',
+    link: '#',
     desc: flowFinanzasDesc,
     logo: '/images/app_desing/Flowfinanzas/logo_flowfinanzas.png',
     appStoreLink: 'https://apps.apple.com/es/app/flowfinanzas/id6763755421',
@@ -49,24 +102,30 @@ const mobileAppsFixed = [
       '/images/app_desing/Flowfinanzas/06.png',
       '/images/app_desing/Flowfinanzas/07.png',
       '/images/app_desing/Flowfinanzas/08.png'
-    ] 
+    ]
   },
-  { 
-    title: 'Farmaboost', 
-    url: 'App Store', 
-    link: 'https://apps.apple.com/ar/app/farmaboost/id6748421015', 
-    desc: '',
+  {
+    title: 'Farmaboost',
+    url: 'App Store',
+    link: 'https://apps.apple.com/ar/app/farmaboost/id6748421015',
+    desc: farmaBoostDesc,
+    logo: '/images/app_desing/Farmaboost/logo_farmaboost.png',
+    appStoreLink: 'https://apps.apple.com/ar/app/farmaboost/id6748421015',
+    playStoreLink: 'https://play.google.com/store/apps/details?id=com.farmaboost.app&pcampaignid=web_share',
     imgs: [
       '/images/app_desing/Farmaboost/01.PNG',
       '/images/app_desing/Farmaboost/02.PNG',
       '/images/app_desing/Farmaboost/03.PNG'
-    ] 
+    ]
   },
-  { 
-    title: 'Tu Turno en Línea', 
-    url: 'App Store', 
-    link: 'https://apps.apple.com/us/app/tu-turno-en-l%C3%ADnea-reservas/id6757831348', 
-    desc: '',
+  {
+    title: 'Tu Turno en Línea',
+    url: 'App Store',
+    link: 'https://apps.apple.com/us/app/tu-turno-en-l%C3%ADnea-reservas/id6757831348',
+    desc: tuTurnoDesc,
+    logo: '/images/app_desing/Tuturno/logo_tuturno.jpg',
+    appStoreLink: 'https://apps.apple.com/us/app/tu-turno-en-l%C3%ADnea-reservas/id6757831348',
+    playStoreLink: 'https://play.google.com/store/apps/details?id=com.bds.turnos.owner&hl=es_AR',
     imgs: [
       '/images/app_desing/Tuturno/01.png',
       '/images/app_desing/Tuturno/02.png',
@@ -76,7 +135,7 @@ const mobileAppsFixed = [
       '/images/app_desing/Tuturno/06.png',
       '/images/app_desing/Tuturno/07.png',
       '/images/app_desing/Tuturno/08.png'
-    ] 
+    ]
   }
 ];
 
@@ -94,7 +153,7 @@ const content = {
     appImgAlt: 'Mockup de Aplicación Móvil 3D',
     viewProject: 'Ver Proyecto',
     visit: 'Visitar',
-    curatedSelection: 'Nuestra selección curada'
+    curatedSelection: 'Proyectos Destacados'
   },
   en: {
     webLabel: 'WEB DEVELOPMENT & LANDING PAGES',
@@ -109,7 +168,7 @@ const content = {
     appImgAlt: '3D Mobile App Mockup',
     viewProject: 'View Project',
     visit: 'Visit',
-    curatedSelection: 'Our curated selection'
+    curatedSelection: 'Featured Projects'
   }
 };
 
@@ -120,18 +179,18 @@ const AppSlideshow = ({ imgs }) => {
     if (!imgs || imgs.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % imgs.length);
-    }, 2500); 
+    }, 2500);
     return () => clearInterval(interval);
   }, [imgs]);
 
   return (
     <div className="w-full h-full relative bg-[#1d1d1f]">
       {imgs.map((src, idx) => (
-        <img 
+        <img
           key={src}
-          src={src} 
+          src={src}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          alt={`App Screen ${idx + 1}`} 
+          alt={`App Screen ${idx + 1}`}
         />
       ))}
     </div>
@@ -155,18 +214,18 @@ const AppModal = ({ app, onClose }) => {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 lg:p-12">
       {/* Blur Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-xl transition-opacity cursor-pointer" 
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-xl transition-opacity cursor-pointer"
         onClick={onClose}
       ></div>
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-5xl bg-white rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col md:flex-row max-h-[90vh] animate-in fade-in zoom-in-95 duration-300">
-        
+      <div className="relative w-full max-w-5xl bg-white rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-y-auto md:overflow-hidden flex flex-col md:flex-row max-h-[90vh] animate-in fade-in zoom-in-95 duration-300">
+
         {/* Close Button */}
-        <button 
+        <button
           onClick={onClose}
-          className="absolute top-6 right-6 w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full flex items-center justify-center z-50 transition-colors"
+          className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full flex items-center justify-center z-50 transition-colors"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
@@ -176,7 +235,7 @@ const AppModal = ({ app, onClose }) => {
           {/* Subtle Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-teal-500/10 rounded-full blur-[80px]"></div>
 
-          <div className="relative z-10 w-full max-w-[280px] rounded-[3rem] overflow-hidden border-[8px] border-[#1d1d1f] shadow-2xl bg-[#1d1d1f] aspect-[9/19]">
+          <div className="relative z-10 w-full max-w-[160px] md:max-w-[280px] rounded-[2rem] md:rounded-[3rem] overflow-hidden border-[6px] md:border-[8px] border-[#1d1d1f] shadow-2xl bg-[#1d1d1f] aspect-[9/19]">
             <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-7 bg-[#1d1d1f] rounded-full z-20 flex items-center justify-end px-2">
               <div className="w-2.5 h-2.5 rounded-full bg-[#0a0a0a] border border-white/5"></div>
             </div>
@@ -187,21 +246,21 @@ const AppModal = ({ app, onClose }) => {
         </div>
 
         {/* Right Side: App Store Style Description */}
-        <div className="w-full md:w-7/12 p-8 md:p-12 overflow-y-auto">
-          
+        <div className="w-full md:w-7/12 p-6 md:p-12 overflow-visible md:overflow-y-auto">
+
           {/* Header */}
           <div className="flex items-start gap-6 mb-8">
             <div className="w-24 h-24 rounded-[1.5rem] bg-slate-100 border border-black/5 shadow-sm overflow-hidden shrink-0 flex items-center justify-center relative">
-               {app.logo ? (
-                 <img src={app.logo} className="w-full h-full object-cover" alt="Icon" />
-               ) : (
-                 <img src={app.imgs[0]} className="absolute top-0 left-0 w-full object-cover scale-150 origin-top" alt="Icon" />
-               )}
+              {app.logo ? (
+                <img src={app.logo} className="w-full h-full object-cover" alt="Icon" />
+              ) : (
+                <img src={app.imgs[0]} className="absolute top-0 left-0 w-full object-cover scale-150 origin-top" alt="Icon" />
+              )}
             </div>
             <div className="flex-1 pt-1">
               <h2 className="text-3xl font-semibold tracking-tight text-[#1d1d1f] mb-1">{app.title}</h2>
               <p className="text-slate-500 font-medium text-sm mb-4">Big Data Services LLC</p>
-              
+
               <div className="flex flex-wrap items-center gap-3">
                 {app.appStoreLink && (
                   <a href={app.appStoreLink} target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105 active:scale-95">
@@ -246,14 +305,14 @@ const PortfolioSection = ({ language = 'es' }) => {
 
   return (
     <section id="portfolio" className="bg-[#ffffff]">
-      
+
       {/* Modal Injection */}
       <AppModal app={selectedApp} onClose={() => setSelectedApp(null)} />
 
       {/* --- WEB DEVELOPMENT SECTION --- */}
       <div className="py-32">
         <div className="container mx-auto px-6 max-w-7xl">
-          
+
           {/* Main Headline Web */}
           <div className="max-w-4xl mx-auto text-center md:text-left mb-24">
             <span className="text-[10px] uppercase tracking-[0.5em] text-teal-600 font-bold block mb-4">
@@ -271,9 +330,9 @@ const PortfolioSection = ({ language = 'es' }) => {
             {/* Left: Web Mockup Image */}
             <div className="order-2 lg:order-1 rounded-[2rem] p-2 bg-white border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-black/5 overflow-hidden">
               <div className="rounded-[1.5rem] overflow-hidden bg-slate-50 relative aspect-[4/3]">
-                <img 
-                  src="/images/web_mockup_generated.png" 
-                  alt={t.webImgAlt} 
+                <img
+                  src="/images/web_mockup_generated.png"
+                  alt={t.webImgAlt}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -299,7 +358,7 @@ const PortfolioSection = ({ language = 'es' }) => {
             {webProjects.map((p, i) => (
               <a key={i} href={p.link} target="_blank" rel="noreferrer" className="group block relative">
                 <div className="absolute inset-0 bg-slate-100 rounded-[2rem] translate-y-6 translate-x-0 scale-95 opacity-50 group-hover:translate-y-8 group-hover:scale-[0.98] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"></div>
-                
+
                 <div className="relative z-10 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-black/5 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] bg-white group-hover:-translate-y-2 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]">
                   <div className="h-10 bg-[#f8f8f8] border-b border-black/5 flex items-center px-5 gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-slate-300 group-hover:bg-[#ff5f56] transition-colors duration-300"></div>
@@ -326,7 +385,7 @@ const PortfolioSection = ({ language = 'es' }) => {
       {/* --- MOBILE APP SECTION --- */}
       <div className="w-full bg-[#f5f5f7] py-32 border-y border-black/5">
         <div className="container mx-auto px-6 max-w-7xl">
-          
+
           {/* Main Headline Mobile */}
           <div className="max-w-4xl mx-auto text-center md:text-left mb-24">
             <span className="text-[10px] uppercase tracking-[0.5em] text-teal-600 font-bold block mb-4">
@@ -344,9 +403,9 @@ const PortfolioSection = ({ language = 'es' }) => {
             {/* Left: Mobile Mockup Image */}
             <div className="order-2 lg:order-1 rounded-[2rem] p-2 bg-white border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-black/5 overflow-hidden lg:pr-12">
               <div className="rounded-[1.5rem] overflow-hidden bg-slate-50 relative aspect-[4/3]">
-                <img 
-                  src="/images/mobile_mockup_generated.png" 
-                  alt={t.appImgAlt} 
+                <img
+                  src="/images/mobile_mockup_generated.png"
+                  alt={t.appImgAlt}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -370,12 +429,12 @@ const PortfolioSection = ({ language = 'es' }) => {
           {/* Mobile Projects List */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-10">
             {mobileAppsFixed.map((a, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 onClick={() => setSelectedApp(a)}
                 className="group block relative mx-auto w-full max-w-[280px] cursor-pointer"
               >
-                
+
                 {/* Subtle Glow Behind Phone */}
                 <div className="absolute inset-0 bg-teal-500/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
@@ -385,7 +444,7 @@ const PortfolioSection = ({ language = 'es' }) => {
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-7 bg-[#1d1d1f] rounded-full z-20 flex items-center justify-end px-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#0a0a0a] border border-white/5"></div>
                   </div>
-                  
+
                   {/* App Screen Slideshow */}
                   <div className="relative w-full h-full group-hover:scale-105 transition-transform duration-[1.5s] ease-[cubic-bezier(0.32,0.72,0,1)] pointer-events-none">
                     <AppSlideshow imgs={a.imgs} />
@@ -404,8 +463,8 @@ const PortfolioSection = ({ language = 'es' }) => {
 
           {/* Call To Action Block */}
           <div className="mt-32 text-center">
-            <button 
-              onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="inline-flex items-center gap-3 bg-[#1d1d1f] text-white px-8 py-4 rounded-full font-medium hover:bg-black active:scale-[0.98] transition-all duration-500 shadow-xl shadow-black/10"
             >
               <span className="text-sm tracking-wide">

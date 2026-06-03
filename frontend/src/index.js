@@ -7,6 +7,8 @@ import App from './App';
 import PortfolioPage from './pages/PortfolioPage';
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import AboutPage from "./pages/AboutPage";
+import FlowFinanzasLanding from "./pages/FlowFinanzasLanding";
 
 import './styles.css'; 
 
@@ -14,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/flowfinanzas",
+    element: <FlowFinanzasLanding />
   },
   {
     path: "/portfolio",
@@ -26,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/privacidad",
     element: <PrivacyPage />
+  },
+  {
+    path: "/nosotros",
+    element: <AboutPage />
   }
 ]);
 

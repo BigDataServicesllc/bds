@@ -78,7 +78,8 @@ const Footer = ({ language = 'es' }) => {
               <ul className="flex flex-col gap-4 text-slate-400 font-light text-sm tracking-wide">
                 <li><a href="#portfolio" className="hover:text-white transition-colors">{language === 'es' ? 'Desarrollo Web' : 'Web Development'}</a></li>
                 <li><a href="#portfolio" className="hover:text-white transition-colors">Mobile Apps</a></li>
-                <li><a href="#hero" className="hover:text-white transition-colors">{language === 'es' ? 'Arquitectura Cloud' : 'Cloud Architecture'}</a></li>
+                <li><a href="/#academy" className="hover:text-white transition-colors">{language === 'es' ? 'Academia' : 'Academy'}</a></li>
+                <li><Link to="/flowfinanzas" className="hover:text-white transition-colors">FlowFinanzas</Link></li>
               </ul>
             </div>
 
@@ -88,7 +89,7 @@ const Footer = ({ language = 'es' }) => {
                 {language === 'es' ? 'Empresa' : 'Company'}
               </h4>
               <ul className="flex flex-col gap-4 text-slate-400 font-light text-sm tracking-wide">
-                <li><a href="#contact" className="hover:text-white transition-colors">{language === 'es' ? 'Nosotros' : 'About Us'}</a></li>
+                <li><Link to="/nosotros" className="hover:text-white transition-colors">{language === 'es' ? 'Nosotros' : 'About Us'}</Link></li>
                 <li><Link to="/terminos" className="hover:text-white transition-colors">{t.terms}</Link></li>
                 <li><Link to="/privacidad" className="hover:text-white transition-colors">{t.privacy}</Link></li>
               </ul>

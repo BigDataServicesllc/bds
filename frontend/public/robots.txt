@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /private
 
-Sitemap: https://www.bigdataservices.com/sitemap.xml
+Sitemap: https://www.bigdata-services.com/sitemap.xml
