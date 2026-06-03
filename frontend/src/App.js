@@ -1,76 +1,26 @@
-// frontend/src/App.js - SOLUCIÓN FINAL CON BLOQUEO Y NAVEGACIÓN CORRECTA
-// Cambio mínimo para forzar redeploy
-
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import LayoutHeader from './components/LayoutHeader';
-import LayoutFooter from './components/LayoutFooter';
-import ScrollToTop from './components/ScrollToTop';
+import React, { useState } from 'react';
+import Navigation from './components/Navigation';
+import HeroSection from './sections/HeroSection';
+import ServicesBento from './sections/ServicesBento';
+import AppShowcase from './sections/AppShowcase';
+import PortfolioSection from './sections/PortfolioSection';
+import AcademySection from './sections/AcademySection';
+import Footer from './components/Footer';
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState('home');
   const [language, setLanguage] = useState('es');
-  const location = useLocation();
-  const isScrollingProgrammatically = useRef(false);
-  
-  const handleNavigate = useCallback((pageId) => {
-    const section = document.getElementById(pageId);
-    if (section) {
-      isScrollingProgrammatically.current = true;
-      setCurrentPage(pageId);
-      window.scrollTo({
-        top: section.offsetTop - 80,
-        behavior: 'smooth',
-      });
-      setTimeout(() => {
-        isScrollingProgrammatically.current = false;
-      }, 1000);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (isScrollingProgrammatically.current) return;
-      
-      if (location.pathname !== '/') {
-        setCurrentPage(null);
-        return;
-      }
-      const sections = ['home', 'services', 'learning', 'blog', 'contact'];
-      let currentSection = 'home';
-      for (const sectionId of sections) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          const sectionTop = section.offsetTop - 90;
-          if (window.scrollY >= sectionTop) {
-            currentSection = sectionId;
-          }
-        }
-      }
-      setCurrentPage(currentSection);
-    };
- 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
- 
-  const handleToggleLanguage = () => {
-    setLanguage((prevLang) => (prevLang === 'es' ? 'en' : 'es'));
-  };
 
   return (
-    <div className="bg-primary-dark text-gray-100 font-sans antialiased">
-      <ScrollToTop />
-      <LayoutHeader
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
-        onToggleLanguage={handleToggleLanguage}
-        language={language}
-      />
+    <div className="bg-[#f5f5f7] text-[#1d1d1f] font-sans antialiased min-h-[100dvh] overflow-x-hidden w-full max-w-full">
+      <Navigation language={language} setLanguage={setLanguage} />
       <main>
-        <Outlet context={{ language, onNavigate: handleNavigate }} /> 
+        <HeroSection language={language} />
+        <ServicesBento language={language} />
+        <AppShowcase language={language} />
+        <PortfolioSection language={language} />
+        <AcademySection language={language} />
       </main>
-      <LayoutFooter language={language} className="bg-secondary-dark" />
+      <Footer language={language} />
     </div>
   );
 };

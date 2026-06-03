@@ -1,147 +1,80 @@
-// RUTA: frontend/src/pages/TermsPage.js
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
+import bdsLogo from '../assets/logos/bigdataservices.png';
 
-import React from "react";
-import SEO from "../components/SEO";
-import { useOutletContext } from "react-router-dom";
+const content = {
+  es: {
+    backToHome: 'Volver al Inicio',
+    termsTitle: 'Términos de Servicio',
+    termsLastUpdated: 'Última actualización: 1 de Junio, 2026',
+    termsP1: 'Bienvenido a Big Data Services LLC. Al acceder o utilizar nuestro sitio web y servicios asociados, usted acepta estar sujeto a estos Términos de Servicio.',
+    termsH1: '1. Uso de Nuestros Servicios',
+    termsP2: 'Nuestros servicios de ingeniería de datos, desarrollo de software y consultoría están destinados a uso B2B. Usted acepta utilizar nuestros servicios solo para fines lícitos y de acuerdo con estos Términos.',
+    termsH2: '2. Propiedad Intelectual',
+    termsP3: 'Todo el contenido, marcas comerciales, código fuente, arquitecturas de software y datos proporcionados en el transcurso de nuestros servicios siguen siendo propiedad intelectual de Big Data Services LLC, a menos que se estipule lo contrario en un contrato específico.',
+    termsH3: '3. Limitación de Responsabilidad',
+    termsP4: 'En ningún caso Big Data Services LLC será responsable por daños indirectos, incidentales o consecuentes que surjan del uso o la incapacidad de uso de nuestros servicios.'
+  },
+  en: {
+    backToHome: 'Back to Home',
+    termsTitle: 'Terms of Service',
+    termsLastUpdated: 'Last updated: June 1, 2026',
+    termsP1: 'Welcome to Big Data Services LLC. By accessing or using our website and associated services, you agree to be bound by these Terms of Service.',
+    termsH1: '1. Use of Our Services',
+    termsP2: 'Our data engineering, software development, and consulting services are intended for B2B use. You agree to use our services only for lawful purposes and in accordance with these Terms.',
+    termsH2: '2. Intellectual Property',
+    termsP3: 'All content, trademarks, source code, software architectures, and data provided in the course of our services remain the intellectual property of Big Data Services LLC, unless otherwise stipulated in a specific contract.',
+    termsH3: '3. Limitation of Liability',
+    termsP4: 'In no event shall Big Data Services LLC be liable for indirect, incidental, or consequential damages arising from the use or inability to use our services.'
+  }
+};
 
 const TermsPage = () => {
-  const { language } = useOutletContext();
-  const isSpanish = language === "es";
+  const [language, setLanguage] = useState('es');
+  const t = content[language];
 
-  // 🔧 Ajuste principal: más espacio para que el header fijo no tape contenido
-  const containerClasses =
-    "bg-white min-h-screen pt-36 pb-20"; // antes pt-28 pb-16
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-  const contentClasses =
-    "container mx-auto px-4 md:px-8 max-w-4xl text-gray-700";
-
-  const titleClasses =
-    "text-3xl md:text-4xl font-bold mb-6 text-bds-text-main"; // fuerza color visible
-
-  const subtitleClasses = "text-xl font-semibold mt-6 mb-2 text-bds-text-main";
-
-  if (!isSpanish) {
-    // ⭐ Versión en inglés
-    return (
-      <div className={containerClasses}>
-        <SEO title="Terms & Conditions" description="Terms and conditions for using the Big Data Services website." />
-        <div className={contentClasses}>
-          <h1 className={titleClasses}>Terms & Conditions</h1>
-
-          <p className="mb-4">
-            These Terms & Conditions govern the use of the Big Data Services
-            website, content and related services (including training programs
-            and consulting).
-          </p>
-
-          <h2 className={subtitleClasses}>Use of the site</h2>
-          <p className="mb-3">
-            You agree to use this site in a lawful way and not to perform any
-            action that could damage, overload or impair the proper operation of
-            the website or its security.
-          </p>
-
-          <h2 className={subtitleClasses}>No guarantees</h2>
-          <p className="mb-3">
-            The information provided is for general information purposes and
-            does not constitute financial, legal or technical advice. Big Data
-            Services makes reasonable efforts to keep the content up to date,
-            but does not guarantee its completeness or accuracy.
-          </p>
-
-          <h2 className={subtitleClasses}>Limitation of liability</h2>
-          <p className="mb-3">
-            Big Data Services is not responsible for any direct or indirect
-            damage derived from the use or inability to use the website, its
-            content or any external link.
-          </p>
-
-          <h2 className={subtitleClasses}>Changes to these terms</h2>
-          <p className="mb-3">
-            We may update these Terms from time to time. The latest version will
-            always be available on this page and will apply from the date of
-            publication.
-          </p>
-
-          <h2 className={subtitleClasses}>Contact</h2>
-          <p>
-            If you have any questions about these Terms & Conditions, please
-            contact us at{" "}
-            <a
-              href="mailto:info@bigdata-services.com"
-              className="text-bds-blue underline"
-            >
-              info@bigdata-services.com
-            </a>
-            .
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  // ⭐ Versión en español
   return (
-    <div className={containerClasses}>
-      <SEO title="Términos y Condiciones" description="Términos y condiciones para el uso del sitio de Big Data Services." />
-      <div className={contentClasses}>
-        <h1 className={titleClasses}>Términos y Condiciones</h1>
+    <div className="bg-[#ffffff] min-h-screen text-slate-900 font-sans selection:bg-slate-200">
+      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 h-16 flex items-center">
+        <div className="max-w-4xl mx-auto px-6 w-full flex justify-between items-center">
+          <Link to="/" className="flex items-center gap-3">
+            <img src={bdsLogo} alt="Big Data Services Logo" className="h-6 w-auto object-contain" />
+            <span className="font-light text-slate-900 tracking-tight text-base">Big Data Services</span>
+          </Link>
+          <div className="flex items-center gap-6">
+            <button 
+              onClick={() => setLanguage(l => l === 'en' ? 'es' : 'en')}
+              className="text-[10px] font-medium tracking-widest text-slate-400 hover:text-slate-900 border border-slate-200 rounded-full px-3 py-1 transition-colors"
+            >
+              {language === 'en' ? 'ES' : 'EN'}
+            </button>
+            <Link to="/" className="text-slate-500 hover:text-slate-900 transition-colors text-xs font-medium tracking-wide uppercase">
+              {t.backToHome}
+            </Link>
+          </div>
+        </div>
+      </nav>
 
-        <p className="mb-4">
-          Estos Términos y Condiciones regulan el uso del sitio web y de los
-          servicios relacionados de Big Data Services (incluyendo contenidos,
-          formaciones y servicios de consultoría).
-        </p>
+      <main className="pt-40 pb-32 px-6 max-w-3xl mx-auto font-serif">
+        <h1 className="text-5xl font-light tracking-tight text-slate-950 mb-12 pb-6 border-b border-slate-200" style={{fontFamily: "'Lyon Text', 'Playfair Display', serif"}}>{t.termsTitle}</h1>
+        <div className="text-slate-600 font-light leading-[1.8] space-y-8 text-lg" style={{fontFamily: "'Lyon Text', 'Playfair Display', serif"}}>
+          <p className="text-sm uppercase tracking-widest text-slate-400 font-sans">{t.termsLastUpdated}</p>
+          <p>{t.termsP1}</p>
+          <h2 className="text-2xl tracking-tight text-slate-900 mt-12 mb-6">{t.termsH1}</h2>
+          <p>{t.termsP2}</p>
+          <h2 className="text-2xl tracking-tight text-slate-900 mt-12 mb-6">{t.termsH2}</h2>
+          <p>{t.termsP3}</p>
+          <h2 className="text-2xl tracking-tight text-slate-900 mt-12 mb-6">{t.termsH3}</h2>
+          <p>{t.termsP4}</p>
+        </div>
+      </main>
 
-        <h2 className={subtitleClasses}>Uso del sitio</h2>
-        <p className="mb-3">
-          Te comprometes a utilizar este sitio de forma lícita y a no realizar
-          ninguna acción que pueda dañar, sobrecargar o impedir el correcto
-          funcionamiento del sitio web o su seguridad.
-        </p>
-
-        <h2 className={subtitleClasses}>Contenido</h2>
-        <p className="mb-3">
-          La información publicada tiene fines exclusivamente informativos y no
-          constituye asesoramiento financiero, legal ni técnico. Big Data
-          Services realiza esfuerzos razonables para mantener el contenido
-          actualizado, pero no garantiza su exactitud o integridad.
-        </p>
-
-        <h2 className={subtitleClasses}>Propiedad intelectual</h2>
-        <p className="mb-3">
-          Todos los textos, gráficos, logotipos, recursos descargables y
-          materiales de formación son propiedad de Big Data Services o se
-          utilizan con la licencia correspondiente. No está permitido copiarlos,
-          modificarlos o redistribuirlos sin autorización previa por escrito.
-        </p>
-
-        <h2 className={subtitleClasses}>Limitación de responsabilidad</h2>
-        <p className="mb-3">
-          Big Data Services no será responsable por daños directos o indirectos
-          derivados del uso o imposibilidad de uso del sitio, de su contenido o
-          de enlaces externos.
-        </p>
-
-        <h2 className={subtitleClasses}>Modificaciones de los términos</h2>
-        <p className="mb-3">
-          Podemos actualizar estos Términos y Condiciones en cualquier momento.
-          La versión vigente será siempre la publicada en esta página y se
-          aplicará desde la fecha de su publicación.
-        </p>
-
-        <h2 className={subtitleClasses}>Contacto</h2>
-        <p>
-          Si tenés dudas sobre estos Términos y Condiciones, escribinos a{" "}
-          <a
-            href="mailto:info@bigdata-services.com"
-            className="text-bds-blue underline"
-          >
-            info@bigdata-services.com
-          </a>
-          .
-        </p>
-      </div>
+      <Footer language={language} />
     </div>
   );
 };

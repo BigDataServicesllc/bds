@@ -1,140 +1,80 @@
-// RUTA: frontend/src/pages/PrivacyPage.js
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
+import bdsLogo from '../assets/logos/bigdataservices.png';
 
-import React from "react";
-import SEO from "../components/SEO";
-import { useOutletContext } from "react-router-dom";
+const content = {
+  es: {
+    backToHome: 'Volver al Inicio',
+    privacyTitle: 'Política de Privacidad',
+    privacyLastUpdated: 'Última actualización: 1 de Junio, 2026',
+    privacyP1: 'En Big Data Services LLC, nos tomamos muy en serio la privacidad y la seguridad de sus datos corporativos. Esta política describe cómo recopilamos, utilizamos y protegemos la información.',
+    privacyH1: '1. Recopilación de Datos',
+    privacyP2: 'Recopilamos información estrictamente necesaria para la prestación de nuestros servicios B2B, incluyendo datos de contacto corporativo, requerimientos técnicos y métricas operativas compartidas voluntariamente.',
+    privacyH2: '2. Uso de la Información',
+    privacyP3: 'Utilizamos los datos exclusivamente para diseñar, implementar y mantener las arquitecturas cloud y automatizaciones acordadas. No vendemos ni cedemos datos a terceros.',
+    privacyH3: '3. Seguridad y AWS',
+    privacyP4: 'Toda la información es procesada bajo estrictos estándares de seguridad y encriptación. Utilizamos infraestructura de Amazon Web Services (AWS) con certificaciones SOC 2 e ISO 27001 para garantizar la integridad de los flujos de datos.'
+  },
+  en: {
+    backToHome: 'Back to Home',
+    privacyTitle: 'Privacy Policy',
+    privacyLastUpdated: 'Last updated: June 1, 2026',
+    privacyP1: 'At Big Data Services LLC, we take the privacy and security of your corporate data very seriously. This policy describes how we collect, use, and protect information.',
+    privacyH1: '1. Data Collection',
+    privacyP2: 'We collect information strictly necessary for the provision of our B2B services, including corporate contact data, technical requirements, and operational metrics shared voluntarily.',
+    privacyH2: '2. Use of Information',
+    privacyP3: 'We use the data exclusively to design, implement, and maintain the agreed cloud architectures and automations. We do not sell or transfer data to third parties.',
+    privacyH3: '3. Security and AWS',
+    privacyP4: 'All information is processed under strict security and encryption standards. We use Amazon Web Services (AWS) infrastructure with SOC 2 and ISO 27001 certifications to ensure the integrity of data flows.'
+  }
+};
 
 const PrivacyPage = () => {
-  const { language } = useOutletContext();
-  const isSpanish = language === "es";
+  const [language, setLanguage] = useState('es');
+  const t = content[language];
 
-  // 🔧 Ajustes visuales comunes a ambas versiones
-  const containerClasses =
-    "bg-white min-h-screen pt-36 pb-20"; // antes pt-28
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-  const contentClasses =
-    "container mx-auto px-4 md:px-8 max-w-4xl text-gray-700";
-
-  const titleClasses =
-    "text-3xl md:text-4xl font-bold mb-6 text-bds-text-main";
-
-  const subtitleClasses =
-    "text-xl font-semibold mt-6 mb-2 text-bds-text-main";
-
-  if (!isSpanish) {
-    return (
-      <div className={containerClasses}>
-        <SEO title="Privacy Policy" description="Privacy policy and data protection guidelines for Big Data Services." />
-        <div className={contentClasses}>
-          <h1 className={titleClasses}>Privacy Policy</h1>
-
-          <p className="mb-4">
-            This Privacy Policy explains how Big Data Services collects, uses
-            and protects personal information related to this website and our
-            services.
-          </p>
-
-          <h2 className={subtitleClasses}>Information we collect</h2>
-          <p className="mb-3">
-            We may collect information you voluntarily provide, such as your
-            name and email address when you contact us by email or register for
-            a training. We may also use analytical tools (such as web analytics)
-            to obtain aggregated, non-identifiable usage statistics.
-          </p>
-
-          <h2 className={subtitleClasses}>How we use your information</h2>
-          <p className="mb-3">
-            We use the information only to respond to your inquiries, provide
-            our services, manage training registrations and improve our content.
-            We do not sell your data to third parties.
-          </p>
-
-          <h2 className={subtitleClasses}>Service providers</h2>
-          <p className="mb-3">
-            We may use third-party providers for hosting, email delivery or
-            analytics. These providers process data only on our behalf and under
-            confidentiality obligations.
-          </p>
-
-          <h2 className={subtitleClasses}>Your rights and choices</h2>
-          <p className="mb-3">
-            You may request access, correction or deletion of your personal data
-            by contacting us at{" "}
-            <a
-              href="mailto:info@bigdata-services.com"
-              className="text-bds-blue underline"
-            >
-              info@bigdata-services.com
-            </a>
-            . We will evaluate each request according to applicable law.
-          </p>
-
-          <h2 className={subtitleClasses}>Changes to this Policy</h2>
-          <p className="mb-3">
-            We may update this Privacy Policy from time to time. The latest
-            version will always be available on this page.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  // ⭐ Español
   return (
-    <div className={containerClasses}>
-      <SEO title="Política de Privacidad" description="Política de privacidad y protección de datos para Big Data Services." />
-      <div className={contentClasses}>
-        <h1 className={titleClasses}>Política de Privacidad</h1>
+    <div className="bg-[#ffffff] min-h-screen text-slate-900 font-sans selection:bg-slate-200">
+      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 h-16 flex items-center">
+        <div className="max-w-4xl mx-auto px-6 w-full flex justify-between items-center">
+          <Link to="/" className="flex items-center gap-3">
+            <img src={bdsLogo} alt="Big Data Services Logo" className="h-6 w-auto object-contain" />
+            <span className="font-light text-slate-900 tracking-tight text-base">Big Data Services</span>
+          </Link>
+          <div className="flex items-center gap-6">
+            <button 
+              onClick={() => setLanguage(l => l === 'en' ? 'es' : 'en')}
+              className="text-[10px] font-medium tracking-widest text-slate-400 hover:text-slate-900 border border-slate-200 rounded-full px-3 py-1 transition-colors"
+            >
+              {language === 'en' ? 'ES' : 'EN'}
+            </button>
+            <Link to="/" className="text-slate-500 hover:text-slate-900 transition-colors text-xs font-medium tracking-wide uppercase">
+              {t.backToHome}
+            </Link>
+          </div>
+        </div>
+      </nav>
 
-        <p className="mb-4">
-          En esta Política de Privacidad explicamos cómo Big Data Services
-          recopila, utiliza y protege la información personal relacionada con
-          este sitio web y con nuestros servicios.
-        </p>
+      <main className="pt-40 pb-32 px-6 max-w-3xl mx-auto font-serif">
+        <h1 className="text-5xl font-light tracking-tight text-slate-950 mb-12 pb-6 border-b border-slate-200" style={{fontFamily: "'Lyon Text', 'Playfair Display', serif"}}>{t.privacyTitle}</h1>
+        <div className="text-slate-600 font-light leading-[1.8] space-y-8 text-lg" style={{fontFamily: "'Lyon Text', 'Playfair Display', serif"}}>
+          <p className="text-sm uppercase tracking-widest text-slate-400 font-sans">{t.privacyLastUpdated}</p>
+          <p>{t.privacyP1}</p>
+          <h2 className="text-2xl tracking-tight text-slate-900 mt-12 mb-6">{t.privacyH1}</h2>
+          <p>{t.privacyP2}</p>
+          <h2 className="text-2xl tracking-tight text-slate-900 mt-12 mb-6">{t.privacyH2}</h2>
+          <p>{t.privacyP3}</p>
+          <h2 className="text-2xl tracking-tight text-slate-900 mt-12 mb-6">{t.privacyH3}</h2>
+          <p>{t.privacyP4}</p>
+        </div>
+      </main>
 
-        <h2 className={subtitleClasses}>Información que recopilamos</h2>
-        <p className="mb-3">
-          Podemos recopilar datos que nos proporcionás de forma directa, como tu
-          nombre y correo electrónico cuando nos escribís, solicitás
-          información o te inscribís en una capacitación. También podemos
-          utilizar herramientas de analítica web para obtener estadísticas de
-          uso agregadas y no identificables.
-        </p>
-
-        <h2 className={subtitleClasses}>Cómo utilizamos tus datos</h2>
-        <p className="mb-3">
-          Utilizamos la información únicamente para responder tus consultas,
-          prestar nuestros servicios, gestionar inscripciones y mejorar el
-          contenido que ofrecemos. No vendemos tus datos a terceros.
-        </p>
-
-        <h2 className={subtitleClasses}>Proveedores de servicios</h2>
-        <p className="mb-3">
-          Podemos apoyarnos en proveedores externos para hosting, envío de
-          correos o analítica. Estos proveedores tratan los datos únicamente por
-          cuenta nuestra y bajo compromisos de confidencialidad.
-        </p>
-
-        <h2 className={subtitleClasses}>Tus derechos y opciones</h2>
-        <p className="mb-3">
-          Podés solicitarnos acceso, corrección o eliminación de tus datos
-          personales escribiendo a{" "}
-          <a
-            href="mailto:info@bigdata-services.com"
-            className="text-bds-blue underline"
-          >
-            info@bigdata-services.com
-          </a>
-          . Evaluaremos cada solicitud de acuerdo con la normativa aplicable.
-        </p>
-
-        <h2 className={subtitleClasses}>Cambios en esta política</h2>
-        <p className="mb-3">
-          Podemos actualizar esta Política de Privacidad en cualquier momento.
-          La versión vigente será siempre la que figure publicada en esta
-          página.
-        </p>
-      </div>
+      <Footer language={language} />
     </div>
   );
 };

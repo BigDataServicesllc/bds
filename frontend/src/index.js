@@ -1,45 +1,42 @@
-// RUTA: frontend/src/index.js - MODIFICADO
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App';
-import HomePage from './pages/HomePage';
-import ServicesPage from './pages/ServicesPage';
-import AcademyPage from './pages/AcademyPage';
-import ContactPage from './pages/ContactPage';
-import ServiceDetailPage from './pages/ServiceDetailPage';
-import CourseDetailPage from './pages/CourseDetailPage';
-import BlogIndexPage from './pages/BlogIndexPage';
-import PostDetailPage from './pages/PostDetailPage';
+import PortfolioPage from './pages/PortfolioPage';
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
-import PortfolioPage from "./pages/PortfolioPage";
+import AboutPage from "./pages/AboutPage";
+import FlowFinanzasLanding from "./pages/FlowFinanzasLanding";
 
 import './styles.css'; 
-import Modal from 'react-modal';
-
-Modal.setAppElement('#root');
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
-      { index: true, element: <HomePage /> },
-      { path: "servicios", element: <ServicesPage /> },
-      { path: "academia", element: <AcademyPage /> },
-      { path: "portfolio", element: <PortfolioPage /> },
-      { path: "contacto", element: <ContactPage /> },
-      { path: "servicios/:serviceId", element: <ServiceDetailPage /> },
-      { path: "cursos/:courseId", element: <CourseDetailPage /> },
-      { path: "blog", element: <BlogIndexPage /> },
-      { path: "blog/:postSlug", element: <PostDetailPage /> },
-      { path: "terminos", element: <TermsPage /> },
-      { path: "privacidad", element: <PrivacyPage /> },
-    ],
   },
+  {
+    path: "/flowfinanzas",
+    element: <FlowFinanzasLanding />
+  },
+  {
+    path: "/portfolio",
+    element: <PortfolioPage />
+  },
+  {
+    path: "/terminos",
+    element: <TermsPage />
+  },
+  {
+    path: "/privacidad",
+    element: <PrivacyPage />
+  },
+  {
+    path: "/nosotros",
+    element: <AboutPage />
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
